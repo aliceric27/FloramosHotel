@@ -10,6 +10,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+definePageMeta({
+  layout: false,
+});
 import useInfoStore from "~/store/InfoStore";
 import useLoginStore from "~/store/LoginStore";
 import { useRouter } from "vue-router";
