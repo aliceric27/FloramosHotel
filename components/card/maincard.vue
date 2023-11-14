@@ -19,23 +19,20 @@
   </div>
 </template>
 <script lang="ts" setup>
-const status = ref("normal"); //設備狀態
-const notificationNumber = ref(1); //紅點提示
-const maincardtitle = ref("熱泵系統"); //標題
-//動態切換圖片
-const getManicardbg = () => {
-  const title = maincardtitle.value;
-  switch (title) {
-    case "熱泵系統":
-      return "@/assets/images/maincard/heat-pump.png";
-    case "電力系統":
-      return "@/assets/images/maincard/dynamo.png";
-  }
-};
+import { stringifyQuery } from "vue-router";
+
+const props = defineProps({
+  status: String,
+  title: String,
+  notify: Number,
+});
+const status = props.status; //設備狀態
+const notificationNumber = props.notify; //紅點提示
+const maincardtitle = props.title; //標題
 
 const maincardStyle = computed(() => {
   let bgUrl = "";
-  switch (maincardtitle.value) {
+  switch (props.title) {
     case "熱泵系統":
       bgUrl = "_nuxt/assets/images/maincard/heat-pump.png";
       break;
@@ -59,7 +56,6 @@ const maincardStyle = computed(() => {
   margin: 1rem;
   width: 19.6875rem;
   height: 13.5625rem;
-  outline: 1px solid salmon;
   .card-in {
     width: 100%;
     height: 100%;

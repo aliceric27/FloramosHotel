@@ -1,3 +1,5 @@
 <template>
-  <div><maincard /></div>
+  <div>
+    <Cardlayout />
+  </div>
 </template>
