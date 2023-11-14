@@ -2,7 +2,7 @@
   <div class="logo">
     <div class="logo-content">
       <div class="logo-img">
-        <img class="img" src="/Logo.png" alt="logo" />
+        <img class="img" src="@/Assets/images/Logo.png" alt="logo" />
       </div>
     </div>
   </div>
@@ -13,14 +13,14 @@
   display: inline-block;
   .logo-content {
     border-radius: 50%;
-    padding: 2rem;
-    background-color: #fff;
+    background-color: transparent;
   }
   .logo-img {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    max-width: 45rem;
+    min-height: 300px;
   }
   .img {
     width: 100%;

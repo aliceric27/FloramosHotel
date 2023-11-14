@@ -11,9 +11,9 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
   components: [
-    { path: "~/components/room-page" },
-    { path: "~/components/controller-page" },
     { path: "~/components/Logo" },
+    { path: "~/components/input" },
+    { path: "~/components/button" },
     "~/components",
   ],
   plugins: ["~/plugins/sweetalert2.ts"],

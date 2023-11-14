@@ -1,98 +1,126 @@
 <template>
-  <div id="login-wrap" class="flex items-center justify-center">
-    <div class="flex flex-col items-center">
-      <div class="m-2">
-        <Logo />
-      </div>
-      <div class="m-2">
-        <el-input
-          class="my-2"
-          clearable
-          v-model="account"
-          placeholder="請輸入帳號"
-        />
-        <el-input
-          show-password
-          clearable
-          v-model="password"
-          placeholder="請輸入密碼"
-        />
-      </div>
-      <div class="w-full">
-        <el-button
-          @click="Login"
-          class="w-full"
-          type="primary"
-          :disabled="checkform"
-          :loading="formbtmloading"
-          >登入</el-button
-        >
-      </div>
+  <div id="login-warp" class="bg-contain xl:bg-cover">
+    <div class="warp-in">
+      <Logo :class="{ 'logo-login': isLogin }" />
+      <p class="logo-text logo-login">工務版</p>
+      <Inputtext :nametitle="'Username'" :typ="'acc'" v-if="!isLogin" />
+      <Inputtext :nametitle="'Password'" :typ="'pwd'" v-if="!isLogin" />
+      <Loginbtn @click="checkacc" v-if="!isLogin" />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-definePageMeta({
-  layout: false,
-});
-
-import { pa } from "element-plus/es/locale";
+import useInfoStore from "~/store/InfoStore";
 import useLoginStore from "~/store/LoginStore";
-import { jwtDecode } from "jwt-decode";
-import type { FormInstance, FormRules } from "element-plus";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const ruleFormRef = ref<FormInstance>();
+const infostore = useInfoStore();
+const loginstore = useLoginStore();
 const { $swal } = useNuxtApp();
-interface Loginfo {
-  account: Ref<string>;
-  password: Ref<string>;
-}
-const Loginstore = useLoginStore();
-const sendLogin = Loginstore.sendLogin;
-const formbtmloading: Ref<boolean> = ref(false);
-const account: Ref<string> = ref("");
-const password: Ref<string> = ref("");
-const checkform = computed(() => {
-  if (account.value && password.value) return false;
-  else return true;
-});
-const Login = async () => {
-  formbtmloading.value = true;
-  const inforaw = {
-    username: account.value,
-    password: password.value,
+const acc = {
+  account: ["admin", "test"],
+  password: ["admin", "test"],
+};
+
+const isLogin = ref(false);
+const checkacc = async () => {
+  const sendLogin = loginstore.sendLogin;
+  const setToken = loginstore.setToken;
+  const inputacc = infostore.acc;
+  const inputpw = infostore.pwd;
+  console.log(inputacc, inputpw);
+  const sendinfo = {
+    username: inputacc,
+    password: inputpw,
   };
-  const respon = await sendLogin(inforaw);
-  console.log("result", respon);
-  if (respon.status) {
-    const status = respon.status;
-    if (status === "success") {
-      const rawtoken = respon?.data?.access_token;
-      localStorage.setItem("token", rawtoken);
-      Loginstore.setToken(rawtoken);
-      router.push("/");
-      setTimeout(() => {
-        formbtmloading.value = false;
-      }, 1000);
-    } else if (status === "error") {
-      $swal.fire({
-        title: "錯誤!",
-        text: "帳號密碼錯誤",
-        icon: "error",
-        confirmButtonText: "確認",
-      });
-      setTimeout(() => {
-        formbtmloading.value = false;
-      }, 1000);
-    }
+  const result = await sendLogin(sendinfo);
+  console.log("result", result);
+  if (result.status === "error") {
+    // account/password error
+    $swal.fire({
+      title: "帳號密碼錯誤",
+      text: "錯誤",
+      icon: "warning",
+      confirmButtonText: "確認",
+    });
+    updateBackgroundImage("normal.gif");
+  }
+  if (result.status === "success") {
+    isLogin.value = true;
+    const rawtoken = result?.data?.access_token;
+    localStorage.setItem("token", rawtoken);
+    setToken(rawtoken);
+    updateBackgroundImage("speed.gif");
+    setTimeout(() => {
+      // $swal.fire({
+      //   title: "登入成功",
+      //   text: "登入成功",
+      //   icon: "info",
+      //   confirmButtonText: "確認",
+      // });
+      if (inputacc === "admin") {
+        router.push({ name: "test1" });
+        location.href =
+          "http://59.127.120.220:1113/dashboard/#/login?redirect=%2F";
+      }
+      //   if (inputacc === "test") {
+      //     router.push({ name: "test2" });
+      //   }
+    }, 1500);
+    return;
   }
 };
 </script>
+
 <style lang="scss" scoped>
-#login-wrap {
-  background-image: url(/image-10.png);
+@keyframes fadeInScaleUp {
+  0% {
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.logo-login {
+  animation: fadeInScaleUp 0.6s ease-in-out forwards;
+}
+.fade-transition {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; // 初始状态为不可见
+  &:loaded {
+    opacity: 1; // 图片加载后淡入
+  }
+}
+
+#login-warp {
   min-height: 100vh;
-  background-color: rgb(247, 247, 247);
+  display: flex;
+  justify-content: center;
+  background-image: url("@/assets/images/background/image-10.png");
+  .warp-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .logo-text {
+      margin: 0 0 1rem 0;
+      color: #1777fc;
+      font-family: CHei2HK;
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 0.375rem;
+      // visibility: hidden;
+      // opacity: 0;
+      // transition: visibility 0s ease-in 1s, opacity 1s linear;
+    }
+    .logo-text.show {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+  }
 }
 </style>
