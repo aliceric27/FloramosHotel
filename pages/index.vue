@@ -1,5 +1,8 @@
 <template>
-  <div id="main-warp"><pmenu /></div>
+  <div id="main-warp">
+    <pmenu />
+    <maincard />
+  </div>
 </template>
 <script setup lang="ts"></script>
 

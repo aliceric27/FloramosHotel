@@ -12,6 +12,7 @@ export default defineNuxtConfig({
   },
   components: [
     { path: "~/components/Logo" },
+    { path: "~/components/card" },
     { path: "~/components/header" },
     { path: "~/components/input" },
     { path: "~/components/button" },

@@ -46,14 +46,13 @@ const checkacc = async () => {
       icon: "warning",
       confirmButtonText: "確認",
     });
-    updateBackgroundImage("normal.gif");
   }
   if (result.status === "success") {
     isLogin.value = true;
     const rawtoken = result?.data?.access_token;
     localStorage.setItem("token", rawtoken);
     setToken(rawtoken);
-    updateBackgroundImage("speed.gif");
+
     setTimeout(() => {
       // $swal.fire({
       //   title: "登入成功",

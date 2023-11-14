@@ -14,7 +14,7 @@
   </div>
 </template>
 <script lang="ts"></script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 #menu-warp {
   background: linear-gradient(180deg, #fff 32.29%, rgba(255, 255, 255, 0) 100%);
   .main {
