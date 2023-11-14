@@ -100,6 +100,7 @@ const checkacc = async () => {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+
   background-image: url("@/assets/images/background/image-10.png");
   .warp-in {
     display: flex;

@@ -8,7 +8,7 @@
           <div class="div-7">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/f7f10abe-436d-4b0a-b46e-32277b2c269d?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+              src="@/assets/images/header/home.png"
               class="img"
             />
             <div class="div-8">首頁</div>
@@ -16,7 +16,7 @@
           <div class="div-9">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/8d879135-7a71-4aaf-b321-f280c6e8d9cc?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+              src="@/assets/images/header/logout.png"
               class="img-2"
             />
             <div class="div-10">登出</div>
@@ -25,14 +25,14 @@
       </div>
       <img
         loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/4433fcd0-3c39-48cf-8858-af7c3ced707f?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+        src="@/assets/images/header/Floramos-LOGO.png"
         class="img-3"
       />
       <div class="div-11">
         <div class="div-12">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/54ca0832-7431-4476-a039-472d72b04384?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+            src="@/assets/images/header/clock.png"
             class="img-4"
           />
           <div class="div-13">歷史事件</div>
@@ -40,7 +40,7 @@
         <div class="div-14">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/54ddcfce-7127-49f1-9726-5ea0d2a524e0?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+            src="@/assets/images/header/setting.png"
             class="img-5"
           />
           <div class="div-15">保養設定</div>
@@ -49,7 +49,7 @@
           <div class="div-17">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/015833bc-086a-4d1b-b307-fd7e6ebe68b8?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+              src="@/assets/images/header/alarm.png"
               class="img-6"
             />
             <div class="div-18">即時訊息</div>
