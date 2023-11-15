@@ -1,5 +1,5 @@
 <template>
   <div>
-    <maintain />
+    <alertreset />
   </div>
 </template>
