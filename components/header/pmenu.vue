@@ -2,13 +2,13 @@
   <div id="menu-warp">
     <div class="main">
       <div class="list">
-        <div class="item">電力系統</div>
-        <div class="item">送排風系統</div>
-        <div class="item">給排水系統</div>
-        <div class="item">熱泵系統</div>
-        <div class="item">緊急求救</div>
-        <div class="item">消防系統</div>
-        <div class="item">公共照明系統</div>
+        <div class="item"><p>電力系統</p></div>
+        <div class="item"><p>送排風系統</p></div>
+        <div class="item"><p>給排水系統</p></div>
+        <div class="item"><p>熱泵系統</p></div>
+        <div class="item"><p>緊急求救</p></div>
+        <div class="item"><p>消防系統</p></div>
+        <div class="item"><p>公共照明系統</p></div>
       </div>
     </div>
   </div>
@@ -39,6 +39,25 @@
         font-weight: 700;
         line-height: normal;
         letter-spacing: 0.0675rem;
+      }
+      .item p {
+        position: relative;
+        z-index: 10;
+      }
+      .item p:hover {
+        color: #4aa452;
+      }
+      .item p:hover::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1; /* 將偽元素放在文字後方 */
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 1.03125rem;
+        background: #fff6eb;
+        filter: blur(10px);
       }
     }
   }
