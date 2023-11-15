@@ -1,7 +1,7 @@
 <template>
   <div id="main-warp">
     <pmenu />
-    <maincard />
+    <cardlayout />
   </div>
 </template>
 <script setup lang="ts"></script>

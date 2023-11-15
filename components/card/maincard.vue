@@ -6,14 +6,20 @@
         <img src="@/assets/images/maincard/arrow.svg" alt="" />
       </div>
       <div class="card-bottom">
-        <p
-          class="system-title"
-          :class="{ 'has-notification': notificationNumber > 0 }"
-          :data-notification-number="notificationNumber"
-        >
-          {{ maincardtitle }}
-        </p>
-        <p class="device-count">5 devices</p>
+        <div>
+          <p
+            class="system-title"
+            :class="{ 'has-notification': notificationNumber }"
+            :data-notification-number="notificationNumber"
+          >
+            {{ maincardtitle }}
+          </p>
+          <p class="device-count">5 devices</p>
+        </div>
+        <div>
+          <p>熱泵主機_01</p>
+          <p>設備狀況<span>關閉</span></p>
+        </div>
       </div>
     </div>
   </div>
@@ -31,18 +37,36 @@ const notificationNumber = props.notify; //紅點提示
 const maincardtitle = props.title; //標題
 
 const maincardStyle = computed(() => {
-  let bgUrl = "";
+  let bgtitle = "";
   switch (props.title) {
-    case "熱泵系統":
-      bgUrl = "_nuxt/assets/images/maincard/heat-pump.png";
-      break;
     case "電力系統":
-      bgUrl = "_nuxt/assets/images/maincard/dynamo.png";
+      bgtitle = "dynamo.png";
       break;
-    // 添加更多 case 以处理不同的标题
+    case "送排風系統":
+      bgtitle = "Supply-air.png";
+      break;
+    case "排水系統":
+      bgtitle = "water.png";
+      break;
+    case "熱泵系統":
+      bgtitle = "heat-pump.png";
+      break;
+    case "緊急求救":
+      bgtitle = "urgent.png";
+      break;
+    case "消防系統":
+      bgtitle = "firefighting.png";
+      break;
+    case "公共照明系統":
+      bgtitle = "light.png";
+      break;
+    case "一氧化碳偵測":
+      bgtitle = "carbon-monoxide.png";
+      break;
     default:
-      bgUrl = "_nuxt/assets/images/maincard/dynamo.png";
+      bgtitle = "dynamo.png";
   }
+  let bgUrl = `_nuxt/assets/images/maincard/${bgtitle}`;
   return {
     backgroundColor: "#fff",
     backgroundImage: `url(${bgUrl})`,
@@ -59,7 +83,7 @@ const maincardStyle = computed(() => {
   .card-in {
     width: 100%;
     height: 100%;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -68,6 +92,8 @@ const maincardStyle = computed(() => {
       justify-content: space-between;
     }
     .card-bottom {
+      display: flex;
+      justify-content: space-between;
       position: relative;
       .system-title {
         color: #4aa452;
