@@ -10,12 +10,14 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
+  css: ["animate.css/animate.min.css"],
   components: [
     { path: "~/components/Logo" },
     { path: "~/components/popup" },
     { path: "~/components/card" },
     { path: "~/components/header" },
     { path: "~/components/input" },
+    { path: "~/components/page" },
     { path: "~/components/button" },
     "~/components",
   ],
