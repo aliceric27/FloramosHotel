@@ -2,6 +2,7 @@
   <div id="main-warp">
     <pmenu />
     <cardlayout />
+    <marquee />
   </div>
 </template>
 <script setup lang="ts"></script>
