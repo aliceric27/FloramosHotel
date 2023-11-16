@@ -1,3 +1,4 @@
+import { setBlockTracking } from 'vue';
 <template>
   <div class="wrap">
     <div class="content" :class="animationClass">
@@ -44,6 +45,9 @@ onUnmounted(() => {
 <style scoped>
 .wrap {
   overflow: hidden;
+  min-width: 80vw;
+  border: 2px solid rgba(179, 179, 179, 0.2);
+  margin: 0.5rem 1rem;
 }
 .content {
   /* 根據需要添加樣式 */
