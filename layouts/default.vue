@@ -1,4 +1,5 @@
 <template>
+  <Sidepage />
   <pheader />
   <NuxtPage />
 </template>
