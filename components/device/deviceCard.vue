@@ -3,9 +3,7 @@
     <header
       class="justify-between items-stretch flex gap-5 ml-2.5 mt-2 rounded-[1.875rem]"
     >
-      <h1
-        class="indent-2 text-neutral-500 text-4xl font-bold leading-10 tracking-[2.16px]"
-      >
+      <h1 class="small-title">
         {{ title }}
       </h1>
       <img
@@ -28,7 +26,7 @@
           >
             設備狀態
           </h2>
-          <DeviceOn :deviceOn="true" />
+          <DevicePower :deviceOn="true" />
         </div>
         <div class="justify-between items-center flex gap-5 mt-5 pr-1.5">
           <h2

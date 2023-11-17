@@ -7,20 +7,27 @@ function pathResolve(dir: string) {
 }
 export default defineNuxtConfig({
   ssr: true,
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
   experimental: {
     payloadExtraction: false,
   },
-  css: ["animate.css/animate.min.css"],
-  components: [
-    { path: "~/components/Logo" },
-    { path: "~/components/popup" },
-    { path: "~/components/card" },
-    { path: "~/components/header" },
-    { path: "~/components/input" },
-    { path: "~/components/page" },
-    { path: "~/components/button" },
-    "~/components",
-  ],
+  css: ["animate.css/animate.min.css", "~/style.css", ,],
+  // components: [
+  //   { path: "~/components/Logo" },
+  //   { path: "~/components/popup" },
+  //   { path: "~/components/card" },
+  //   { path: "~/components/card/status" },
+  //   { path: "~/components/header" },
+  //   { path: "~/components/input" },
+  //   { path: "~/components/page" },
+  //   { path: "~/components/button" },
+  //   "~/components",
+  // ],
   plugins: ["~/plugins/sweetalert2.ts"],
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@element-plus/nuxt"],

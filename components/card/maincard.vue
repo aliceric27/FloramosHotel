@@ -1,3 +1,4 @@
+<!-- 主頁card -->
 <template>
   <div id="maincard-warp" :style="maincardStyle">
     <div class="card-in">

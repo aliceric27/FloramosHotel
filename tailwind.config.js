@@ -5,7 +5,14 @@ export default {
     extend: {
       colors: {
         onGreen: '#6DE479',
-        offRed:'#FF6B6B'
+        offRed:'#FF6B6B',
+        smalltitle: '#717171'
+      },
+      fontFamily: {
+        msfont: ['Microsoft JhengHei UI', 'sans-serif']
+      },
+      letterSpacing: {
+        textspace: '0.135rem'
       },
       borderColor:{
         borderGreen:'#6DE479',

@@ -1,3 +1,4 @@
+<!-- 共用跑馬燈 -->
 <template>
   <div class="flex items-center justify-center w-full">
     <div class="flex items-center justify-center warp w-[80%]">

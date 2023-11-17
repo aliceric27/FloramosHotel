@@ -1,3 +1,4 @@
+<!-- 頂部共用layout -->
 <template>
   <div class="div">
     <div class="div-2">

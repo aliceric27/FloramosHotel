@@ -1,3 +1,4 @@
+<!-- 分類共用目錄layout -->
 <template>
   <div id="menu-warp">
     <div class="main">

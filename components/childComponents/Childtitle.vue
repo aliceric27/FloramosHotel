@@ -1,7 +1,6 @@
+<!-- 子頁標題 -->
 <template>
-  <div
-    class="border-b-[3px] border-[#717171] p-4 m-4 text-[3rem] font-bold text-[#717171]"
-  >
+  <div class="big-title">
     {{ title }}
   </div>
 </template>
