@@ -6,7 +6,7 @@
       <h1
         class="indent-2 text-neutral-500 text-4xl font-bold leading-10 tracking-[2.16px]"
       >
-        發電機
+        {{ title }}
       </h1>
       <img
         loading="lazy"
@@ -28,7 +28,7 @@
           >
             設備狀態
           </h2>
-          <deviceOn />
+          <DeviceOn :deviceOn="true" />
         </div>
         <div class="justify-between items-center flex gap-5 mt-5 pr-1.5">
           <h2
@@ -36,11 +36,17 @@
           >
             故障異常
           </h2>
-          <deviceError />
+          <DeviceNormal :isNormal="false" />
         </div>
       </div>
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+const props = defineProps({
+  title: {
+    type: String,
+  },
+});
+</script>
 <style lang="scss" scoped></style>

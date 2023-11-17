@@ -1,5 +1,5 @@
 <template>
   <div>
-    <childpage />
+    <PowerSystems />
   </div>
 </template>
