@@ -3,7 +3,7 @@
   <div id="menu-warp">
     <div class="main">
       <div class="list">
-        <div class="item"><p>電力系統</p></div>
+        <div class="item" @click="turnpage('power')"><p>電力系統</p></div>
         <div class="item"><p>送排風系統</p></div>
         <div class="item"><p>給排水系統</p></div>
         <div class="item"><p>熱泵系統</p></div>
@@ -14,7 +14,19 @@
     </div>
   </div>
 </template>
-<script lang="ts"></script>
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+const turnpage = (page: String) => {
+  switch (page) {
+    case "power":
+      {
+        router.push({ path: "/demo/1" });
+      }
+      break;
+  }
+};
+</script>
 <style lang="scss" scoped>
 #menu-warp {
   background: linear-gradient(180deg, #fff 32.29%, rgba(255, 255, 255, 0) 100%);

@@ -6,7 +6,7 @@
         <div class="div-4">中央監控系統</div>
         <div class="div-5"></div>
         <div class="div-6">
-          <div class="div-7">
+          <div class="cursor-pointer div-7" @click="turnpage('home')">
             <img
               loading="lazy"
               src="@/assets/images/header/home.png"
@@ -60,7 +60,19 @@
     </div>
   </div>
 </template>
-
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+const router = useRouter();
+const turnpage = (page: String) => {
+  switch (page) {
+    case "home":
+      {
+        router.push({ path: "/" });
+      }
+      break;
+  }
+};
+</script>
 <style scoped>
 .div {
   display: flex;
