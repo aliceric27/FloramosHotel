@@ -3,7 +3,7 @@
   <div class="div">
     <div class="div-2">
       <div class="div-3">
-        <div class="div-4">工務版</div>
+        <div class="div-4">中央監控系統</div>
         <div class="div-5"></div>
         <div class="div-6">
           <div class="div-7">

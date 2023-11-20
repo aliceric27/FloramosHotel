@@ -4,4 +4,41 @@
 .big-title {
     @apply border-b-[3px] border-[#717171] p-4 m-4 text-[3rem] font-bold text-[#717171] tracking-widest;
   }
+.small-title-n {
+    @apply text-4xl font-bold text-smalltitle font-msfont tracking-textspace;
+  }
+.side-title{
+  @apply text-smalltitle font-msfont text-[3rem] font-bold tracking-[0.18rem]
+}
+.grey-bg{
+  @apply bg-[#F2F2F2];
+}
+.side-green-title{
+color: #4AA452;
+font-family: Microsoft JhengHei UI;
+font-size: 1.5rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: 0.09rem;
+}
+.side-content{
+color: #717171;
+font-family: Microsoft JhengHei UI;
+font-size: 1rem;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: 0.06rem;
+}
 
+.side-time{
+  color: #717171;
+  font-family: Microsoft JhengHei UI;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.075rem;
+
+}

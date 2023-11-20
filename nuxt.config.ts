@@ -7,6 +7,35 @@ function pathResolve(dir: string) {
 }
 export default defineNuxtConfig({
   ssr: true,
+  head: {
+    title: "中央監控系統",
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "Floramos-01-180.png" },
+      {
+        rel: "shortcut icon",
+        type: "image/x-icon",
+        href: "Floramos-01-180.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        size: "152x152",
+        type: "image/x-icon",
+        href: "Floramos-01-180.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        size: "180x180",
+        type: "image/x-icon",
+        href: "Floramos-01-180.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        size: "167x167",
+        type: "image/x-icon",
+        href: "Floramos-01-180.png",
+      },
+    ],
+  },
   components: [
     {
       path: "~/components",
