@@ -3,6 +3,7 @@
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
       <div class="grid grid-cols-2 gap-8 justify-items-center">
+        <!-- 左側 -->
         <div
           class="flex flex-col items-start gap-[2.25rem] p-[0.625rem_2.8125rem_0.625rem_1.9375rem] bg-white"
         >
@@ -22,7 +23,32 @@
           <!--  -->
           <!--  -->
         </div>
-        <div class="w-full h-full bg-blue-400">02</div>
+        <!-- 右側 -->
+        <div
+          class="bg-white flex items-start content-start flex-shrink-0 flex-wrap w-[43.25rem] h-[27.6875rem] p-[0.375rem_1.5625rem_0rem_1.5625rem] gap-[2.25rem_6.5625rem]"
+        >
+          <!-- B2F-separate bar -->
+          <div class="flex w-[40.125rem] flex-col items-start shrink-0">
+            <div
+              class="flex w-[9rem] justify-center items-center gap-[0.75rem]"
+            >
+              <p class="B1F">B2F</p>
+              <img src="@/assets/images/wind/floor.png" alt="" />
+            </div>
+            <div class="bg-[#C2A344] w-[40.125rem] h-[0.1875rem]"></div>
+          </div>
+          <!-- end -->
+          <!-- Frame 138 -->
+          <div class="flex items-start gap-[6.125rem]">
+            <WindCard title="進風機" />
+            <WindCard title="排風機" />
+          </div>
+          <!-- end -->
+          <div class="flex items-start gap-[6.125rem]">
+            <WindCard title="進風機" />
+            <img src="@/assets/images/wind/air-con-pic.png" alt="" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
