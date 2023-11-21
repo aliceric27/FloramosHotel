@@ -1,9 +1,11 @@
 <!-- 共用跑馬燈 -->
 <template>
-  <div class="flex items-center justify-center w-full">
-    <div class="flex items-center justify-center warp w-[80%]">
-      <div class="content" :class="animationClass">
-        {{ content[currentIndex].c }}
+  <div class="fixed bottom-0 w-screen">
+    <div class="flex items-center justify-center w-full">
+      <div class="flex items-center justify-center warp w-[80%]">
+        <div class="content" :class="animationClass">
+          {{ content[currentIndex].c }}
+        </div>
       </div>
     </div>
   </div>

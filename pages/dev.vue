@@ -1,3 +1,3 @@
 <template>
-  <div><PowerSystems /></div>
+  <div><windCard /></div>
 </template>

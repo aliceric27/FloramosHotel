@@ -6,7 +6,10 @@
         <div class="div-4">中央監控系統</div>
         <div class="div-5"></div>
         <div class="div-6">
-          <div class="cursor-pointer div-7" @click="turnpage('home')">
+          <div
+            class="cursor-pointer div-7"
+            @click="changepage('index', router)"
+          >
             <img
               loading="lazy"
               src="@/assets/images/header/home.png"
@@ -62,16 +65,10 @@
 </template>
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
+import usePageStore from "~/store/PageStore";
 const router = useRouter();
-const turnpage = (page: String) => {
-  switch (page) {
-    case "home":
-      {
-        router.push({ path: "/" });
-      }
-      break;
-  }
-};
+const PageStore = usePageStore();
+const changepage = PageStore.turnpage;
 </script>
 <style scoped>
 .div {
@@ -79,7 +76,6 @@ const turnpage = (page: String) => {
   flex-direction: column;
 }
 .div-2 {
-  border: 1px solid #000;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background-color: var(
     --nav-bar,

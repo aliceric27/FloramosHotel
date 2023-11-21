@@ -3,8 +3,12 @@
   <div id="menu-warp">
     <div class="main">
       <div class="list">
-        <div class="item" @click="turnpage('power')"><p>電力系統</p></div>
-        <div class="item"><p>送排風系統</p></div>
+        <div class="item" @click="changepage('system-power', router)">
+          <p>電力系統</p>
+        </div>
+        <div class="item" @click="changepage('system-wind', router)">
+          <p>送排風系統</p>
+        </div>
         <div class="item"><p>給排水系統</p></div>
         <div class="item"><p>熱泵系統</p></div>
         <div class="item"><p>緊急求救</p></div>
@@ -15,17 +19,11 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePageStore from "~/store/PageStore";
 import { useRouter } from "vue-router";
 const router = useRouter();
-const turnpage = (page: String) => {
-  switch (page) {
-    case "power":
-      {
-        router.push({ path: "/demo/1" });
-      }
-      break;
-  }
-};
+const PageStore = usePageStore();
+const changepage = PageStore.turnpage;
 </script>
 <style lang="scss" scoped>
 #menu-warp {
@@ -34,7 +32,7 @@ const turnpage = (page: String) => {
     display: flex;
     justify-content: center;
     .list {
-      width: 80%;
+      width: 90%;
       margin: 1rem;
       border-bottom: 1px solid rgba(167, 167, 167, 0.3);
       display: flex;

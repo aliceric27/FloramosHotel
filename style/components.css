@@ -1,5 +1,5 @@
 .small-title {
-    @apply text-4xl font-bold indent-2 text-smalltitle font-msfont tracking-textspace;
+    @apply text-4xl font-bold text-smalltitle font-msfont tracking-textspace;
   }
 .big-title {
     @apply border-b-[3px] border-[#717171] p-4 m-4 text-[3rem] font-bold text-[#717171] tracking-widest;

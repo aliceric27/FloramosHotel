@@ -3,6 +3,7 @@ import useLoginStore from "~/store/LoginStore";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "vue-router";
 export default defineNuxtRouteMiddleware((to, from) => {
+  console.log(to);
   // const { $swal } = useNuxtApp();
   // const router = useRouter();
   // const socketStore = useSocketStore();

@@ -18,6 +18,7 @@
 .main-warp {
   display: flex;
   justify-content: center;
+  height: 75vh;
   .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 定義 4 列，每列大小相等 */
