@@ -4,6 +4,12 @@
 .big-title {
     @apply border-b-[3px] border-[#717171] p-4 m-4 text-[3rem] font-bold text-[#717171] tracking-widest;
   }
+.water-title{
+  @apply border-b-[3px] border-[#717171] p-4 mt-4 text-[3rem] font-bold text-[#717171] tracking-widest;
+}
+.child-title{
+  @apply border-b-[3px] border-[#C2A344] p-4 m-4 text-[3rem] font-bold text-[#C2A344] tracking-widest;
+}
 .small-title-n {
     @apply text-4xl font-bold text-smalltitle font-msfont tracking-textspace;
   }

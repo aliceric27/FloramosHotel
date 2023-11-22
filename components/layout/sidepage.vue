@@ -30,7 +30,9 @@
                 </div>
                 <div class="flex flex-col justify-between">
                   <div class="flex">
-                    <div><img src="@/assets/svg/sidepage-1.svg" alt="" /></div>
+                    <div>
+                      <img src="@/assets/button/sidepage-1.svg" alt="" />
+                    </div>
                     <p class="side-green-title">保養管理</p>
                   </div>
                   <div class="flex outline-1 outline-green-500">
@@ -61,7 +63,7 @@
             <div class="flex flex-col items-center justify-center">
               <div class="flex">
                 <div class="flex items-center justify-center">
-                  <img src="@/assets/svg/sidepage-2.svg" alt="" />
+                  <img src="@/assets/button/sidepage-2.svg" alt="" />
                 </div>
                 <p class="side-green-title">警報即時監視</p>
               </div>
@@ -71,7 +73,7 @@
               >
                 <div class="flex my-4">
                   <div class="mx-2">
-                    <img src="@/assets/svg/sidepage-3.svg" alt="" />
+                    <img src="@/assets/button/sidepage-3.svg" alt="" />
                   </div>
                   <div class="flex flex-col my-2 side-time">
                     <p>警報時間</p>
@@ -83,7 +85,7 @@
                 </div>
                 <div class="flex">
                   <div class="mx-2">
-                    <img src="@/assets/svg/sidepage-3.svg" alt="" />
+                    <img src="@/assets/button/sidepage-3.svg" alt="" />
                   </div>
                   <div class="flex flex-col my-2 side-time">
                     <p>解除時間</p>

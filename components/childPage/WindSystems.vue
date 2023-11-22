@@ -1,8 +1,8 @@
 <template>
   <div class="flex justify-center">
-    <div class="w-[80vw]">
+    <div class="w-max">
       <Childtitle :title="childtitle" />
-      <div class="grid grid-cols-2 gap-8 justify-items-center">
+      <div class="flex justify-items-center gap-[2.25rem]">
         <!-- 左側 -->
         <div
           class="flex flex-col items-start gap-[2.25rem] p-[0.625rem_2.8125rem_0.625rem_1.9375rem] bg-white"

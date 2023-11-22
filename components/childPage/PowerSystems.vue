@@ -7,46 +7,52 @@
         <DeviceCard :title="'進風機'" />
         <DeviceCard :title="'排風機'" />
         <div>
-          <img
-            class="opacity-30"
-            src="@/assets/images/maincard/power-logo.png"
-            alt=""
-            srcset=""
-          />
+          <img src="@/assets/images/maincard/power-logo.png" alt="" srcset="" />
         </div>
         <!-- ----------------------------- -->
         <div class="flex flex-col justify-between m-4">
           <div class="flex">
             <div>
-              <img src="@/assets/svg/s-cardline.svg" alt="小icon" />
+              <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
             <p class="small-title">電瓶電壓</p>
           </div>
-          <div><img src="@/assets/svg/battery.svg" alt="電池圖案" /></div>
+          <div
+            v-show="isBatteryNormal"
+            @click="isBatteryNormal = !isBatteryNormal"
+          >
+            <img src="@/assets/button/battery_full.png" alt="normal" />
+          </div>
+          <div
+            v-show="!isBatteryNormal"
+            @click="isBatteryNormal = !isBatteryNormal"
+          >
+            <img src="@/assets/button/battery_low.png" alt="error" />
+          </div>
           <div class="flex items-center justify-between">
             <p>電瓶電壓</p>
-            <DeviceNormal :isNormal="false" />
+            <DeviceNormal :isNormal="isBatteryNormal" />
           </div>
         </div>
         <!-- ----------------------------- -->
         <div class="flex flex-col justify-between min-w-[207px] m-4">
           <div class="flex items-center">
             <div>
-              <img src="@/assets/svg/s-cardline.svg" alt="小icon" />
+              <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
             <p class="small-title">日用油箱</p>
           </div>
           <div>
             <img
-              v-if="isfuelNormal"
+              v-show="isfuelNormal"
               @click="isfuelNormal = !isfuelNormal"
-              src="@/assets/svg/fueltank-nomal.png"
+              src="@/assets/button/fueltank-nomal.png"
               alt="油箱圖案"
             />
             <img
-              v-if="!isfuelNormal"
+              v-show="!isfuelNormal"
               @click="isfuelNormal = !isfuelNormal"
-              src="@/assets/svg/fueltank-error.png"
+              src="@/assets/button/fueltank-error.png"
               alt="油箱圖案"
             />
           </div>
@@ -63,6 +69,7 @@
 <script lang="ts" setup>
 const childtitle = ref("電力系統");
 const isfuelNormal = ref(true);
+const isBatteryNormal = ref(true);
 </script>
 
 <style lang="scss" scoped></style>

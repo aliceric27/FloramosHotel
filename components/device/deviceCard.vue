@@ -5,7 +5,7 @@
     >
       <img
         loading="lazy"
-        src="@/assets/svg/power-page_Line.png"
+        src="@/assets/button/power-page_Line.png"
         class=""
         alt=""
       />
