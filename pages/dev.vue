@@ -1,3 +1,3 @@
 <template>
-  <div><windCard /></div>
+  <div><deviceWater /></div>
 </template>
