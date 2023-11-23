@@ -11,8 +11,8 @@
           <!--  -->
           <div
             class="pt-4 pb-4 border-b-4 border-[#C2A344] flex justify-items-center cursor-pointer"
-            :class="{ 'bg-[#FFF6DC]': isMenuSelect === 'water-1' }"
-            @click="isMenuSelect = 'water-1'"
+            :class="{ 'bg-[#FFF6DC]': waterPage === '1' }"
+            @click="turnWaterpage('1')"
           >
             <div class="flex">
               <div
@@ -25,8 +25,8 @@
           <!--  -->
           <div
             class="pt-4 pb-4 border-b-4 border-[#C2A344] flex justify-items-center"
-            :class="{ 'bg-[#FFF6DC]': isMenuSelect === 'water-2' }"
-            @click="isMenuSelect = 'water-2'"
+            :class="{ 'bg-[#FFF6DC]': waterPage === '2' }"
+            @click="turnWaterpage('2')"
           >
             <div class="flex">
               <div
@@ -39,8 +39,8 @@
           <!--  -->
           <div
             class="pt-4 pb-4 border-b-4 border-[#C2A344] flex justify-items-center"
-            :class="{ 'bg-[#FFF6DC]': isMenuSelect === 'water-3' }"
-            @click="isMenuSelect = 'water-3'"
+            :class="{ 'bg-[#FFF6DC]': waterPage === '3' }"
+            @click="turnWaterpage('3')"
           >
             <div class="flex">
               <div
@@ -57,6 +57,11 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePageStore from "~/store/PageStore";
+const PageStore = usePageStore();
+const waterPage = computed(() => PageStore.water);
+console.log("waterPage", waterPage);
+const turnWaterpage = PageStore.turnWaterpage;
 const props = defineProps({
   title: {
     type: String,
