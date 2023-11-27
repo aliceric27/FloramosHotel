@@ -12,7 +12,9 @@
         <div class="item" @click="changepage('system-water', router)">
           <p>給排水系統</p>
         </div>
-        <div class="item"><p>熱泵系統</p></div>
+        <div class="item" @click="changepage('system-heat', router)">
+          <p>熱泵系統</p>
+        </div>
         <div class="item"><p>緊急求救</p></div>
         <div class="item"><p>消防系統</p></div>
         <div class="item"><p>公共照明系統</p></div>
