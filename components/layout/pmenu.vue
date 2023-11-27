@@ -21,7 +21,9 @@
         <div class="item" @click="changepage('system-firefighting', router)">
           <p>消防系統</p>
         </div>
-        <div class="item"><p>公共照明系統</p></div>
+        <div class="item" @click="changepage('system-light', router)">
+          <p>公共照明系統</p>
+        </div>
         <div class="item"><p>CO偵測</p></div>
       </div>
     </div>

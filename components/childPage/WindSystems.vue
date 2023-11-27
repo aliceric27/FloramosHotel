@@ -1,3 +1,4 @@
+<!-- 送排風系統 -->
 <template>
   <div class="flex justify-center">
     <div class="w-max">
