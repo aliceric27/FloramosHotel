@@ -15,7 +15,9 @@
         <div class="item" @click="changepage('system-heat', router)">
           <p>熱泵系統</p>
         </div>
-        <div class="item"><p>緊急求救</p></div>
+        <div class="item" @click="changepage('system-urgent', router)">
+          <p>緊急求救</p>
+        </div>
         <div class="item"><p>消防系統</p></div>
         <div class="item"><p>公共照明系統</p></div>
         <div class="item"><p>CO偵測</p></div>
