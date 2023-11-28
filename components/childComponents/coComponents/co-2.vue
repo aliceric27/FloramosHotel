@@ -3,15 +3,15 @@
   <div>
     <div class="flex items-center justify-around">
       <div class="flex items-center gap-4">
-        <div><fire-alert status="normal" /></div>
+        <div><co-alert status="normal" /></div>
         <div><p class="content">環境中含一氧化碳濃度正常</p></div>
       </div>
       <div class="flex items-center gap-4">
-        <div><fire-alert status="warning" /></div>
+        <div><co-alert status="warning" /></div>
         <div><p class="content">環境中含一氧化碳濃度高於25ppm</p></div>
       </div>
       <div class="flex items-center gap-4">
-        <div><fire-alert status="error" /></div>
+        <div><co-alert status="error" /></div>
         <div>
           <p class="text-center content">環境中含一氧化碳濃度高於100ppm</p>
         </div>

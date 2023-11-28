@@ -24,7 +24,9 @@
         <div class="item" @click="changepage('system-light', router)">
           <p>公共照明系統</p>
         </div>
-        <div class="item"><p>CO偵測</p></div>
+        <div class="item" @click="changepage('system-codetect', router)">
+          <p>CO偵測</p>
+        </div>
       </div>
     </div>
   </div>

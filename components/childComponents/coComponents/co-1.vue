@@ -14,11 +14,11 @@
       <div>
         <div class="flex justify-around my-2">
           <div class="loc">偵測狀態</div>
-          <fire-alert :status="props.device" />
+          <co-alert :status="props.device" />
         </div>
         <div class="flex justify-around">
           <div class="loc">電量狀態</div>
-          <fire-alert :status="props.battery" />
+          <co-alert :status="props.battery" />
         </div>
       </div>
     </div>

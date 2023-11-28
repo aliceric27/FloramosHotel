@@ -1,7 +1,8 @@
+<!-- 狀態警告 通用面板 -->
 <template>
   <div>
     <div class="flex items-center justify-around my-2">
-      <div class="alert">警報異常</div>
+      <div class="alert">{{ props.title }}</div>
       <div
         v-if="props.isNormal"
         class="flex border-2 border-[#6DE479] border-solid rounded-[1rem] text-[#6DE479]"
@@ -19,6 +20,10 @@
 </template>
 <script lang="ts" setup>
 const props = defineProps({
+  title: {
+    type: String,
+    default: "警報異常",
+  },
   isNormal: {
     type: Boolean,
     default: false,
