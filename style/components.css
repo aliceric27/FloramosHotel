@@ -1,20 +1,24 @@
+body {
+  min-width: 1920px;
+  min-height: 1080px;
+}
 .small-title {
-    @apply text-4xl font-bold text-smalltitle font-msfont tracking-textspace;
+    @apply text-[36px] leading-10 font-bold text-smalltitle font-msfont tracking-textspace;
   }
 .big-title {
-    @apply border-b-[3px] border-[#717171] mb-4 text-[3rem] font-bold text-[#717171] tracking-widest;
+    @apply border-b-[3px] border-[#717171] mb-4 text-[48px] font-bold text-[#717171] tracking-widest;
   }
 .water-title{
-  @apply border-b-[3px] border-[#717171] p-4 mt-4 text-[3rem] font-bold text-[#717171] tracking-widest;
+  @apply border-b-[3px] border-[#717171] p-4 mt-4 text-[48px] font-bold text-[#717171] tracking-widest;
 }
 .child-title{
-  @apply border-b-[3px] border-[#C2A344] p-4 m-4 text-[3rem] font-bold text-[#C2A344] tracking-widest;
+  @apply border-b-[3px] border-[#C2A344] p-4 m-4 text-[48px] font-bold text-[#C2A344] tracking-widest;
 }
 .small-title-n {
     @apply text-4xl font-bold text-smalltitle font-msfont tracking-textspace;
   }
 .side-title{
-  @apply text-smalltitle font-msfont text-[3rem] font-bold tracking-[0.18rem]
+  @apply text-smalltitle font-msfont text-[48px] font-bold tracking-[0.18rem]
 }
 .grey-bg{
   @apply bg-[#F2F2F2];

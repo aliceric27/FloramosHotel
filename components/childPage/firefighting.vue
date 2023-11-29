@@ -34,15 +34,15 @@
                 </div>
 
                 <fire-1
-                  :floor="'B1F'"
-                  :title:="'排煙機'"
+                  :floor="'B1'"
+                  :title="'排煙機'"
                   :isNormal="true"
                   :isNormal2="false"
                 />
                 <!-- 火災警報 -->
                 <fire-2
-                  :floor="'1F'"
-                  :title:="'排煙機'"
+                  :floor="'1'"
+                  :title="'排煙機'"
                   :isNormal="true"
                   :isNormal2="false"
                 />
@@ -67,20 +67,20 @@
                   </div>
                 </div>
                 <fire-1
-                  :floor="'1F'"
-                  :title:="'排煙機_01'"
+                  :floor="'1'"
+                  :title="'排煙機_01'"
                   :isNormal="false"
                   :isNormal2="false"
                 />
                 <fire-1
-                  :floor="'1F'"
-                  :title:="'排煙機02'"
+                  :floor="'1'"
+                  :title="'排煙機_02'"
                   :isNormal="false"
                   :isNormal2="false"
                 />
                 <fire-1
-                  :floor="'1F'"
-                  :title:="'排煙機03'"
+                  :floor="'1'"
+                  :title="'排煙機_03'"
                   :isNormal="false"
                   :isNormal2="false"
                 />
@@ -106,20 +106,20 @@
                 </div>
 
                 <fire-1
-                  :floor="'2F'"
-                  :title:="'排煙機_01'"
+                  :floor="'2'"
+                  :title="'排煙機_01'"
                   :isNormal="true"
                   :isNormal2="true"
                 />
                 <fire-1
-                  :floor="'2F'"
-                  :title:="'排煙機_02'"
+                  :floor="'2'"
+                  :title="'排煙機_02'"
                   :isNormal="true"
                   :isNormal2="true"
                 />
                 <fire-1
-                  :floor="'2F'"
-                  :title:="'排煙機_03'"
+                  :floor="'2'"
+                  :title="'排煙機_03'"
                   :isNormal="true"
                   :isNormal2="true"
                 />
