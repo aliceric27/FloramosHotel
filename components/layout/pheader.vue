@@ -39,9 +39,11 @@
             src="@/assets/images/header/clock.png"
             class="img-4"
           />
-          <div class="div-13">歷史事件</div>
+          <div class="div-13" @click="changepage('history', router)">
+            歷史事件
+          </div>
         </div>
-        <div class="div-14">
+        <div class="div-14" @click="changepage('maint', router)">
           <img
             loading="lazy"
             src="@/assets/images/header/setting.png"
@@ -232,6 +234,7 @@ const changepage = PageStore.turnpage;
   max-width: 100%;
 }
 .div-13 {
+  cursor: pointer;
   justify-content: center;
   color: #838383;
   white-space: nowrap;
@@ -244,6 +247,7 @@ const changepage = PageStore.turnpage;
   }
 }
 .div-14 {
+  cursor: pointer;
   align-self: center;
   display: flex;
   gap: 17px;
