@@ -58,7 +58,26 @@
               src="@/assets/images/header/alarm.png"
               class="img-6"
             />
-            <div class="div-18">即時訊息</div>
+            <div
+              class="relative cursor-pointer div-18"
+              @click="switchNoticeBox"
+            >
+              即時訊息
+              <div
+                class="absolute w-[20px] h-[20px] bg-[#FF5B5B] rounded-[50%] text-center text-white -top-4 -right-4"
+              >
+                {{ 1 }}
+              </div>
+              <div
+                v-if="noticeBox"
+                class="bg-white min-w-[360px] h-[233px] absolute right-0 shadow-[-1px_7px_18px_-2px_rgba(0,0,0,0.56)] rounded-[7px]"
+              >
+                <div class="flex flex-col w-full h-full p-4 overflow-y-auto">
+                  <notiebox />
+                </div>
+                <!--  -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -68,8 +87,12 @@
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
 import usePageStore from "~/store/PageStore";
+import usePopupStore from "~/store/PopupStore";
 const router = useRouter();
 const PageStore = usePageStore();
+const PopupStore = usePopupStore();
+const noticeBox = computed(() => PopupStore.noticeBox);
+const switchNoticeBox = PopupStore.switchNoticeBox;
 const changepage = PageStore.turnpage;
 </script>
 <style scoped>
@@ -302,6 +325,7 @@ const changepage = PageStore.turnpage;
   margin: auto 0;
 }
 .div-18 {
+  display: relative;
   color: #838383;
   align-self: stretch;
   white-space: nowrap;

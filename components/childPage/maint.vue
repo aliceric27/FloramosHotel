@@ -27,5 +27,16 @@
         />
       </div>
     </div>
+    <div class="flex justify-center">
+      <el-pagination layout="prev, pager, next" :total="50" class="red-text" />
+    </div>
   </div>
 </template>
+<script lang="ts" setup></script>
+<style lang="scss" scoped>
+.red-text {
+  --el-pagination-button-disabled-color: #4aa452;
+  --el-pagination-button-color: #4aa452;
+  --el-pagination-hover-color: rgb(157, 183, 255);
+}
+</style>

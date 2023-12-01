@@ -16,9 +16,7 @@
 import usePopupStore from "~/store/PopupStore";
 const PopupStore = usePopupStore();
 console.log("PopupStore", PopupStore);
-const switchMaintPopup = () => {
-  PopupStore.switchMaintPopup();
-};
+const switchMaintPopup = PopupStore.switchMaintPopup;
 </script>
 <style lang="scss" scoped>
 .add-text {
