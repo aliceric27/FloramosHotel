@@ -1,11 +1,24 @@
 <template>
   <div id="main-warp">
+    <!-- <alert /> -->
+    <emergency
+      v-if="!isEmergency"
+      :conten1="'一氧化碳偵測出現異常'"
+      :conten2="'B2F  旅館後方左側'"
+    />
+    <sidepage />
     <pheader />
     <pmenu />
     <NuxtPage />
     <marquee />
   </div>
 </template>
+<script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+console.log("PopupStore", PopupStore);
+const isEmergency = computed(() => PopupStore.emergency);
+</script>
 <style lang="scss" scoped>
 #main-warp {
   min-height: 100dvh;

@@ -7,7 +7,10 @@
         class="flex w-[513px] h-[60px] justify-between items-center absolute top-0 left-0 z-[2] py-2"
       >
         <div class="flex flex-col gap-2.5 items-start shrink-0 relative">
-          <div class="w-[290px] h-[60px] shrink-0 rounded-[39px] relative">
+          <div
+            class="w-[290px] h-[60px] shrink-0 rounded-[39px] relative"
+            @click="switchsidpage('熱泵系統', props.title)"
+          >
             <div
               class="flex w-[238px] h-9 justify-between items-center absolute top-2.5 left-[23px] z-[3]"
             >
@@ -83,6 +86,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
     type: String,

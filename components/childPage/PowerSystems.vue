@@ -4,9 +4,9 @@
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
       <div class="grid grid-cols-3 gap-16 justify-items-center">
-        <DeviceCard :title="'發電機'" />
-        <DeviceCard :title="'進風機'" />
-        <DeviceCard :title="'排風機'" />
+        <DeviceCard :title="'發電機'" :system="'電力系統'" />
+        <DeviceCard :title="'進風機'" :system="'電力系統'" />
+        <DeviceCard :title="'排風機'" :system="'電力系統'" />
         <div>
           <img src="@/assets/images/maincard/power-logo.png" alt="" srcset="" />
         </div>
@@ -68,6 +68,10 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const sidpage = computed(() => PopupStore.sidpage);
+const switchsidpage = PopupStore.switchsidpage;
 const childtitle = ref("電力系統");
 const isfuelNormal = ref(true);
 const isBatteryNormal = ref(true);

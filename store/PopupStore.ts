@@ -1,13 +1,26 @@
 import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { RouteRecordName, Router } from "vue-router";
 export interface State {
-  maintAdd: boolean;
-  noticeBox: boolean;
+  maintAdd: Boolean;
+  noticeBox: Boolean;
+  sidePage: Boolean;
+  sidpage: Boolean;
+  sidata: {
+    system: String;
+    device: String;
+  };
 }
 // 初始化資料
 const initState: State = {
   maintAdd: false,
   noticeBox: false,
+  sidePage: false,
+  emergency: false,
+  sidpage: false,
+  sidata: {
+    system: "",
+    device: "",
+  },
 };
 // 相關fn
 const actions: any = {
@@ -16,6 +29,20 @@ const actions: any = {
   },
   switchNoticeBox() {
     this.noticeBox = !this.noticeBox;
+  },
+  switchsidePage() {
+    this.sidePage = !this.sidePage;
+  },
+  switchemergency() {
+    this.emergency = !this.emergency;
+  },
+  switchemergency() {
+    this.emergency = !this.emergency;
+  },
+  switchsidpage(system: String = "", device: String = "") {
+    this.sidpage = !this.sidpage;
+    this.sidata.system = system;
+    this.sidata.device = device;
   },
 };
 const getters: _GettersTree<State> = {};

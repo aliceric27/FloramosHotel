@@ -1,28 +1,31 @@
+<!-- 即時訊息通知 -->
 <template>
-  <div class="main-container">
-    <div class="image-wrapper">
-      <img
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ef8f062-3ca4-46f3-ac83-041a7a49fd05?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
-        class="img"
-      />
-      <div class="heading" role="heading" aria-level="2">即時訊息</div>
-    </div>
-    <div class="divider"></div>
-    <div class="message">{{ arertTitle }}</div>
-    <div class="details">
-      <div class="reason">
-        <div class="label">異常原因</div>
-        <div class="value">{{ alertreson }}</div>
+  <div>
+    <div class="main-container">
+      <div class="image-wrapper">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/6ef8f062-3ca4-46f3-ac83-041a7a49fd05?apiKey=929b44a9cf6a4b4891c6112d7debe76e&"
+          class="img"
+        />
+        <div class="heading" role="heading" aria-level="2">即時訊息</div>
       </div>
-      <div class="update-time">
-        <div class="label">更新時間</div>
-        <div class="value">{{ alerttime }}</div>
+      <div class="divider"></div>
+      <div class="message">{{ arertTitle }}</div>
+      <div class="details">
+        <div class="reason">
+          <div class="label">異常原因</div>
+          <div class="value">{{ alertreson }}</div>
+        </div>
+        <div class="update-time">
+          <div class="label">更新時間</div>
+          <div class="value">{{ alerttime }}</div>
+        </div>
       </div>
-    </div>
-    <div class="actions">
-      <div class="close-button">關閉</div>
-      <div class="spacer">警報管理</div>
+      <div class="actions">
+        <div class="close-button">關閉</div>
+        <div class="spacer">警報管理</div>
+      </div>
     </div>
   </div>
 </template>

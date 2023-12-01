@@ -7,6 +7,7 @@
       <div class="flex flex-col items-center justify-center gap-5 shrink-0">
         <div
           class="flex w-[266px] h-[60px] pt-0 pr-[11px] pb-0 justify-between items-center rounded-[30px]"
+          @click="switchsidpage('送排風系統', props.title)"
         >
           <div class="flex items-start shrink-0">
             <span
@@ -37,6 +38,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
     type: String,

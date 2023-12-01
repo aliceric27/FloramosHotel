@@ -16,7 +16,7 @@
             />
           </div>
           <div class="relative">
-            <windCard :title="'揚水泵_01'" />
+            <windCard :title="'揚水泵_01'" :system="'給排水系統'" />
             <div>
               <img
                 class="absolute top-0 -right-14"
@@ -58,7 +58,7 @@
             />
           </div>
           <div class="relative">
-            <windCard :title="'揚水泵_02'" />
+            <windCard :title="'揚水泵_02'" :system="'給排水系統'" />
             <div>
               <img
                 class="absolute top-0 scale-x-[-1] -left-14"
