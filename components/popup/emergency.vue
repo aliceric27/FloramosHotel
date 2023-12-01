@@ -1,6 +1,6 @@
 <!-- 緊急通知 -->
 <template>
-  <div>
+  <div class="z-50">
     <black-opacity />
     <div
       @click="switchemergency"

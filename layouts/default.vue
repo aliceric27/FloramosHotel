@@ -1,11 +1,13 @@
 <template>
   <div id="main-warp">
     <!-- <alert /> -->
+
     <emergency
-      v-if="!isEmergency"
+      v-if="isEmergency"
       :conten1="'一氧化碳偵測出現異常'"
       :conten2="'B2F  旅館後方左側'"
     />
+    <maintain-confirm />
     <sidepage />
     <pheader />
     <pmenu />

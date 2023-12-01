@@ -52,6 +52,7 @@
                       </div>
                     </div>
                     <div
+                      @click="switchmaintConfirm"
                       class="flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl"
                     >
                       <p>確認保養</p>
@@ -119,5 +120,6 @@ const sidpage = computed(() => PopupStore.sidpage);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const switchsidpage = PopupStore.switchsidpage;
+const switchmaintConfirm = PopupStore.switchmaintConfirm;
 </script>
 <style scoped></style>

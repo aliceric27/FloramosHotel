@@ -11,18 +11,18 @@
         <div class="flex justify-center my-4">
           <div class="grid grid-rows-2 gap-16">
             <div class="grid grid-cols-5 gap-16">
-              <urgent-2 :isNormal="true" :floor="1" />
-              <urgent-2 :isNormal="false" :floor="2" />
-              <urgent-2 :isNormal="true" :floor="3" />
-              <urgent-2 :isNormal="true" :floor="4" />
-              <urgent-2 :isNormal="true" :floor="5" />
+              <urgent-2 :isNormal="true" :floor="'1'" />
+              <urgent-2 :isNormal="false" :floor="'2'" />
+              <urgent-2 :isNormal="true" :floor="'3'" />
+              <urgent-2 :isNormal="true" :floor="'4'" />
+              <urgent-2 :isNormal="true" :floor="'5'" />
             </div>
             <div class="grid grid-cols-5 gap-16">
-              <urgent-2 :isNormal="true" :floor="6" />
-              <urgent-2 :isNormal="true" :floor="7" />
-              <urgent-2 :isNormal="true" :floor="8" />
-              <urgent-2 :isNormal="true" :floor="9" />
-              <urgent-2 :isNormal="true" :floor="10" />
+              <urgent-2 :isNormal="true" :floor="'6'" />
+              <urgent-2 :isNormal="true" :floor="'7'" />
+              <urgent-2 :isNormal="true" :floor="'8'" />
+              <urgent-2 :isNormal="true" :floor="'9'" />
+              <urgent-2 :isNormal="true" :floor="'10'" />
             </div>
           </div>
         </div>
