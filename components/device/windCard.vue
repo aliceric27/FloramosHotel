@@ -7,7 +7,7 @@
       <div class="flex flex-col items-center justify-center gap-5 shrink-0">
         <div
           class="flex w-[266px] h-[60px] pt-0 pr-[11px] pb-0 justify-between items-center rounded-[30px]"
-          @click="switchsidpage('送排風系統', props.title)"
+          @click="switchsidpage(props.system, props.title)"
         >
           <div class="flex items-start shrink-0">
             <span
@@ -53,6 +53,10 @@ const props = defineProps({
   normal: {
     type: Boolean,
     default: false,
+  },
+  system: {
+    type: String,
+    default: "送排風系統",
   },
 });
 const deviceOn = ref(true);
