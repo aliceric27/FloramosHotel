@@ -21,9 +21,11 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@nuxtjs/proxy": "^2.1.0",
     "@pinia/nuxt": "^0.4.11",
     "animate.css": "^4.1.1",
     "axios": "^1.5.1",
+    "js-base64": "^3.7.5",
     "pinia": "^2.1.6",
     "socket.io-client": "^4.7.2",
     "sweetalert2": "^11.9.0",

@@ -2,8 +2,6 @@ import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { io, Socket } from "socket.io-client";
 import mokerData from "./mockrData.json";
 import useInfoStore from "./InfoStore";
-import createReminderDialog from "~/components/controller-page/reminderDialog";
-const reminderDialog = createReminderDialog();
 
 interface Data {
   rData: {

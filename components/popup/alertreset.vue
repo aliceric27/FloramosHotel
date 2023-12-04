@@ -1,27 +1,31 @@
+<!-- 警報復歸 -->
 <template>
-  <div class="main-container">
-    <h2 class="title">警報復歸</h2>
-    <div class="divider"></div>
-    <div class="maintenance-item">警報項目</div>
-    <div class="maintenance-title">排煙機</div>
-    <div class="maintenance-time">
-      <div class="maintenance-label">解除時間</div>
-      <p class="alert-time">2023-03-27 16:04:01</p>
-    </div>
-    <div class="choice">
-      <div class="optionbtn">
-        <el-radio-group v-model="radio1" class="ml-4">
-          <el-radio label="1" size="large">維修</el-radio>
-          <el-radio label="2" size="large">更換</el-radio>
-          <el-radio label="3" size="large">保養</el-radio>
-          <el-radio label="4" size="large">系統測試</el-radio>
-        </el-radio-group>
+  <div>
+    <black-opacity />
+    <div class="z-50 main-container">
+      <h2 class="title">警報復歸</h2>
+      <div class="divider"></div>
+      <div class="maintenance-item">警報項目</div>
+      <div class="maintenance-title">排煙機</div>
+      <div class="maintenance-time">
+        <div class="maintenance-label">解除時間</div>
+        <p class="alert-time">2023-03-27 16:04:01</p>
       </div>
-    </div>
-    <el-input v-model="input" placeholder="備註" />
-    <div class="confirmation">
-      <button class="close">關閉</button>
-      <button class="confirm">確認保養</button>
+      <div class="choice">
+        <div class="optionbtn">
+          <el-radio-group v-model="radio1" class="ml-4">
+            <el-radio label="1" size="large">維修</el-radio>
+            <el-radio label="2" size="large">更換</el-radio>
+            <el-radio label="3" size="large">保養</el-radio>
+            <el-radio label="4" size="large">系統測試</el-radio>
+          </el-radio-group>
+        </div>
+      </div>
+      <el-input v-model="input" placeholder="備註" />
+      <div class="confirmation">
+        <button class="close">關閉</button>
+        <button class="confirm">確認保養</button>
+      </div>
     </div>
   </div>
 </template>

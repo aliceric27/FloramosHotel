@@ -7,7 +7,7 @@ export interface State {
   emergency: Boolean;
   sidePage: Boolean;
   sidpage: Boolean;
-
+  alertset: Boolean;
   sidata: {
     system: String;
     device: String;
@@ -21,6 +21,7 @@ const initState: State = {
   sidePage: false,
   emergency: false,
   sidpage: false,
+  alertset: false,
   sidata: {
     system: "",
     device: "",
@@ -48,6 +49,9 @@ const actions: any = {
     this.sidata.system = system;
     this.sidata.device = device;
     if (this.sidpage === false) this.maintConfirm = false;
+  },
+  switchalertset() {
+    this.alertset = !this.alertset;
   },
 };
 const getters: _GettersTree<State> = {};

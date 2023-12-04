@@ -20,10 +20,6 @@ const router = useRouter();
 const infostore = useInfoStore();
 const loginstore = useLoginStore();
 const { $swal } = useNuxtApp();
-const acc = {
-  account: ["admin", "test"],
-  password: ["admin", "test"],
-};
 
 const isLogin = ref(false);
 const checkacc = async () => {
@@ -49,7 +45,7 @@ const checkacc = async () => {
   }
   if (result.status === "success") {
     isLogin.value = true;
-    const rawtoken = result?.data?.access_token;
+    const rawtoken = result?.data?.token;
     localStorage.setItem("token", rawtoken);
     setToken(rawtoken);
 
@@ -61,9 +57,7 @@ const checkacc = async () => {
       //   confirmButtonText: "確認",
       // });
       if (inputacc === "admin") {
-        router.push({ name: "test1" });
-        location.href =
-          "http://59.127.120.220:1113/dashboard/#/login?redirect=%2F";
+        router.push({ name: "index" });
       }
       //   if (inputacc === "test") {
       //     router.push({ name: "test2" });

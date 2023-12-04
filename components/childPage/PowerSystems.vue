@@ -4,9 +4,9 @@
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
       <div class="grid grid-cols-3 gap-16 justify-items-center">
-        <DeviceCard :title="'發電機'" :system="'電力系統'" />
-        <DeviceCard :title="'進風機'" :system="'電力系統'" />
-        <DeviceCard :title="'排風機'" :system="'電力系統'" />
+        <DeviceCard :title="deviceID1?.deviceName" :system="'電力系統'" />
+        <DeviceCard :title="deviceID2?.deviceName" :system="'電力系統'" />
+        <DeviceCard :title="deviceID3?.deviceName" :system="'電力系統'" />
         <div>
           <img src="@/assets/images/maincard/power-logo.png" alt="" srcset="" />
         </div>
@@ -31,7 +31,7 @@
             <img src="@/assets/button/battery_low.png" alt="error" />
           </div>
           <div class="flex items-center justify-between">
-            <p>電瓶電壓</p>
+            <p>{{ deviceID4?.deviceName }}</p>
             <DeviceNormal :isNormal="isBatteryNormal" />
           </div>
         </div>
@@ -58,7 +58,7 @@
             />
           </div>
           <div class="flex items-center justify-between">
-            <p>日用油箱</p>
+            <p>{{ deviceID5?.deviceName }}</p>
             <DeviceNormal :isNormal="isfuelNormal" />
           </div>
         </div>
@@ -68,7 +68,20 @@
   </div>
 </template>
 <script lang="ts" setup>
+onMounted(async () => {
+  deviceStore.getPower();
+  // const deviceID1 = deviceStore.getDeviceByID(1);
+});
 import usePopupStore from "~/store/PopupStore";
+import useDeviceStore from "~/store/DeviceStore";
+const deviceStore = useDeviceStore();
+const Rawpower = computed(() => deviceStore.power);
+const powerdevice = toRaw(Rawpower?.value?.data);
+const deviceID1 = deviceStore.getDeviceByID(1);
+const deviceID2 = deviceStore.getDeviceByID(2);
+const deviceID3 = deviceStore.getDeviceByID(3);
+const deviceID4 = deviceStore.getDeviceByID(4);
+const deviceID5 = deviceStore.getDeviceByID(5);
 const PopupStore = usePopupStore();
 const sidpage = computed(() => PopupStore.sidpage);
 const switchsidpage = PopupStore.switchsidpage;

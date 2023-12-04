@@ -4,10 +4,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import usePageStore from "~/store/PageStore";
-const PageStore = usePageStore();
-const page = computed(() => PageStore.page);
-const changepage = PageStore.turnpage;
+import useLoginStore from "~/store/LoginStore";
+const LoginStore = useLoginStore();
 </script>
 
 <style lang="scss" scoped>

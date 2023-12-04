@@ -1,13 +1,13 @@
 <template>
   <div id="main-warp">
     <!-- <alert /> -->
-
     <emergency
       v-if="isEmergency"
       :conten1="'一氧化碳偵測出現異常'"
       :conten2="'B2F  旅館後方左側'"
     />
-    <maintain-confirm />
+    <maintainConfirm v-if="maintConfirm" />
+    <alertreset v-if="alertset" />
     <sidepage />
     <pheader />
     <pmenu />
@@ -18,8 +18,9 @@
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
 const PopupStore = usePopupStore();
-console.log("PopupStore", PopupStore);
 const isEmergency = computed(() => PopupStore.emergency);
+const maintConfirm = computed(() => PopupStore.maintConfirm);
+const alertset = computed(() => PopupStore.alertset);
 </script>
 <style lang="scss" scoped>
 #main-warp {

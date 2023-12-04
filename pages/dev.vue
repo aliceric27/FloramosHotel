@@ -1,3 +1,5 @@
 <template>
-  <div><deviceWater /></div>
+  <div>
+    <maintainConfirm />
+  </div>
 </template>

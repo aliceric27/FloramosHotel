@@ -14,7 +14,7 @@ const actions: any = {
   async sendLogin(userinfo: {}) {
     console.log("userinfo", userinfo);
     const { data, pending, refresh, execute, error, status } = await useFetch(
-      "http://192.168.0.20:8080/auth/login",
+      `${import.meta.env.VITE_Socket_URL}/api/login`,
       {
         method: "POST",
         body: { ...userinfo },
@@ -24,9 +24,11 @@ const actions: any = {
       data: toRaw(data.value),
       status: toRaw(status.value),
     };
+    console.log("結果", result);
     return result;
   },
   checkTokenVaild(token: string) {
+    console.log("檢查的token", token);
     const decoded = jwtDecode(token);
     const exp = decoded?.exp;
     console.log("exp", exp);
@@ -50,10 +52,41 @@ const actions: any = {
     this.exptime = time;
   },
   initializeToken() {
-    if (typeof window !== "undefined") {
+    if (process.client) {
+      const local = localStorage.getItem("token");
       // 確保只在客戶端執行
-      this.token = localStorage.getItem("token");
+      const isJWT = this.checkIsJWT(local);
+      if (isJWT) {
+        this.token = localStorage.getItem("token");
+        console.log("localToken", this.token);
+      } else {
+        this.token = null;
+        localStorage.setItem("token", "");
+        console.log("invalid token set to null", this.token);
+      }
     }
+  },
+  checkIsJWT(token: String) {
+    const parts = token?.split(".");
+    return parts?.length === 3;
+  },
+  async getDevice() {
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/system/power`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${this.token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+    };
+    console.log("結果", result);
+    return result;
   },
 };
 const getters: _GettersTree<State> = {

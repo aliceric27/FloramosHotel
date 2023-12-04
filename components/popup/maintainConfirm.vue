@@ -2,7 +2,6 @@
 <template>
   <div>
     <div
-      v-if="maintConfirm"
       class="fixed top-[40%] left-[40%] w-[490px] h-[283px] bg-[#F5F5F5] z-50 px-[1.75rem] py-[2.18rem]"
     >
       <div class="flex flex-col items-center justify-center gap-4">
