@@ -4,11 +4,13 @@ import useLoginStore from "./LoginStore";
 export interface State {
   power: any | null;
   ventilation: any | null;
+  water: any | null;
 }
 // 初始化資料
 const initState: State = {
   power: null,
   ventilation: null,
+  water: null,
 };
 // 相關fn
 const actions: any = {

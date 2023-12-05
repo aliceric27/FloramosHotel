@@ -10,6 +10,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useDeviceStore from "~/store/DeviceStore";
+const deviceStore = useDeviceStore();
 import usePageStore from "~/store/PageStore";
 const PageStore = usePageStore();
 console.log("PageStore", PageStore);

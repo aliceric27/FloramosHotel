@@ -55,13 +55,14 @@
   </div>
 </template>
 <script lang="ts" setup>
-onMounted(() => {
-  loadDeviceData();
-});
 interface Device {
   deviceName: string;
   deviceID: number;
 }
+onMounted(() => {
+  loadDeviceData();
+});
+
 const childtitle = ref("送排風系統");
 import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();
@@ -83,7 +84,6 @@ const updateDeviceDetails = () => {
   deviceID9.value = deviceStore.getDeviceByID(9, "ventilation");
   deviceID10.value = deviceStore.getDeviceByID(10, "ventilation");
 };
-loadDeviceData();
 </script>
 
 <style lang="scss" scoped>
