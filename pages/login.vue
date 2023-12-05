@@ -13,20 +13,25 @@
 definePageMeta({
   layout: false,
 });
+
 import useInfoStore from "~/store/InfoStore";
 import useLoginStore from "~/store/LoginStore";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const infostore = useInfoStore();
 const loginstore = useLoginStore();
 const { $swal } = useNuxtApp();
-
 const isLogin = ref(false);
+onBeforeMount(() => {
+  infostore.cleartext();
+});
 const checkacc = async () => {
   const sendLogin = loginstore.sendLogin;
   const setToken = loginstore.setToken;
-  const inputacc = infostore.acc;
-  const inputpw = infostore.pwd;
+  const inputacc = computed(() => infostore.acc);
+  const inputpw = computed(() => infostore.pwd);
+  const cleartext = infostore.cleartext;
   console.log(inputacc, inputpw);
   const sendinfo = {
     username: inputacc,
@@ -42,28 +47,17 @@ const checkacc = async () => {
       icon: "warning",
       confirmButtonText: "確認",
     });
+    infostore.cleartext();
   }
   if (result.status === "success") {
+    loginstore.setLogin();
     isLogin.value = true;
     const rawtoken = result?.data?.token;
+    console.log("rawtoken", rawtoken);
     localStorage.setItem("token", rawtoken);
     setToken(rawtoken);
-
-    setTimeout(() => {
-      // $swal.fire({
-      //   title: "登入成功",
-      //   text: "登入成功",
-      //   icon: "info",
-      //   confirmButtonText: "確認",
-      // });
-      if (inputacc === "admin") {
-        router.push({ name: "index" });
-      }
-      //   if (inputacc === "test") {
-      //     router.push({ name: "test2" });
-      //   }
-    }, 1500);
-    return;
+    infostore.cleartext();
+    await navigateTo({ path: "/" });
   }
 };
 </script>

@@ -16,7 +16,7 @@
             <div>
               <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
-            <p class="small-title">電瓶電壓</p>
+            <p class="small-title">{{ deviceID4?.deviceName }}</p>
           </div>
           <div
             v-show="isBatteryNormal"
@@ -31,7 +31,7 @@
             <img src="@/assets/button/battery_low.png" alt="error" />
           </div>
           <div class="flex items-center justify-between">
-            <p>{{ deviceID4?.deviceName }}</p>
+            <p>電瓶電壓</p>
             <DeviceNormal :isNormal="isBatteryNormal" />
           </div>
         </div>
@@ -41,7 +41,7 @@
             <div>
               <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
-            <p class="small-title">日用油箱</p>
+            <p class="small-title">{{ deviceID5?.deviceName }}</p>
           </div>
           <div>
             <img
@@ -58,7 +58,7 @@
             />
           </div>
           <div class="flex items-center justify-between">
-            <p>{{ deviceID5?.deviceName }}</p>
+            <p>油位</p>
             <DeviceNormal :isNormal="isfuelNormal" />
           </div>
         </div>
@@ -68,26 +68,42 @@
   </div>
 </template>
 <script lang="ts" setup>
-onMounted(async () => {
-  deviceStore.getPower();
-  // const deviceID1 = deviceStore.getDeviceByID(1);
+onMounted(() => {
+  loadDeviceData();
 });
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
 import usePopupStore from "~/store/PopupStore";
 import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();
 const Rawpower = computed(() => deviceStore.power);
 const powerdevice = toRaw(Rawpower?.value?.data);
-const deviceID1 = deviceStore.getDeviceByID(1);
-const deviceID2 = deviceStore.getDeviceByID(2);
-const deviceID3 = deviceStore.getDeviceByID(3);
-const deviceID4 = deviceStore.getDeviceByID(4);
-const deviceID5 = deviceStore.getDeviceByID(5);
+const deviceID1 = ref<Device | null>(null);
+const deviceID2 = ref<Device | null>(null);
+const deviceID3 = ref<Device | null>(null);
+const deviceID4 = ref<Device | null>(null);
+const deviceID5 = ref<Device | null>(null);
 const PopupStore = usePopupStore();
 const sidpage = computed(() => PopupStore.sidpage);
 const switchsidpage = PopupStore.switchsidpage;
 const childtitle = ref("電力系統");
 const isfuelNormal = ref(true);
 const isBatteryNormal = ref(true);
+
+const loadDeviceData = async () => {
+  await deviceStore.getDevice("power");
+  updateDeviceDetails();
+};
+
+const updateDeviceDetails = () => {
+  deviceID1.value = deviceStore.getDeviceByID(1, "power");
+  deviceID2.value = deviceStore.getDeviceByID(2, "power");
+  deviceID3.value = deviceStore.getDeviceByID(3, "power");
+  deviceID4.value = deviceStore.getDeviceByID(4, "power");
+  deviceID5.value = deviceStore.getDeviceByID(5, "power");
+};
 </script>
 
 <style lang="scss" scoped></style>

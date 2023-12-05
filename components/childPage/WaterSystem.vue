@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 import usePageStore from "~/store/PageStore";
 const PageStore = usePageStore();
+console.log("PageStore", PageStore);
 const waterPage = computed(() => PageStore.water);
 const turnWaterpage = PageStore.turnWaterpage;
 </script>

@@ -19,8 +19,8 @@
             <div class="bg-[#C2A344] w-[16.625rem] h-[0.1875rem]"></div>
           </div>
           <!--  -->
-          <WindCard title="排風機" />
-          <WindCard title="誘導式風車" />
+          <WindCard :title="deviceID6?.deviceName" />
+          <WindCard :title="deviceID7?.deviceName" />
           <!--  -->
           <!--  -->
         </div>
@@ -41,12 +41,12 @@
           <!-- end -->
           <!-- Frame 138 -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard title="進風機" />
-            <WindCard title="排風機" />
+            <WindCard :title="deviceID8?.deviceName" />
+            <WindCard :title="deviceID9?.deviceName" />
           </div>
           <!-- end -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard title="進風機" />
+            <WindCard :title="deviceID10?.deviceName" />
             <img src="@/assets/images/wind/air-con-pic.png" alt="" />
           </div>
         </div>
@@ -55,7 +55,35 @@
   </div>
 </template>
 <script lang="ts" setup>
+onMounted(() => {
+  loadDeviceData();
+});
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
 const childtitle = ref("送排風系統");
+import useDeviceStore from "~/store/DeviceStore";
+const deviceStore = useDeviceStore();
+const Rawpower = computed(() => deviceStore.wind);
+const deviceID6 = ref<Device | null>(null);
+const deviceID7 = ref<Device | null>(null);
+const deviceID8 = ref<Device | null>(null);
+const deviceID9 = ref<Device | null>(null);
+const deviceID10 = ref<Device | null>(null);
+const loadDeviceData = async () => {
+  const winddata = await deviceStore.getDevice("ventilation");
+  updateDeviceDetails();
+  console.log(winddata);
+};
+const updateDeviceDetails = () => {
+  deviceID6.value = deviceStore.getDeviceByID(6, "ventilation");
+  deviceID7.value = deviceStore.getDeviceByID(7, "ventilation");
+  deviceID8.value = deviceStore.getDeviceByID(8, "ventilation");
+  deviceID9.value = deviceStore.getDeviceByID(9, "ventilation");
+  deviceID10.value = deviceStore.getDeviceByID(10, "ventilation");
+};
+loadDeviceData();
 </script>
 
 <style lang="scss" scoped>

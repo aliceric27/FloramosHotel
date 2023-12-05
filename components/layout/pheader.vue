@@ -6,10 +6,7 @@
         <div class="div-4">中央監控系統</div>
         <div class="div-5"></div>
         <div class="div-6">
-          <div
-            class="cursor-pointer div-7"
-            @click="changepage('index', router)"
-          >
+          <div class="cursor-pointer div-7" @click="() => navigateTo('/')">
             <img
               loading="lazy"
               src="@/assets/images/header/home.png"
@@ -23,7 +20,7 @@
               src="@/assets/images/header/logout.png"
               class="img-2"
             />
-            <div class="div-10">登出</div>
+            <div class="cursor-pointer div-10" @click="logout">登出</div>
           </div>
         </div>
       </div>
@@ -39,11 +36,11 @@
             src="@/assets/images/header/clock.png"
             class="img-4"
           />
-          <div class="div-13" @click="changepage('history', router)">
+          <div class="div-13" @click="() => navigateTo('/history')">
             歷史事件
           </div>
         </div>
-        <div class="div-14" @click="changepage('maint', router)">
+        <div class="div-14" @click="() => navigateTo('/maint')">
           <img
             loading="lazy"
             src="@/assets/images/header/setting.png"
@@ -86,14 +83,23 @@
 </template>
 <script lang="ts" setup>
 import { useRouter } from "vue-router";
+import useLoginStore from "~/store/LoginStore";
 import usePageStore from "~/store/PageStore";
 import usePopupStore from "~/store/PopupStore";
+import useInfoStore from "~/store/InfoStore";
 const router = useRouter();
 const PageStore = usePageStore();
 const PopupStore = usePopupStore();
+const LoginStore = useLoginStore();
+const infoStore = useInfoStore();
 const noticeBox = computed(() => PopupStore.noticeBox);
 const switchNoticeBox = PopupStore.switchNoticeBox;
 const changepage = PageStore.turnpage;
+const logout = () => {
+  localStorage.getItem("token");
+  LoginStore.logout();
+  navigateTo("/login");
+};
 </script>
 <style scoped>
 .div {

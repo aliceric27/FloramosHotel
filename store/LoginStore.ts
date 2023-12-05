@@ -4,10 +4,12 @@ import { jwtDecode } from "jwt-decode";
 interface LoginInfo {}
 export interface State {
   token: string | null;
+  isLogin: boolean;
 }
 // 初始化資料
 const initState: State = {
   token: null,
+  isLogin: false,
 };
 // 相關fn
 const actions: any = {
@@ -66,6 +68,7 @@ const actions: any = {
       }
     }
   },
+
   checkIsJWT(token: String) {
     const parts = token?.split(".");
     return parts?.length === 3;
@@ -77,7 +80,6 @@ const actions: any = {
         method: "GET",
         headers: {
           Authorization: `Bearer ${this.token}`, // 在这里添加 token
-          "Content-Type": "application/json", // 确保设置正确的内容类型
         },
       }
     );
@@ -87,6 +89,12 @@ const actions: any = {
     };
     console.log("結果", result);
     return result;
+  },
+  logout() {
+    this.token = "";
+  },
+  setLogin() {
+    this.isLogin = true;
   },
 };
 const getters: _GettersTree<State> = {

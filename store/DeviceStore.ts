@@ -3,18 +3,20 @@ import { useRoute, useRouter } from "vue-router";
 import useLoginStore from "./LoginStore";
 export interface State {
   power: any | null;
+  ventilation: any | null;
 }
 // 初始化資料
 const initState: State = {
   power: null,
+  ventilation: null,
 };
 // 相關fn
 const actions: any = {
-  async getPower() {
+  async getDevice(device: String) {
     const userStore = useLoginStore();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
-      `${import.meta.env.VITE_Socket_URL}/api/system/power`,
+      `${import.meta.env.VITE_Socket_URL}/api/system/${device}`,
       {
         method: "GET",
         headers: {
@@ -27,17 +29,17 @@ const actions: any = {
       data: toRaw(data.value),
       status: toRaw(status.value),
     };
-    await this.setPowerdata(result.data);
+    await this.setdata(result.data, device);
     return result;
   },
-  setPowerdata(data: any) {
-    this.power = data;
+  setdata(data: any, device: String) {
+    this[`${device}`] = data;
   },
 };
 const getters: _GettersTree<State> = {
-  getDeviceByID: (state) => (id: Number) => {
-    const device = toRaw(state?.power?.data);
-    const result = device?.find((item: any) => item.deviceID === id);
+  getDeviceByID: (state) => (id: Number, device: String) => {
+    const rawdevice = toRaw(state[device]?.data);
+    const result = rawdevice?.find((item: any) => item.deviceID === id);
     console.log(result);
     return result;
   },

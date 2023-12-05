@@ -3,28 +3,28 @@
   <div id="menu-warp">
     <div class="main">
       <div class="list">
-        <div class="item" @click="changepage('system-power', router)">
+        <div class="item" @click="() => navigateTo('/system/power')">
           <p>電力系統</p>
         </div>
-        <div class="item" @click="changepage('system-wind', router)">
+        <div class="item" @click="() => navigateTo('/system/wind')">
           <p>送排風系統</p>
         </div>
-        <div class="item" @click="changepage('system-water', router)">
+        <div class="item" @click="() => navigateTo('/system/water')">
           <p>給排水系統</p>
         </div>
-        <div class="item" @click="changepage('system-heat', router)">
+        <div class="item" @click="() => navigateTo('/system/heat')">
           <p>熱泵系統</p>
         </div>
-        <div class="item" @click="changepage('system-urgent', router)">
+        <div class="item" @click="() => navigateTo('/system/urgent')">
           <p>緊急求救</p>
         </div>
-        <div class="item" @click="changepage('system-firefighting', router)">
+        <div class="item" @click="() => navigateTo('/system/firefighting')">
           <p>消防系統</p>
         </div>
-        <div class="item" @click="changepage('system-light', router)">
+        <div class="item" @click="() => navigateTo('/system/light')">
           <p>公共照明系統</p>
         </div>
-        <div class="item" @click="changepage('system-codetect', router)">
+        <div class="item" @click="() => navigateTo('/system/codetect')">
           <p>CO偵測</p>
         </div>
       </div>

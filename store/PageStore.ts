@@ -25,7 +25,7 @@ const actions: any = {
   },
 };
 const getters: _GettersTree<State> = {};
-const usePageStore = defineStore("main", {
+const usePageStore = defineStore("page", {
   state: () => initState,
   actions,
   getters,

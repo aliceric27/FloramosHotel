@@ -1,13 +1,9 @@
 <template>
   <div id="main-warp">
-    <Cardlayout />
+    <cardlayout />
   </div>
 </template>
-<script setup lang="ts">
-import useLoginStore from "~/store/LoginStore";
-const LoginStore = useLoginStore();
-</script>
-
+<script lang="ts" setup></script>
 <style lang="scss" scoped>
 #main-warp {
   background: linear-gradient(

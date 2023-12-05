@@ -17,6 +17,10 @@ const actions: any = {
   setPwd(c: any) {
     this.pwd = c;
   },
+  cleartext() {
+    this.acc = "";
+    this.pwd = "";
+  },
 };
 const getters: _GettersTree<State> = {};
 const useInfoStore = defineStore("main", {
