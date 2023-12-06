@@ -22,6 +22,7 @@
           <div class="relative">
             <windCard
               :title="deviceDetails[17]?.deviceName"
+              :ID="deviceDetails[17]?.deviceID"
               :system="'給排水系統'"
             />
             <div>
@@ -70,6 +71,7 @@
           <div class="relative">
             <windCard
               :title="deviceDetails[18]?.deviceName"
+              :ID="deviceDetails[18]?.deviceID"
               :system="'給排水系統'"
             />
             <div>

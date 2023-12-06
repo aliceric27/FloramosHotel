@@ -19,8 +19,14 @@
             <div class="bg-[#C2A344] w-[16.625rem] h-[0.1875rem]"></div>
           </div>
           <!--  -->
-          <WindCard :title="deviceDetails[6]?.deviceName" />
-          <WindCard :title="deviceDetails[7]?.deviceName" />
+          <WindCard
+            :title="deviceDetails[6]?.deviceName"
+            :ID="deviceDetails[6]?.deviceID"
+          />
+          <WindCard
+            :title="deviceDetails[7]?.deviceName"
+            :ID="deviceDetails[7]?.deviceID"
+          />
           <!--  -->
           <!--  -->
         </div>
@@ -41,12 +47,21 @@
           <!-- end -->
           <!-- Frame 138 -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard :title="deviceDetails[8]?.deviceName" />
-            <WindCard :title="deviceDetails[9]?.deviceName" />
+            <WindCard
+              :title="deviceDetails[8]?.deviceName"
+              :ID="deviceDetails[8]?.deviceID"
+            />
+            <WindCard
+              :title="deviceDetails[9]?.deviceName"
+              :ID="deviceDetails[9]?.deviceID"
+            />
           </div>
           <!-- end -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard :title="deviceDetails[10]?.deviceName" />
+            <WindCard
+              :title="deviceDetails[10]?.deviceName"
+              :ID="deviceDetails[10]?.deviceID"
+            />
             <img src="@/assets/images/wind/air-con-pic.png" alt="" />
           </div>
         </div>
