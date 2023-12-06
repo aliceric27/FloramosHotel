@@ -5,23 +5,32 @@
       <Childtitle :title="childtitle" />
       <div class="flex justify-around">
         <div>
-          <heat-1 :title="'熱泵主機_01'" />
-          <heat-1 :title="'熱泵主機_02'" />
-          <heat-1 :title="'熱泵主機_03'" />
-          <heat-1 :title="'熱泵主機_04'" />
+          <heat-1 :title="deviceDetails[31]?.deviceName" />
+          <heat-1 :title="deviceDetails[32]?.deviceName" />
+          <heat-1 :title="deviceDetails[33]?.deviceName" />
+          <heat-1 :title="deviceDetails[34]?.deviceName" />
           <div><img src="@/assets/images/maincard/heat-pump.png" alt="" /></div>
         </div>
         <div>
           <div class="flex flex-col gap-4">
             <div class="border-2 border-dashed border-[#C2A344] rounded-xl">
-              <heat-2 :title="'熱水循環泵_01'" :isNormal="true" />
-              <heat-2 :title="'熱水循環泵_02'" :isNormal="false" />
-              <heat-2 :title="'熱水循環泵_03'" :isNormal="false" />
-              <heat-2 :title="'熱水循環泵_04'" :isNormal="true" />
+              <heat-2 :title="deviceDetails[35]?.deviceName" :isNormal="true" />
+              <heat-2
+                :title="deviceDetails[36]?.deviceName"
+                :isNormal="false"
+              />
+              <heat-2
+                :title="deviceDetails[37]?.deviceName"
+                :isNormal="false"
+              />
+              <heat-2 :title="deviceDetails[38]?.deviceName" :isNormal="true" />
             </div>
             <div>
               <div class="border-2 border-dashed border-[#C2A344] rounded-xl">
-                <heat-2 :title="'回水電動閥'" :isNormal="true" />
+                <heat-2
+                  :title="deviceDetails[39]?.deviceName"
+                  :isNormal="true"
+                />
               </div>
             </div>
           </div>
@@ -34,6 +43,35 @@
 const childtitle = ref("熱泵系統");
 const isfuelNormal = ref(true);
 const isBatteryNormal = ref(true);
+import useDeviceStore from "~/store/DeviceStore";
+
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+
+const deviceStore = useDeviceStore();
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "heatbump";
+
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
+});
+
+const loadDeviceData = async () => {
+  await deviceStore.getDevice(DEVICE_TYPE);
+  updateDeviceDetails();
+};
+
+const updateDeviceDetails = () => {
+  for (let id = 31; id <= 39; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>

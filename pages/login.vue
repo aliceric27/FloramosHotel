@@ -22,16 +22,33 @@ const router = useRouter();
 const infostore = useInfoStore();
 const loginstore = useLoginStore();
 const { $swal } = useNuxtApp();
-const isLogin = ref(false);
-onBeforeMount(() => {
-  infostore.cleartext();
-});
+const isLogin = ref(true);
+const inittokenCheck = () => {
+  if (process.client) {
+    const local = localStorage.getItem("token");
+    if (local) {
+      const valid = loginstore.checkTokenVaild(local);
+      if (valid) {
+        loginstore.setToken(local);
+        loginstore.setLogin();
+        navigateTo({ path: "/" });
+      } else {
+        isLogin.value = false;
+      }
+    } else {
+      isLogin.value = false;
+    }
+    infostore.cleartext();
+  }
+};
+inittokenCheck();
 const checkacc = async () => {
   const sendLogin = loginstore.sendLogin;
   const setToken = loginstore.setToken;
   const inputacc = computed(() => infostore.acc);
   const inputpw = computed(() => infostore.pwd);
   const cleartext = infostore.cleartext;
+
   console.log(inputacc, inputpw);
   const sendinfo = {
     username: inputacc,
@@ -57,7 +74,7 @@ const checkacc = async () => {
     localStorage.setItem("token", rawtoken);
     setToken(rawtoken);
     infostore.cleartext();
-    await navigateTo({ path: "/" });
+    navigateTo({ path: "/" });
   }
 };
 </script>
