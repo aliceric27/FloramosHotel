@@ -6,9 +6,9 @@
         <div class="grid justify-center grid-cols-2">
           <!-- 左 -->
           <div class="flex flex-col items-center">
-            <div><DeviceCard :title="'消防泵'" /></div>
-            <div><DeviceCard :title="'泡沫泵'" /></div>
-            <div><DeviceCard :title="'撒水泵'" /></div>
+            <div><DeviceCard :title="deviceDetails[40]?.deviceName" /></div>
+            <div><DeviceCard :title="deviceDetails[41]?.deviceName" /></div>
+            <div><DeviceCard :title="deviceDetails[42]?.deviceName" /></div>
           </div>
           <!-- 右 -->
           <div>
@@ -35,14 +35,14 @@
 
                 <fire-1
                   :floor="'B1'"
-                  :title="'排煙機'"
+                  :title="deviceDetails[43]?.deviceName"
                   :isNormal="true"
                   :isNormal2="false"
                 />
                 <!-- 火災警報 -->
                 <fire-2
                   :floor="'1'"
-                  :title="'排煙機'"
+                  :title="deviceDetails[49]?.deviceName"
                   :isNormal="true"
                   :isNormal2="false"
                 />
@@ -68,19 +68,13 @@
                 </div>
                 <fire-1
                   :floor="'1'"
-                  :title="'排煙機_01'"
+                  :title="deviceDetails[44]?.deviceName"
                   :isNormal="false"
                   :isNormal2="false"
                 />
                 <fire-1
                   :floor="'1'"
-                  :title="'排煙機_02'"
-                  :isNormal="false"
-                  :isNormal2="false"
-                />
-                <fire-1
-                  :floor="'1'"
-                  :title="'排煙機_03'"
+                  :title="deviceDetails[45]?.deviceName"
                   :isNormal="false"
                   :isNormal2="false"
                 />
@@ -107,19 +101,19 @@
 
                 <fire-1
                   :floor="'2'"
-                  :title="'排煙機_01'"
+                  :title="deviceDetails[46]?.deviceName"
                   :isNormal="true"
                   :isNormal2="true"
                 />
                 <fire-1
                   :floor="'2'"
-                  :title="'排煙機_02'"
+                  :title="deviceDetails[47]?.deviceName"
                   :isNormal="true"
                   :isNormal2="true"
                 />
                 <fire-1
                   :floor="'2'"
-                  :title="'排煙機_03'"
+                  :title="deviceDetails[48]?.deviceName"
                   :isNormal="true"
                   :isNormal2="true"
                 />
@@ -133,4 +127,33 @@
 </template>
 <script lang="ts" setup>
 const childtitle = ref("消防系統");
+import useDeviceStore from "~/store/DeviceStore";
+
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+
+const deviceStore = useDeviceStore();
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "firefighting";
+
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
+});
+
+const loadDeviceData = async () => {
+  await deviceStore.getDevice(DEVICE_TYPE);
+  updateDeviceDetails();
+};
+
+const updateDeviceDetails = () => {
+  for (let id = 40; id <= 49; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
+};
 </script>
