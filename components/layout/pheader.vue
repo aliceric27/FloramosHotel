@@ -96,7 +96,7 @@ const noticeBox = computed(() => PopupStore.noticeBox);
 const switchNoticeBox = PopupStore.switchNoticeBox;
 const changepage = PageStore.turnpage;
 const logout = () => {
-  localStorage.getItem("token");
+  localStorage.clear();
   LoginStore.logout();
   navigateTo("/login");
 };
