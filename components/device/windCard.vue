@@ -58,6 +58,9 @@ const props = defineProps({
     type: String,
     default: "送排風系統",
   },
+  ID: {
+    type: Number,
+  },
 });
 const deviceOn = ref(true);
 const normal = ref(true);

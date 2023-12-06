@@ -73,23 +73,6 @@ const actions: any = {
     const parts = token?.split(".");
     return parts?.length === 3;
   },
-  async getDevice() {
-    const { data, pending, refresh, execute, error, status } = await useFetch(
-      `${import.meta.env.VITE_Socket_URL}/api/system/power`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${this.token}`, // 在这里添加 token
-        },
-      }
-    );
-    let result = {
-      data: toRaw(data.value),
-      status: toRaw(status.value),
-    };
-    console.log("結果", result);
-    return result;
-  },
   logout() {
     this.token = "";
   },

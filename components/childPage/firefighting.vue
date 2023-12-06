@@ -6,9 +6,24 @@
         <div class="grid justify-center grid-cols-2">
           <!-- 左 -->
           <div class="flex flex-col items-center">
-            <div><DeviceCard :title="deviceDetails[40]?.deviceName" /></div>
-            <div><DeviceCard :title="deviceDetails[41]?.deviceName" /></div>
-            <div><DeviceCard :title="deviceDetails[42]?.deviceName" /></div>
+            <div>
+              <DeviceCard
+                :title="deviceDetails[40]?.deviceName"
+                :ID="deviceDetails[40]?.deviceID"
+              />
+            </div>
+            <div>
+              <DeviceCard
+                :title="deviceDetails[41]?.deviceName"
+                :ID="deviceDetails[41]?.deviceID"
+              />
+            </div>
+            <div>
+              <DeviceCard
+                :title="deviceDetails[42]?.deviceName"
+                :ID="deviceDetails[42]?.deviceID"
+              />
+            </div>
           </div>
           <!-- 右 -->
           <div>

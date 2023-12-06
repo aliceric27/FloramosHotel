@@ -1,5 +1,6 @@
 import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { RouteRecordName, Router } from "vue-router";
+import useDeviceStore from "./DeviceStore";
 export interface State {
   maintAdd: Boolean;
   maintConfirm: Boolean;
@@ -11,6 +12,7 @@ export interface State {
   sidata: {
     system: String;
     device: String;
+    maintain: any;
   };
 }
 // 初始化資料
@@ -25,6 +27,7 @@ const initState: State = {
   sidata: {
     system: "",
     device: "",
+    maintain: "",
   },
 };
 // 相關fn
@@ -44,7 +47,15 @@ const actions: any = {
   switchmaintConfirm() {
     this.maintConfirm = !this.maintConfirm;
   },
-  switchsidpage(system: String = "", device: String = "") {
+  async switchsidpage(system: String = "", device: String = "", ID: Number) {
+    const deviceStore = useDeviceStore();
+    if (ID) {
+      const siddata = await deviceStore.getMaintain(ID);
+      if (siddata.status === "success") {
+        const data = siddata?.data?.data;
+        this.sidata.maintain = data;
+      }
+    }
     this.sidpage = !this.sidpage;
     this.sidata.system = system;
     this.sidata.device = device;

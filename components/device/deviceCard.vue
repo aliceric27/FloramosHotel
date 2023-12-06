@@ -14,7 +14,7 @@
           class="justify-center items-stretch flex grow basis-[0%] flex-col self-end max-md:mt-10"
         >
           <header
-            @click="switchsidpage(props.system, props.title)"
+            @click="switchsidpage(props.system, props.title, props.ID)"
             class="justify-between items-stretch flex gap-5 rounded-[1.875rem] my-6 mr-4"
           >
             <h1 class="small-title">
@@ -58,6 +58,9 @@ const props = defineProps({
   },
   system: {
     type: String,
+  },
+  ID: {
+    type: Number,
   },
 });
 </script>

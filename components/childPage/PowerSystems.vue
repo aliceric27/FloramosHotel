@@ -7,14 +7,17 @@
         <DeviceCard
           :title="deviceDetails[1]?.deviceName"
           :system="'電力系統'"
+          :ID="deviceDetails[1]?.deviceID"
         />
         <DeviceCard
           :title="deviceDetails[2]?.deviceName"
           :system="'電力系統'"
+          :ID="deviceDetails[2]?.deviceID"
         />
         <DeviceCard
           :title="deviceDetails[3]?.deviceName"
           :system="'電力系統'"
+          :ID="deviceDetails[3]?.deviceID"
         />
         <div>
           <img src="@/assets/images/maincard/power-logo.png" alt="" srcset="" />

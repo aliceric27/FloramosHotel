@@ -40,15 +40,15 @@
                     <div class="flex outline-1 outline-green-500">
                       <div class="m-4 side-content">
                         <p class="m-2">保養週期</p>
-                        <p class="m-2">每周</p>
+                        <p class="m-2">{{ CycleString }}</p>
                       </div>
                       <div class="m-4 side-content">
                         <p class="m-2">上次保養時間</p>
-                        <p class="m-2">2023-03-20</p>
+                        <p class="m-2">{{ lastdate }}</p>
                       </div>
                       <div class="m-4 side-content">
                         <p class="m-2">下次保養時間</p>
-                        <p class="m-2">2023-03-27</p>
+                        <p class="m-2">{{ nextdate }}</p>
                       </div>
                     </div>
                     <div
@@ -122,8 +122,36 @@ const maintainConfirm = computed(() => PopupStore.maintConfirm);
 const alertset = computed(() => PopupStore.alertset);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
+const maintain = computed(() => PopupStore.sidata.maintain);
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const switchalertset = PopupStore.switchalertset;
+const getCycle = (c: String) => {
+  try {
+    switch (c) {
+      case "d":
+        return "日";
+      case "w":
+        return "週";
+      case "m":
+        return "月";
+      case "y":
+        return "年";
+    }
+  } catch {
+    console.error(Error);
+  }
+};
+const CycleString = computed(() => {
+  const cycle = getCycle(maintain?.value?.cycle_unit);
+  const cycleVal = maintain?.value?.cycle_value;
+  if (cycle && cycleVal) {
+    const result = `每${cycleVal}${cycle}`;
+    return result;
+  } else return null;
+});
+const getDate = (d: String) => d?.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || null;
+const lastdate = computed(() => getDate(maintain?.value?.lastTime));
+const nextdate = computed(() => getDate(maintain?.value?.nextTime));
 </script>
 <style scoped></style>

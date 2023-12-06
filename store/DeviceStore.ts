@@ -37,6 +37,27 @@ const actions: any = {
   setdata(data: any, device: String) {
     this[`${device}`] = data;
   },
+  async getMaintain(deviceID: Number) {
+    const userStore = useLoginStore();
+    const token = userStore.token;
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${deviceID}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+    };
+    await this.setdata(result.data, "maintain");
+
+    return result;
+  },
 };
 const getters: _GettersTree<State> = {
   getDeviceByID: (state) => (id: Number, device: String) => {
