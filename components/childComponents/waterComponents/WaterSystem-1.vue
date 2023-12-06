@@ -1,3 +1,4 @@
+<!-- 生活用水 -->
 <template>
   <div class="grid w-[80dvw] grid-cols-[auto,1fr,auto] m-4">
     <div class="w-full h-full bg-white">
@@ -6,17 +7,23 @@
         <!-- 左側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>
-            <deviceWater :title="deviceID15?.deviceName" :isNormal="true" />
+            <deviceWater
+              :title="deviceDetails[15]?.deviceName"
+              :isNormal="true"
+            />
           </div>
           <div>
             <deviceWater
-              :title="deviceID14?.deviceName"
+              :title="deviceDetails[14]?.deviceName"
               :isNormal="false"
               :isalertWarter="true"
             />
           </div>
           <div class="relative">
-            <windCard :title="deviceID17?.deviceName" :system="'給排水系統'" />
+            <windCard
+              :title="deviceDetails[17]?.deviceName"
+              :system="'給排水系統'"
+            />
             <div>
               <img
                 class="absolute top-0 -right-14"
@@ -48,17 +55,23 @@
         <!-- 右側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>
-            <deviceWater :title="deviceID13?.deviceName" :isNormal="true" />
+            <deviceWater
+              :title="deviceDetails[13]?.deviceName"
+              :isNormal="true"
+            />
           </div>
           <div>
             <deviceWater
-              :title="deviceID11?.deviceName"
+              :title="deviceDetails[11]?.deviceName"
               :isNormal="true"
               :isalertWarter="true"
             />
           </div>
           <div class="relative">
-            <windCard :title="deviceID18?.deviceName" :system="'給排水系統'" />
+            <windCard
+              :title="deviceDetails[18]?.deviceName"
+              :system="'給排水系統'"
+            />
             <div>
               <img
                 class="absolute top-0 scale-x-[-1] -left-14"
@@ -73,35 +86,33 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useDeviceStore from "~/store/DeviceStore";
+
 interface Device {
   deviceName: string;
   deviceID: number;
 }
-onMounted(() => {
-  loadDeviceData();
-});
-import useDeviceStore from "~/store/DeviceStore";
+
 const deviceStore = useDeviceStore();
-const deviceID11 = ref<Device | null>(null);
-const deviceID12 = ref<Device | null>(null);
-const deviceID13 = ref<Device | null>(null);
-const deviceID14 = ref<Device | null>(null);
-const deviceID15 = ref<Device | null>(null);
-const deviceID16 = ref<Device | null>(null);
-const deviceID17 = ref<Device | null>(null);
-const deviceID18 = ref<Device | null>(null);
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "water";
+
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
+});
+
 const loadDeviceData = async () => {
-  await deviceStore.getDevice("water");
+  await deviceStore.getDevice(DEVICE_TYPE);
   updateDeviceDetails();
 };
+
 const updateDeviceDetails = () => {
-  deviceID11.value = deviceStore.getDeviceByID(11, "water");
-  deviceID12.value = deviceStore.getDeviceByID(12, "water");
-  deviceID13.value = deviceStore.getDeviceByID(13, "water");
-  deviceID14.value = deviceStore.getDeviceByID(14, "water");
-  deviceID15.value = deviceStore.getDeviceByID(15, "water");
-  deviceID16.value = deviceStore.getDeviceByID(16, "water");
-  deviceID17.value = deviceStore.getDeviceByID(17, "water");
-  deviceID18.value = deviceStore.getDeviceByID(18, "water");
+  for (let id = 11; id <= 18; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
 };
 </script>

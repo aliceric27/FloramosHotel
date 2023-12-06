@@ -19,8 +19,8 @@
             <div class="bg-[#C2A344] w-[16.625rem] h-[0.1875rem]"></div>
           </div>
           <!--  -->
-          <WindCard :title="deviceID6?.deviceName" />
-          <WindCard :title="deviceID7?.deviceName" />
+          <WindCard :title="deviceDetails[6]?.deviceName" />
+          <WindCard :title="deviceDetails[7]?.deviceName" />
           <!--  -->
           <!--  -->
         </div>
@@ -41,12 +41,12 @@
           <!-- end -->
           <!-- Frame 138 -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard :title="deviceID8?.deviceName" />
-            <WindCard :title="deviceID9?.deviceName" />
+            <WindCard :title="deviceDetails[8]?.deviceName" />
+            <WindCard :title="deviceDetails[9]?.deviceName" />
           </div>
           <!-- end -->
           <div class="flex items-start gap-[6.125rem]">
-            <WindCard :title="deviceID10?.deviceName" />
+            <WindCard :title="deviceDetails[10]?.deviceName" />
             <img src="@/assets/images/wind/air-con-pic.png" alt="" />
           </div>
         </div>
@@ -65,24 +65,33 @@ onMounted(() => {
 
 const childtitle = ref("送排風系統");
 import useDeviceStore from "~/store/DeviceStore";
+
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+
 const deviceStore = useDeviceStore();
-const Rawpower = computed(() => deviceStore.wind);
-const deviceID6 = ref<Device | null>(null);
-const deviceID7 = ref<Device | null>(null);
-const deviceID8 = ref<Device | null>(null);
-const deviceID9 = ref<Device | null>(null);
-const deviceID10 = ref<Device | null>(null);
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "ventilation";
+
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
+});
+
 const loadDeviceData = async () => {
-  const winddata = await deviceStore.getDevice("ventilation");
+  await deviceStore.getDevice(DEVICE_TYPE);
   updateDeviceDetails();
-  console.log(winddata);
 };
+
 const updateDeviceDetails = () => {
-  deviceID6.value = deviceStore.getDeviceByID(6, "ventilation");
-  deviceID7.value = deviceStore.getDeviceByID(7, "ventilation");
-  deviceID8.value = deviceStore.getDeviceByID(8, "ventilation");
-  deviceID9.value = deviceStore.getDeviceByID(9, "ventilation");
-  deviceID10.value = deviceStore.getDeviceByID(10, "ventilation");
+  for (let id = 6; id <= 10; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
 };
 </script>
 

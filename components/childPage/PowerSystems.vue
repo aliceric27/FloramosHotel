@@ -4,9 +4,18 @@
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
       <div class="grid grid-cols-3 gap-16 justify-items-center">
-        <DeviceCard :title="deviceID1?.deviceName" :system="'電力系統'" />
-        <DeviceCard :title="deviceID2?.deviceName" :system="'電力系統'" />
-        <DeviceCard :title="deviceID3?.deviceName" :system="'電力系統'" />
+        <DeviceCard
+          :title="deviceDetails[1]?.deviceName"
+          :system="'電力系統'"
+        />
+        <DeviceCard
+          :title="deviceDetails[2]?.deviceName"
+          :system="'電力系統'"
+        />
+        <DeviceCard
+          :title="deviceDetails[3]?.deviceName"
+          :system="'電力系統'"
+        />
         <div>
           <img src="@/assets/images/maincard/power-logo.png" alt="" srcset="" />
         </div>
@@ -16,7 +25,7 @@
             <div>
               <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
-            <p class="small-title">{{ deviceID4?.deviceName }}</p>
+            <p class="small-title">{{ deviceDetails[4]?.deviceName }}</p>
           </div>
           <div
             v-show="isBatteryNormal"
@@ -41,7 +50,7 @@
             <div>
               <img src="@/assets/button/s-cardline.svg" alt="小icon" />
             </div>
-            <p class="small-title">{{ deviceID5?.deviceName }}</p>
+            <p class="small-title">{{ deviceDetails[5]?.deviceName }}</p>
           </div>
           <div>
             <img
@@ -68,8 +77,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-onMounted(() => {
-  loadDeviceData();
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
 });
 interface Device {
   deviceName: string;
@@ -80,11 +93,6 @@ import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();
 const Rawpower = computed(() => deviceStore.power);
 const powerdevice = toRaw(Rawpower?.value?.data);
-const deviceID1 = ref<Device | null>(null);
-const deviceID2 = ref<Device | null>(null);
-const deviceID3 = ref<Device | null>(null);
-const deviceID4 = ref<Device | null>(null);
-const deviceID5 = ref<Device | null>(null);
 const PopupStore = usePopupStore();
 const sidpage = computed(() => PopupStore.sidpage);
 const switchsidpage = PopupStore.switchsidpage;
@@ -92,17 +100,18 @@ const childtitle = ref("電力系統");
 const isfuelNormal = ref(true);
 const isBatteryNormal = ref(true);
 
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "power";
+
 const loadDeviceData = async () => {
-  await deviceStore.getDevice("power");
+  await deviceStore.getDevice(DEVICE_TYPE);
   updateDeviceDetails();
 };
 
 const updateDeviceDetails = () => {
-  deviceID1.value = deviceStore.getDeviceByID(1, "power");
-  deviceID2.value = deviceStore.getDeviceByID(2, "power");
-  deviceID3.value = deviceStore.getDeviceByID(3, "power");
-  deviceID4.value = deviceStore.getDeviceByID(4, "power");
-  deviceID5.value = deviceStore.getDeviceByID(5, "power");
+  for (let id = 1; id <= 5; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
 };
 </script>
 

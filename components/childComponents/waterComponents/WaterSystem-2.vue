@@ -1,3 +1,4 @@
+<!-- 汙廢水 -->
 <template>
   <div>
     <div class="flex flex-col justify-between items-center h-[50vh] w-[90vw]">
@@ -9,18 +10,48 @@
       <div>
         <div class="flex gap-[10rem]">
           <div class="flex gap-10">
-            <deviceWater-5 :title="'廢水泵1-1'" />
-            <deviceWater-5 :title="'廢水泵1-2'" />
+            <deviceWater-5 :title="deviceDetails[21]?.deviceName" />
+            <deviceWater-5 :title="deviceDetails[22]?.deviceName" />
           </div>
           <div class="flex">
-            <deviceWater-5 :title="'廢水泵2-1'" />
-            <deviceWater-5 :title="'廢水泵2-2'" />
+            <deviceWater-5 :title="deviceDetails[23]?.deviceName" />
+            <deviceWater-5 :title="deviceDetails[24]?.deviceName" />
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import useDeviceStore from "~/store/DeviceStore";
+
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+
+const deviceStore = useDeviceStore();
+const deviceDetails = ref<{ [key: number]: Device | null }>({});
+const DEVICE_TYPE = "sewage";
+
+onMounted(async () => {
+  try {
+    await loadDeviceData();
+  } catch (error) {
+    console.error("Error loading device data:", error);
+  }
+});
+
+const loadDeviceData = async () => {
+  await deviceStore.getDevice(DEVICE_TYPE);
+  updateDeviceDetails();
+};
+
+const updateDeviceDetails = () => {
+  for (let id = 19; id <= 24; id++) {
+    deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
+  }
+};
+</script>
 
 <style lang="scss" scoped></style>
