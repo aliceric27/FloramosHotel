@@ -23,6 +23,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const popupstore = usePopupStore();
+const noticedata = computed(() => popupstore.noticedata);
 const props = defineProps({
   title: {
     type: String,

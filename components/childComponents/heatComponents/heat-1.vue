@@ -9,7 +9,7 @@
         <div class="flex flex-col gap-2.5 items-start shrink-0 relative">
           <div
             class="w-[290px] h-[60px] shrink-0 rounded-[39px] relative"
-            @click="switchsidpage('熱泵系統', props.title)"
+            @click="switchsidpage('熱泵系統', props.title, props.ID)"
           >
             <div
               class="flex w-[238px] h-9 justify-between items-center absolute top-2.5 left-[23px] z-[3]"
@@ -93,6 +93,9 @@ const props = defineProps({
   title: {
     type: String,
     default: "熱泵主機_01",
+  },
+  ID: {
+    type: Number,
   },
 });
 const isOn = ref(false);

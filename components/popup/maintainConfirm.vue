@@ -12,7 +12,7 @@
         </div>
         <div class="flex flex-col gap-2">
           <div class="alt-title">保養項目</div>
-          <div class="main-item">發電機</div>
+          <div class="main-item">{{ sidata.device }}</div>
         </div>
         <div class="flex items-center justify-center gap-2 w-[188px]">
           <div class="main-date">保養時間</div>
@@ -25,8 +25,20 @@
           </div>
         </div>
         <div class="flex gap-4">
-          <div><img src="@/assets/images/maint/close.png" alt="" /></div>
-          <div><img src="@/assets/images/maint/confirm.png" alt="" /></div>
+          <div @click="switchmaintConfirm">
+            <img
+              class="cursor-pointer"
+              src="@/assets/images/maint/close.png"
+              alt=""
+            />
+          </div>
+          <div @click="sendmaintConfirm">
+            <img
+              class="cursor-pointer"
+              src="@/assets/images/maint/confirm.png"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -34,9 +46,71 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
+import useDeviceStore from "~/store/DeviceStore";
+const { $swal } = useNuxtApp();
 const PopupStore = usePopupStore();
+const DeviceStore = useDeviceStore();
+const maintain = computed(() => DeviceStore?.maintain?.data);
 const maintConfirm = computed(() => PopupStore.maintConfirm);
+const sidata = computed(() => PopupStore.sidata);
+const updateDevice = DeviceStore.updateDevice;
 const pickdate = ref("");
+const switchmaintConfirm = PopupStore.switchmaintConfirm;
+const formatDate = (dateString: string) => {
+  if (!dateString) return null;
+  const date = new Date(dateString);
+  const userTimezoneOffset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - userTimezoneOffset)
+    .toISOString()
+    .split("T")[0];
+};
+const sendmaintConfirm = async () => {
+  let data = {
+    ...{
+      customName: null,
+      cycle_unit: null,
+      cycle_value: null,
+      deleteFlag: null,
+      deviceID: null,
+      deviceName: null,
+      lastTime: null,
+      nextTime: null,
+    },
+    ...maintain?.value,
+  };
+  const cycleval = maintain?.value?.cycle_value;
+  const cycleunit = maintain?.value?.cycle_unit;
+  data.cycle_value = cycleval;
+  data.cycle_unit = cycleunit;
+  data.lastTime = formatDate(pickdate.value);
+  if (data.lastTime) {
+    const result = await updateDevice(data);
+    if (result.status === "success") {
+      $swal.fire({
+        title: "成功",
+        text: `${result.data.data}`,
+        icon: "success",
+        confirmButtonText: "確認",
+      });
+      PopupStore.switchsidpage();
+    } else {
+      console.log(result);
+      $swal.fire({
+        title: "錯誤",
+        text: `${result?.error?.data?.message}`,
+        icon: "error",
+        confirmButtonText: "確認",
+      });
+    }
+  } else {
+    $swal.fire({
+      title: "錯誤",
+      text: "日期未填寫",
+      icon: "warning",
+      confirmButtonText: "確認",
+    });
+  }
+};
 </script>
 <style lang="scss" scoped>
 .title {

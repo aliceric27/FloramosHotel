@@ -5,10 +5,22 @@
       <Childtitle :title="childtitle" />
       <div class="flex justify-around">
         <div>
-          <heat-1 :title="deviceDetails[31]?.deviceName" />
-          <heat-1 :title="deviceDetails[32]?.deviceName" />
-          <heat-1 :title="deviceDetails[33]?.deviceName" />
-          <heat-1 :title="deviceDetails[34]?.deviceName" />
+          <heat-1
+            :title="deviceDetails[31]?.deviceName"
+            :ID="deviceDetails[31]?.deviceID"
+          />
+          <heat-1
+            :title="deviceDetails[32]?.deviceName"
+            :ID="deviceDetails[32]?.deviceID"
+          />
+          <heat-1
+            :title="deviceDetails[33]?.deviceName"
+            :ID="deviceDetails[33]?.deviceID"
+          />
+          <heat-1
+            :title="deviceDetails[34]?.deviceName"
+            :ID="deviceDetails[34]?.deviceID"
+          />
           <div><img src="@/assets/images/maincard/heat-pump.png" alt="" /></div>
         </div>
         <div>

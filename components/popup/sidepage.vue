@@ -53,7 +53,7 @@
                     </div>
                     <div
                       @click="switchmaintConfirm"
-                      class="flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl"
+                      class="cursor-pointer flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl"
                     >
                       <p>確認保養</p>
                     </div>

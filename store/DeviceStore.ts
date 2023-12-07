@@ -14,7 +14,7 @@ const initState: State = {
 };
 // 相關fn
 const actions: any = {
-  async getDevice(device: String) {
+  async getDevice(device: string) {
     const userStore = useLoginStore();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
@@ -34,10 +34,10 @@ const actions: any = {
     await this.setdata(result.data, device);
     return result;
   },
-  setdata(data: any, device: String) {
+  setdata(data: any, device: string) {
     this[`${device}`] = data;
   },
-  async getMaintain(deviceID: Number) {
+  async getMaintain(deviceID: number) {
     const userStore = useLoginStore();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
@@ -56,6 +56,57 @@ const actions: any = {
     };
     await this.setdata(result.data, "maintain");
 
+    return result;
+  },
+  async getEvent() {
+    const userStore = useLoginStore();
+    const token = userStore.token;
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/events/`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+    };
+    await this.setdata(result.data, "event");
+
+    return result;
+  },
+  async updateDevice(updatData: any) {
+    const userStore = useLoginStore();
+    const token = userStore.token;
+    let fetchurl = "";
+    if (updatData?.customName) fetchurl = updatData.customName;
+    else fetchurl = updatData.deviceID;
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${fetchurl}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+        body: {
+          customName: updatData.customName,
+          cycle_value: updatData.cycle_value,
+          cycle_unit: updatData.cycle_unit,
+          lastTime: updatData.lastTime,
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+      error: toRaw(error.value),
+    };
+    console.log(result);
     return result;
   },
 };

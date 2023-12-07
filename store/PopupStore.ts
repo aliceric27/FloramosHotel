@@ -14,6 +14,7 @@ export interface State {
     device: String;
     maintain: any;
   };
+  noticedata: any;
 }
 // 初始化資料
 const initState: State = {
@@ -29,13 +30,19 @@ const initState: State = {
     device: "",
     maintain: "",
   },
+  noticedata: null,
 };
 // 相關fn
 const actions: any = {
   switchMaintPopup() {
     this.maintAdd = !this.maintAdd;
   },
-  switchNoticeBox() {
+  async switchNoticeBox() {
+    const deviceStore = useDeviceStore();
+    const notice = await deviceStore.getEvent();
+    if (notice.status === "success") {
+      this.noticedata = notice?.data?.data || null;
+    }
     this.noticeBox = !this.noticeBox;
   },
   switchsidePage() {
@@ -44,7 +51,7 @@ const actions: any = {
   switchemergency() {
     this.emergency = !this.emergency;
   },
-  switchmaintConfirm() {
+  switchmaintConfirm(system: string) {
     this.maintConfirm = !this.maintConfirm;
   },
   async switchsidpage(system: String = "", device: String = "", ID: Number) {
