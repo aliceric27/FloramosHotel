@@ -2,27 +2,30 @@
   <div>
     <div class="w-full">
       <div
-        class="grid grid-cols-11 header-text border-b-2 border-b-[rgba(74, 164, 82, 0.35)] py-2"
+        class="grid grid-cols-7 header-text border-b-2 border-b-[rgba(74, 164, 82, 0.35)] py-2"
       >
-        <div class="flex items-center justify-center col-span-2 title">
+        <div class="flex items-center justify-center col-span-1 title">
           {{ props.title }}
         </div>
-        <div class="flex items-center justify-center col-span-2 title">
+        <div class="flex items-center justify-center col-span-1 title">
           {{ props.cycletime }}
         </div>
-        <div class="flex items-center justify-center col-span-2 title">
+        <div class="flex items-center justify-center col-span-1 title">
           {{ props.lasttime }}
         </div>
-        <div class="flex items-center justify-center col-span-2 title">
+        <div class="flex items-center justify-center col-span-1 title">
           {{ props.nexttime }}
         </div>
         <div
-          class="flex items-center justify-center col-span-2 cursor-pointer title"
+          class="flex items-center justify-center col-span-3 cursor-pointer title"
         >
           <div><img src="@/assets/images/maint/confirm.png" /></div>
-        </div>
-        <div>
-          <img src="@/assets/images/maint/delete.png" />
+          <div>
+            <img src="@/assets/images/maint/Edit.png" />
+          </div>
+          <div>
+            <img src="@/assets/images/maint/delete.png" />
+          </div>
         </div>
       </div>
     </div>

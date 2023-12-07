@@ -9,7 +9,7 @@
         class="flex justify-between flex-col rounded-[1rem] p-2 gap-1 h-full"
       >
         <div class="flex">
-          <p class="gold">B1F</p>
+          <p class="gold">B1</p>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"

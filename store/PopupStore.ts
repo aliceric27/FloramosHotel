@@ -15,6 +15,7 @@ export interface State {
     maintain: any;
   };
   noticedata: any;
+  maintaincycle: string | null;
 }
 // 初始化資料
 const initState: State = {
@@ -31,6 +32,7 @@ const initState: State = {
     maintain: "",
   },
   noticedata: null,
+  maintaincycle: null,
 };
 // 相關fn
 const actions: any = {
@@ -70,6 +72,9 @@ const actions: any = {
   },
   switchalertset() {
     this.alertset = !this.alertset;
+  },
+  setMaintaincycle(cycle: string) {
+    this.maintaincycle = cycle;
   },
 };
 const getters: _GettersTree<State> = {};

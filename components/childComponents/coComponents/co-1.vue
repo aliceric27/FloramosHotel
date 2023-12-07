@@ -35,7 +35,7 @@
 const props = defineProps({
   loc: {
     type: String,
-    default: "旅館後方左側",
+    default: "一氧化碳",
   },
   device: {
     type: String,

@@ -8,7 +8,7 @@
         <p class="gold">{{ props.floor }}</p>
         <div><img src="@/assets/images/urgent/floor.png" /></div>
       </div>
-      <div><p class="uragent-text">緊急求救</p></div>
+      <div><p class="uragent-text">公共廁所</p></div>
       <deviceAlert :isNormal="props.isNormal" />
     </div>
   </div>

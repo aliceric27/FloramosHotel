@@ -13,7 +13,7 @@
             <div
               class="flex w-[9rem] justify-center items-center gap-[0.75rem]"
             >
-              <p class="B1F">B1F</p>
+              <p class="B1F">B1</p>
               <img src="@/assets/images/wind/floor.png" alt="" />
             </div>
             <div class="bg-[#C2A344] w-[16.625rem] h-[0.1875rem]"></div>
@@ -39,7 +39,7 @@
             <div
               class="flex w-[9rem] justify-center items-center gap-[0.75rem]"
             >
-              <p class="B1F">B2F</p>
+              <p class="B1F">B2</p>
               <img src="@/assets/images/wind/floor.png" alt="" />
             </div>
             <div class="bg-[#C2A344] w-[40.125rem] h-[0.1875rem]"></div>

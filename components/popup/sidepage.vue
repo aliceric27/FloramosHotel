@@ -125,7 +125,7 @@ const device = computed(() => PopupStore.sidata.device);
 const maintain = computed(() => PopupStore.sidata.maintain);
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
-const switchalertset = PopupStore.switchalertset;
+const setMaintaincycle = PopupStore.setMaintaincycle;
 const getCycle = (c: String) => {
   try {
     switch (c) {
@@ -147,8 +147,12 @@ const CycleString = computed(() => {
   const cycleVal = maintain?.value?.cycle_value;
   if (cycle && cycleVal) {
     const result = `每${cycleVal}${cycle}`;
+    setMaintaincycle(result);
     return result;
-  } else return null;
+  } else {
+    setMaintaincycle(null);
+    return null;
+  }
 });
 const getDate = (d: String) => d?.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || null;
 const lastdate = computed(() => getDate(maintain?.value?.lastTime));

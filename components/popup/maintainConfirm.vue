@@ -2,7 +2,7 @@
 <template>
   <div>
     <div
-      class="fixed top-[40%] left-[40%] w-[490px] h-[283px] bg-[#F5F5F5] z-50 px-[1.75rem] py-[2.18rem]"
+      class="fixed top-[40%] left-[40%] w-[490px] h-[20rem] bg-[#F5F5F5] z-50 px-[1.75rem]"
     >
       <div class="flex flex-col items-center justify-center gap-4">
         <div
@@ -13,6 +13,10 @@
         <div class="flex flex-col gap-2">
           <div class="alt-title">保養項目</div>
           <div class="main-item">{{ sidata.device }}</div>
+        </div>
+        <div class="flex items-center justify-center gap-2 w-[188px]">
+          <div class="main-date">保養週期</div>
+          <div class="cycle-val">{{ maintaincycle || "未設定" }}</div>
         </div>
         <div class="flex items-center justify-center gap-2 w-[188px]">
           <div class="main-date">保養時間</div>
@@ -56,6 +60,7 @@ const sidata = computed(() => PopupStore.sidata);
 const updateDevice = DeviceStore.updateDevice;
 const pickdate = ref("");
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
+const maintaincycle = computed(() => PopupStore.maintaincycle);
 const formatDate = (dateString: string) => {
   if (!dateString) return null;
   const date = new Date(dateString);
@@ -143,12 +148,20 @@ const sendmaintConfirm = async () => {
 }
 .main-date {
   color: #717171;
-
   font-family: Microsoft JhengHei UI;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.96px;
+}
+.cycle-val {
+  color: #717171;
+  font-family: Microsoft JhengHei UI;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 156.502%;
+  letter-spacing: 8px;
 }
 </style>

@@ -53,22 +53,6 @@ const actions: any = {
   setExptime(time: string) {
     this.exptime = time;
   },
-  initializeToken() {
-    if (process.client) {
-      const local = localStorage.getItem("token");
-      // 確保只在客戶端執行
-      const isJWT = this.checkIsJWT(local);
-      if (isJWT) {
-        this.token = localStorage.getItem("token");
-        console.log("localToken", this.token);
-      } else {
-        this.token = null;
-        localStorage.setItem("token", "");
-        console.log("invalid token set to null", this.token);
-      }
-    }
-  },
-
   checkIsJWT(token: String) {
     const parts = token?.split(".");
     return parts?.length === 3;

@@ -64,7 +64,7 @@ const props = defineProps({
   },
   conten2: {
     type: String,
-    default: "B2F 旅館後方左側",
+    default: "B2F 一氧化碳",
   },
 });
 </script>

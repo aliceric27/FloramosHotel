@@ -9,16 +9,6 @@
             <div class="grid grid-cols-5">
               <co-1 />
               <co-1 />
-              <co-1 />
-              <co-1 />
-              <co-1 />
-            </div>
-            <div class="grid grid-cols-5">
-              <co-1 />
-              <co-1 />
-              <co-1 />
-              <co-1 />
-              <co-1 />
             </div>
           </div>
           <div>
