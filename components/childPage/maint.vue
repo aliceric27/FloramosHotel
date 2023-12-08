@@ -38,7 +38,6 @@ import useDeviceStore from "~/store/DeviceStore";
 const DeviceStore = useDeviceStore();
 onMounted(async () => {
   await DeviceStore.getMaintain();
-  console.log("Data loaded:", maintain.value); // 调试输出
   isload.value = true;
 });
 const maintain = computed(() => toRaw(DeviceStore?.maintain));
@@ -48,7 +47,6 @@ const handlePageChange = (newPage: number) => {
   currentPage.value = newPage;
 };
 const paginatedData = computed(() => {
-  console.log("Current Page:", currentPage.value); // 调试输出
   const start = (currentPage.value - 1) * 10;
   return maintainData.value?.slice(start, start + 10);
 });

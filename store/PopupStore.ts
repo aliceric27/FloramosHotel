@@ -92,8 +92,8 @@ const actions: any = {
     this.maintaincycle = cycle;
   },
   closesidpage() {
-    this.maintConfirmm = fasle;
-    this.sidpage = fasle;
+    this.maintConfirmm = false;
+    this.sidpage = false;
   },
   closchmaintEdit() {
     this.maintEdit = false;

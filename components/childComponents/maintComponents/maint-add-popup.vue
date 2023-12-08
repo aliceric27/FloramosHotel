@@ -38,7 +38,7 @@
         <div class="box-3" @click="switchMaintPopup">
           <span class="text-a">關閉</span>
         </div>
-        <div class="section-3" @click="sendaddData(sendData)">
+        <div class="cursor-pointer section-3" @click="sendaddData(sendData)">
           <span class="text-b">確認保養</span>
         </div>
       </div>

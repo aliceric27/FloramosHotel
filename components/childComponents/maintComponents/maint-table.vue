@@ -25,7 +25,7 @@
           <div @click="switchmaintEdit(props.data)">
             <img src="@/assets/images/maint/Edit.png" />
           </div>
-          <div v-if="props.deleteFlag === 1">
+          <div v-if="props.deleteFlag === 1" @click="DelDevice(props.data)">
             <img src="@/assets/images/maint/delete.png" />
           </div>
         </div>
@@ -35,9 +35,31 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
+import useDeviceStore from "~/store/DeviceStore";
+const { $swal } = useNuxtApp();
 const PopupStore = usePopupStore();
+const DeviceStore = useDeviceStore();
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const switchmaintEdit = PopupStore.switchmaintEdit;
+const DelDevice = async (da: any) => {
+  const result = await DeviceStore.DelDevice(da);
+  if (result.status === "success") {
+    $swal.fire({
+      title: "成功",
+      text: `設備刪除完成`,
+      icon: "success",
+      confirmButtonText: "確認",
+    });
+  } else {
+    $swal.fire({
+      title: "失敗",
+      text: `設備刪除失敗`,
+      icon: "error",
+      confirmButtonText: "確認",
+    });
+  }
+};
+
 const props = defineProps({
   title: {
     type: String,

@@ -1,6 +1,7 @@
 import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { useRoute, useRouter } from "vue-router";
 import useLoginStore from "./LoginStore";
+import usePopupStore from "./PopupStore";
 export interface State {
   power: any | null;
   ventilation: any | null;
@@ -156,9 +157,12 @@ const actions: any = {
       } = Data;
       datepick = this.getDate(datepick);
       const userStore = useLoginStore();
+      const PopupStore = usePopupStore();
+      const device = PopupStore.maintainData;
+      const url = device?.customName || device?.deviceName;
       const token = userStore.token;
       const { data, pending, refresh, execute, error, status } = await useFetch(
-        `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${input}`,
+        `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${url}`,
         {
           method: "PATCH",
           headers: {
@@ -177,14 +181,36 @@ const actions: any = {
         data: toRaw(data.value),
         status: toRaw(status.value),
       };
-      await this.setdata(result.data, "event");
       return result;
     } else return false;
   },
-  getDate(date: any) {
-    const regex = /^(\d{4}-\d{2}-\d{2})/;
-    const match = date.match(regex);
-    return match ? match[1] : null;
+  async DelDevice(Data: any) {
+    console.log("Data", Data);
+    const userStore = useLoginStore();
+    const url = Data?.customName;
+    const token = userStore.token;
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${url}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+    };
+    return result;
+  },
+  getDate(d: any) {
+    const date = new Date(d);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 月份从0开始计数
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
   },
 };
 const getters: _GettersTree<State> = {
