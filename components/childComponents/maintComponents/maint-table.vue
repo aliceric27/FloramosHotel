@@ -22,7 +22,7 @@
           <div @click="switchmaintConfirm(props.data)">
             <img src="@/assets/images/maint/confirm.png" />
           </div>
-          <div>
+          <div @click="switchmaintEdit(props.data)">
             <img src="@/assets/images/maint/Edit.png" />
           </div>
           <div v-if="props.deleteFlag === 1">
@@ -37,6 +37,7 @@
 import usePopupStore from "~/store/PopupStore";
 const PopupStore = usePopupStore();
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
+const switchmaintEdit = PopupStore.switchmaintEdit;
 const props = defineProps({
   title: {
     type: String,

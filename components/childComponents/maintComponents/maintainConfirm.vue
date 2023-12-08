@@ -162,6 +162,6 @@ const sendmaintConfirm = async () => {
   font-style: normal;
   font-weight: 700;
   line-height: 156.502%;
-  letter-spacing: 8px;
+  letter-spacing: 1px;
 }
 </style>

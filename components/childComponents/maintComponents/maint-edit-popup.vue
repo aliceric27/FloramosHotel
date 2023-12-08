@@ -1,3 +1,4 @@
+<!-- 保養編輯頁面 -->
 <template>
   <div>
     <div class="main-container" v-if="isPopup">
@@ -7,7 +8,11 @@
         <span class="text-2">保養項目</span><span class="text-3"> <br /></span>
       </div>
       <div class="section">
-        <el-input v-model="input" placeholder="請輸入" />
+        <el-input
+          v-model="input"
+          placeholder="請輸入名稱"
+          :disabled="!isCustom"
+        />
       </div>
       <div class="box">
         <span class="text-5">首次保養時間</span>
@@ -35,7 +40,7 @@
         </div>
       </div>
       <div class="section-2">
-        <div class="box-3" @click="switchMaintPopup">
+        <div class="box-3" @click="closchmaintEdit">
           <span class="text-a">關閉</span>
         </div>
         <div class="section-3" @click="sendaddData(sendData)">
@@ -49,11 +54,13 @@
 const { $swal } = useNuxtApp();
 import usePopupStore from "~/store/PopupStore";
 import useDeviceStore from "~/store/DeviceStore";
+const isCustom = ref(false);
 const PopupStore = usePopupStore();
 const DeviceStore = useDeviceStore();
-const switchMaintPopup = PopupStore.switchMaintPopup;
-const isPopup = computed(() => PopupStore.maintAdd);
-const addDevice = DeviceStore.createDevice;
+const closchmaintEdit = PopupStore.closchmaintEdit;
+const isPopup = computed(() => PopupStore.maintEdit);
+const EditDevice = DeviceStore.EditDevice;
+const sidata = computed(() => PopupStore.maintainData);
 const input = ref("");
 const datepick = ref("");
 const cycle = ref("");
@@ -102,9 +109,10 @@ const checkInput = () => {
   return allValuesExist && cycleIsNumber;
 };
 const sendaddData = async (data) => {
+  console.log("送出前data", data);
   const checkinput = checkInput();
   if (checkinput) {
-    const result = await addDevice(sendData);
+    const result = await EditDevice(sendData);
     if (result.status === "success") {
       $swal.fire({
         title: "成功",
@@ -116,7 +124,7 @@ const sendaddData = async (data) => {
       datepick.value = "";
       cycle.value = "";
       customcycle.value = 1;
-      switchMaintPopup();
+      closchmaintEdit();
     } else {
       $swal.fire({
         title: "錯誤",
@@ -134,8 +142,23 @@ const sendaddData = async (data) => {
     });
   }
 };
-</script>
+function toISODateString(dateTimeStr: string) {
+  const date = new Date(dateTimeStr);
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 月份从0开始计数
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
+watch(sidata, (newdata, olddata) => {
+  console.log("newdata.value", newdata);
+  input.value = newdata?.customName || newdata?.deviceName;
+  datepick.value = toISODateString(newdata?.lastTime);
+  cycle.value = newdata?.cycle_unit;
+  customcycle.value = newdata?.cycle_value;
+  isCustom.value = newdata?.deviceID ? false : true;
+});
+</script>
 <style lang="scss" scoped>
 .main-container {
   overflow: hidden;

@@ -11,7 +11,7 @@
           v-for="item in paginatedData"
           :key="item.id"
           :data="item"
-          :title="item.deviceName"
+          :title="item.deviceName || item.customName"
           :cycletime="`${item.cycle_value || ''}${getCycle(item.cycle_unit)}`"
           :lasttime="(getDate(item.lastTime) as string)"
           :nexttime="(getDate(item.nextTime) as string)"
@@ -21,11 +21,13 @@
     </div>
     <div class="flex justify-center">
       <el-pagination
+        v-if="isload"
         layout="prev, pager, next"
         :current-page="currentPage"
         @current-change="handlePageChange"
-        :total="50"
+        :total="maintainData ? maintainData?.length : 0"
         class="red-text"
+        :page-count="totalPage"
       />
     </div>
   </div>
@@ -47,8 +49,11 @@ const handlePageChange = (newPage: number) => {
 };
 const paginatedData = computed(() => {
   console.log("Current Page:", currentPage.value); // 调试输出
-  const start = (currentPage.value - 1) * 5;
-  return maintainData.value?.slice(start, start + 5);
+  const start = (currentPage.value - 1) * 10;
+  return maintainData.value?.slice(start, start + 10);
+});
+const totalPage = computed(() => {
+  return maintainData.value ? Math.ceil(maintainData.value.length / 10) : 0;
 });
 const getCycle = (c: String) => {
   try {

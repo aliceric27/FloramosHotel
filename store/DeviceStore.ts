@@ -110,6 +110,82 @@ const actions: any = {
     console.log(result);
     return result;
   },
+  async createDevice(Data: any) {
+    if (Data) {
+      let {
+        customcycle: { value: customcycle },
+        cycle: { value: cycle },
+        datepick: { value: datepick },
+        input: { value: input },
+      } = Data;
+      datepick = this.getDate(datepick);
+      console.log(datepick);
+      const userStore = useLoginStore();
+      const token = userStore.token;
+      const { data, pending, refresh, execute, error, status } = await useFetch(
+        `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`, // 在这里添加 token
+            "Content-Type": "application/json", // 确保设置正确的内容类型
+          },
+          body: {
+            customName: input,
+            cycle_value: customcycle,
+            cycle_unit: cycle,
+            lastTime: datepick,
+          },
+        }
+      );
+      let result = {
+        data: toRaw(data.value),
+        status: toRaw(status.value),
+      };
+      await this.setdata(result.data, "event");
+      return result;
+    } else return false;
+  },
+  async EditDevice(Data: any) {
+    if (Data) {
+      let {
+        customcycle: { value: customcycle },
+        cycle: { value: cycle },
+        datepick: { value: datepick },
+        input: { value: input },
+      } = Data;
+      datepick = this.getDate(datepick);
+      const userStore = useLoginStore();
+      const token = userStore.token;
+      const { data, pending, refresh, execute, error, status } = await useFetch(
+        `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${input}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`, // 在这里添加 token
+            "Content-Type": "application/json", // 确保设置正确的内容类型
+          },
+          body: {
+            customName: input,
+            cycle_value: customcycle,
+            cycle_unit: cycle,
+            lastTime: datepick,
+          },
+        }
+      );
+      let result = {
+        data: toRaw(data.value),
+        status: toRaw(status.value),
+      };
+      await this.setdata(result.data, "event");
+      return result;
+    } else return false;
+  },
+  getDate(date: any) {
+    const regex = /^(\d{4}-\d{2}-\d{2})/;
+    const match = date.match(regex);
+    return match ? match[1] : null;
+  },
 };
 const getters: _GettersTree<State> = {
   getDeviceByID: (state) => (id: Number, device: String) => {
