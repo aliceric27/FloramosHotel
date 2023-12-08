@@ -97,7 +97,7 @@ const sendmaintConfirm = async () => {
         icon: "success",
         confirmButtonText: "確認",
       });
-      PopupStore.switchsidpage();
+      PopupStore.closesidpage();
     } else {
       console.log(result);
       $swal.fire({

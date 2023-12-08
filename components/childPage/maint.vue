@@ -48,7 +48,7 @@ const handlePageChange = (newPage: number) => {
 const paginatedData = computed(() => {
   console.log("Current Page:", currentPage.value); // 调试输出
   const start = (currentPage.value - 1) * 5;
-  return maintainData.value.slice(start, start + 5);
+  return maintainData.value?.slice(start, start + 5);
 });
 const getCycle = (c: String) => {
   try {

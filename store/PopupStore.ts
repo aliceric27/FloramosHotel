@@ -53,7 +53,18 @@ const actions: any = {
   switchemergency() {
     this.emergency = !this.emergency;
   },
-  switchmaintConfirm(system: string) {
+  async switchmaintConfirm(data?) {
+    if (data) {
+      this.setCycle(data.cycle_unit, data.cycle_value);
+      const url = data?.deviceID || data?.customName;
+      const deviceStore = useDeviceStore();
+      const siddata = await deviceStore.getMaintain(url);
+      if (siddata.status === "success") {
+        const data = siddata?.data?.data;
+        this.sidata.maintain = data;
+        this.sidata.device = data?.deviceName;
+      }
+    }
     this.maintConfirm = !this.maintConfirm;
   },
   async switchsidpage(system: String = "", device: String = "", ID: Number) {
@@ -75,6 +86,41 @@ const actions: any = {
   },
   setMaintaincycle(cycle: string) {
     this.maintaincycle = cycle;
+  },
+  closesidpage() {
+    this.maintConfirmm = fasle;
+    this.sidpage = fasle;
+  },
+  setCycle(c: String, t: String) {
+    let cyc = "";
+    try {
+      switch (c) {
+        case "d":
+          cyc = "日";
+          break;
+        case "w":
+          cyc = "週";
+          break;
+        case "m":
+          cyc = "月";
+          break;
+        case "y":
+          cyc = "年";
+          break;
+      }
+    } catch {
+      console.error(Error);
+    }
+    const cycle = cyc;
+    const cycleVal = t;
+    if (cycle && cycleVal) {
+      const result = `每${cycleVal}${cycle}`;
+      this.setMaintaincycle(result);
+      return result;
+    } else {
+      this.setMaintaincycle(null);
+      return null;
+    }
   },
 };
 const getters: _GettersTree<State> = {};

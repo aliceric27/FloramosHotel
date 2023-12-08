@@ -19,7 +19,9 @@
         <div
           class="flex items-center justify-center col-span-3 cursor-pointer title"
         >
-          <div><img src="@/assets/images/maint/confirm.png" /></div>
+          <div @click="switchmaintConfirm(props.data)">
+            <img src="@/assets/images/maint/confirm.png" />
+          </div>
           <div>
             <img src="@/assets/images/maint/Edit.png" />
           </div>
@@ -32,6 +34,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const props = defineProps({
   title: {
     type: String,
@@ -53,6 +58,7 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  data: {},
 });
 </script>
 <style lang="scss" scoped>
