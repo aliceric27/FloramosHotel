@@ -23,7 +23,7 @@
           <div>
             <img src="@/assets/images/maint/Edit.png" />
           </div>
-          <div>
+          <div v-if="props.deleteFlag === 1">
             <img src="@/assets/images/maint/delete.png" />
           </div>
         </div>
@@ -48,6 +48,10 @@ const props = defineProps({
   nexttime: {
     type: String,
     default: "2023-03-22",
+  },
+  deleteFlag: {
+    type: Number,
+    default: 0,
   },
 });
 </script>

@@ -15,7 +15,6 @@
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
 const PopupStore = usePopupStore();
-console.log("PopupStore", PopupStore);
 const switchMaintPopup = PopupStore.switchMaintPopup;
 </script>
 <style lang="scss" scoped>

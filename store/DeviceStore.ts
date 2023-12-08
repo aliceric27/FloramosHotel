@@ -5,12 +5,14 @@ export interface State {
   power: any | null;
   ventilation: any | null;
   water: any | null;
+  paginatedData: any;
 }
 // 初始化資料
 const initState: State = {
   power: null,
   ventilation: null,
   water: null,
+  paginatedData: null,
 };
 // 相關fn
 const actions: any = {
@@ -37,7 +39,7 @@ const actions: any = {
   setdata(data: any, device: string) {
     this[`${device}`] = data;
   },
-  async getMaintain(deviceID: number) {
+  async getMaintain(deviceID: number | string = "") {
     const userStore = useLoginStore();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
@@ -55,7 +57,6 @@ const actions: any = {
       status: toRaw(status.value),
     };
     await this.setdata(result.data, "maintain");
-
     return result;
   },
   async getEvent() {
