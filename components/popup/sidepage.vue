@@ -63,7 +63,10 @@
             </div>
             <div class="w-4/5 m-8 border-t-2 border-[#717171] h-1/2"></div>
             <div class="w-full grey-bg h-1/2">
-              <div class="flex flex-col items-center justify-center">
+              <div
+                class="flex flex-col items-center justify-center"
+                v-if="eventData?.eventTime"
+              >
                 <div class="flex">
                   <div class="flex items-center justify-center">
                     <img src="@/assets/button/sidepage-2.svg" alt="" />
@@ -80,29 +83,29 @@
                     </div>
                     <div class="flex flex-col my-2 side-time">
                       <p>警報時間</p>
-                      <p>2023-03-27</p>
+                      <p>{{ eventData?.eventTime }}</p>
                     </div>
                     <div class="flex items-center justify-center mx-4">
-                      <p>aperiam possimus? Odio assumenda</p>
+                      <p>{{ eventData?.alarmMessage }}</p>
                     </div>
                   </div>
-                  <div class="flex">
+                  <div class="flex" v-if="eventData?.resolveTime">
                     <div class="mx-2">
                       <img src="@/assets/button/sidepage-3.svg" alt="" />
                     </div>
                     <div class="flex flex-col my-2 side-time">
                       <p>解除時間</p>
-                      <p>2023-03-27</p>
+                      <p>{{ eventData?.resolveTime }}</p>
                     </div>
                     <div class="flex items-center justify-center mx-4">
-                      <p>aperiam possimus? Odio assumenda</p>
+                      <p>{{ eventData?.resolveMessage }}</p>
                     </div>
                   </div>
                 </div>
                 <!--  -->
                 <div
-                  @click="switchalertset"
-                  class="flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl w-4/5"
+                  @click="switchdetailPopup('alarm')"
+                  class="cursor-pointer flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl w-4/5"
                 >
                   <p>復歸</p>
                 </div>
@@ -123,9 +126,11 @@ const alertset = computed(() => PopupStore.alertset);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const maintain = computed(() => PopupStore.sidata.maintain);
+const eventData = computed(() => PopupStore.sidata.event);
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const setMaintaincycle = PopupStore.setMaintaincycle;
+const switchdetailPopup = PopupStore.switchdetailPopup;
 const getCycle = (c: String) => {
   try {
     switch (c) {

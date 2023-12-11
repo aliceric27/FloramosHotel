@@ -10,10 +10,13 @@ export interface State {
   sidePage: Boolean;
   sidpage: Boolean;
   alertset: Boolean;
+  detailPopup: Boolean;
+  detailPoptyp: string;
   sidata: {
     system: String;
     device: String;
     maintain: any;
+    event: any;
   };
   maintainData: any;
   noticedata: any;
@@ -29,10 +32,13 @@ const initState: State = {
   emergency: false,
   sidpage: false,
   alertset: false,
+  detailPopup: false,
+  detailPoptyp: "alarm",
   sidata: {
     system: "",
     device: "",
     maintain: "",
+    event: "",
   },
   noticedata: null,
   maintaincycle: null,
@@ -75,18 +81,48 @@ const actions: any = {
     const deviceStore = useDeviceStore();
     if (ID) {
       const siddata = await deviceStore.getMaintain(ID);
+      const event = await deviceStore.getEvent(ID);
+      console.log("event", event);
       if (siddata.status === "success") {
         const data = siddata?.data?.data;
         this.sidata.maintain = data;
+      }
+      if (event.status === "success") {
+        const eventData = event?.data?.data;
+        this.sidata.event = eventData;
       }
     }
     this.sidpage = !this.sidpage;
     this.sidata.system = system;
     this.sidata.device = device;
-    if (this.sidpage === false) this.maintConfirm = false;
+    if (this.sidpage === false) {
+      this.detailPopup = false;
+      this.maintConfirm = false;
+    }
   },
   switchalertset() {
     this.alertset = !this.alertset;
+  },
+  async switchdetailPopup(Poptyp: string, ID: number) {
+    const deviceStore = useDeviceStore();
+    if (ID) {
+      const siddata = await deviceStore.getMaintain(ID);
+      const event = await deviceStore.getEvent(ID);
+      if (siddata.status === "success") {
+        const data = siddata?.data?.data;
+        this.sidata.maintain = data;
+      }
+      if (event.status === "success") {
+        const eventData = event?.data?.data;
+        this.sidata.event = eventData;
+      }
+      console.log("this.sidata.event", this.sidata.event);
+    }
+    this.detailPoptyp = Poptyp;
+    this.detailPopup = !this.detailPopup;
+  },
+  closedetailPopup() {
+    this.detailPopup = false;
   },
   setMaintaincycle(cycle: string) {
     this.maintaincycle = cycle;

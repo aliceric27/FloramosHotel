@@ -60,11 +60,11 @@ const actions: any = {
     await this.setdata(result.data, "maintain");
     return result;
   },
-  async getEvent() {
+  async getEvent(ID = "") {
     const userStore = useLoginStore();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
-      `${import.meta.env.VITE_Socket_URL}/api/events/`,
+      `${import.meta.env.VITE_Socket_URL}/api/events/${ID}`,
       {
         method: "GET",
         headers: {
@@ -211,6 +211,32 @@ const actions: any = {
     const month = (date.getMonth() + 1).toString().padStart(2, "0"); // 月份从0开始计数
     const day = date.getDate().toString().padStart(2, "0");
     return `${year}-${month}-${day}`;
+  },
+  async updateEvent(updatData: any) {
+    const userStore = useLoginStore();
+    const popupStore = usePopupStore();
+    const token = userStore.token;
+    let fetchurl = popupStore.sidata.maintain.deviceID;
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/events/${fetchurl}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+        body: {
+          ...updatData,
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+      error: toRaw(error.value),
+    };
+    console.log(result);
+    return result;
   },
 };
 const getters: _GettersTree<State> = {

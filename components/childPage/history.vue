@@ -4,41 +4,61 @@
       <div class="w-[80vw]">
         <Childtitle-center :title="'歷史事件'" />
         <history-header />
-        <history-table
-          :mainsys="'熱泵系統'"
-          :altsys="'熱水循環泵_04'"
-          :device="'熱水循環泵'"
-          :alertTime="'2023-03-20'"
-          :alertmsg="'設備狀態異常'"
-          :resloveTime="'2023-03-20'"
-          :resloveMsg="'設備狀態恢復正常'"
-        />
-        <history-table
-          :mainsys="'電力系統'"
-          :altsys="'電瓶電壓'"
-          :device="'電瓶電壓'"
-          :alertTime="'2023-03-10'"
-          :alertmsg="'電瓶電壓過低'"
-          :resloveTime="'2023-03-10'"
-          :resloveMsg="'設電瓶電壓恢復正常'"
-        />
-        <history-table
-          :mainsys="'給排水系統'"
-          :altsys="'屋頂-水塔'"
-          :device="'水塔'"
-          :alertTime="'2023-02-19'"
-          :alertmsg="'水位狀態超高水位'"
-          :resloveTime="'2023-02-19'"
-          :resloveMsg="'水位狀態恢復正常'"
-        />
+        <div v-for="val in paginatedData" v-if="isLoaded">
+          <history-table
+            :mainsys="val?.mainSystem"
+            :altsys="val?.subSystem"
+            :device="val?.deviceName"
+            :alertTime="val?.eventTime"
+            :alertmsg="val?.alarmMessage"
+            :resloveTime="val?.resolveTime"
+            :resloveMsg="val?.resolveMessage"
+            :eventID="val?.eventID"
+          />
+        </div>
       </div>
     </div>
     <div class="flex justify-center">
-      <el-pagination layout="prev, pager, next" :total="50" class="red-text" />
+      <el-pagination
+        layout="prev, pager, next"
+        @current-change="handlePageChange"
+        :current-page="currentPage"
+        :total="history ? history?.length : 0"
+        class="red-text"
+        :page-count="totalPage"
+      />
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+onMounted(async () => {
+  const result = await historyData();
+  console.log("result", result);
+});
+import useDeviceStore from "~/store/DeviceStore";
+const currentPage = ref(1);
+const DeviceStore = useDeviceStore();
+const isLoaded = ref(false);
+const history: any = ref([]);
+const handlePageChange = (newPage: number) => {
+  currentPage.value = newPage;
+};
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * 9;
+  return history.value?.slice(start, start + 9);
+});
+const totalPage = computed(() => {
+  return history.value ? Math.ceil(history.value.length / 9) : 0;
+});
+const historyData = async () => {
+  const historyData = await DeviceStore.getEvent();
+  if (historyData.status === "success") {
+    console.log("historyData", historyData);
+    history.value = historyData?.data?.data;
+    isLoaded.value = true;
+  }
+};
+</script>
 <style lang="scss" scoped>
 .red-text {
   --el-pagination-button-disabled-color: #dd8282;

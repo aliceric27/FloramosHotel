@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-col pl-5 pr-2.5 max-w-[265px]">
+    <div class="flex flex-col pl-5 pr-2.5 max-w-[265px] cursor-pointer">
       <div
         class="justify-between items-stretch self-stretch z-[1] flex mt-0 gap-5"
       >

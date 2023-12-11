@@ -57,7 +57,10 @@
             {{ props.resloveMsg }}
           </div>
         </div>
-        <div>
+        <div
+          class="cursor-pointer"
+          @click="switchdetailPopup('histroy', props.eventID)"
+        >
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +81,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchdetailPopup = PopupStore.switchdetailPopup;
 const props = defineProps({
   mainsys: {
     type: String,
@@ -106,6 +112,9 @@ const props = defineProps({
   resloveMsg: {
     type: String,
     default: "",
+  },
+  eventID: {
+    type: Number,
   },
 });
 </script>

@@ -9,6 +9,7 @@
       />
       <maintainConfirm v-if="maintConfirm" />
       <alertreset v-if="alertset" />
+      <datailPopup v-if="detailPopup" />
       <sidepage />
       <pheader />
       <pmenu />
@@ -25,6 +26,7 @@ const PopupStore = usePopupStore();
 const isEmergency = computed(() => PopupStore.emergency);
 const maintConfirm = computed(() => PopupStore.maintConfirm);
 const alertset = computed(() => PopupStore.alertset);
+const detailPopup = computed(() => PopupStore.detailPopup);
 </script>
 <style lang="scss" scoped>
 #main-warp {
