@@ -61,9 +61,10 @@
             >
               即時訊息
               <div
+                v-if="rdata?.length"
                 class="absolute w-[20px] h-[20px] bg-[#FF5B5B] rounded-[50%] text-center text-white -top-4 -right-4"
               >
-                {{ 1 }}
+                {{ rdata?.length }}
               </div>
               <div
                 v-if="noticeBox"
@@ -87,6 +88,9 @@ import useLoginStore from "~/store/LoginStore";
 import usePageStore from "~/store/PageStore";
 import usePopupStore from "~/store/PopupStore";
 import useInfoStore from "~/store/InfoStore";
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+const rdata = computed(() => socketStore.data?.Events);
 const router = useRouter();
 const PageStore = usePageStore();
 const PopupStore = usePopupStore();

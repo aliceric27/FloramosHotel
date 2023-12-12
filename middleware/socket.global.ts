@@ -2,8 +2,8 @@ import useLoginStore from "~/store/LoginStore";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "vue-router";
 export default defineNuxtRouteMiddleware((to, from) => {
-  console.log("to", to, "from", from);
   const LoginStore = useLoginStore();
+  console.log("to", to, "from", from);
   const checkToken = LoginStore.checkTokenVaild;
   const isLogin = LoginStore.isLogin;
   const token = LoginStore.token;

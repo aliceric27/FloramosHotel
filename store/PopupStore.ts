@@ -12,6 +12,7 @@ export interface State {
   alertset: Boolean;
   detailPopup: Boolean;
   detailPoptyp: string;
+  immPopup: Boolean;
   sidata: {
     system: String;
     device: String;
@@ -31,6 +32,7 @@ const initState: State = {
   sidePage: false,
   emergency: false,
   sidpage: false,
+  immPopup: true,
   alertset: false,
   detailPopup: false,
   detailPoptyp: "alarm",
@@ -62,6 +64,9 @@ const actions: any = {
   },
   switchemergency() {
     this.emergency = !this.emergency;
+  },
+  switchimmPopup() {
+    this.immPopup = !this.immPopup;
   },
   async switchmaintConfirm(data?) {
     if (data) {

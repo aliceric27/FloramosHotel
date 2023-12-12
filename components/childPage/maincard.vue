@@ -3,22 +3,24 @@
   <div id="maincard-warp" :style="maincardStyle">
     <div class="card-in">
       <div class="card-top">
-        <img :src="`_nuxt/assets/images/maincard/${status}.png`" alt="" />
+        <img :src="`_nuxt/assets/images/maincard/${StatusPic}.png`" alt="" />
         <img src="@/assets/images/maincard/arrow.svg" alt="" />
       </div>
       <div class="card-bottom">
         <div>
           <p
             class="system-title"
-            :class="{ 'has-notification': notificationNumber }"
-            :data-notification-number="notificationNumber"
+            :class="{ 'has-notification': filtdata?.count }"
+            :data-notification-number="filtdata?.count"
           >
             {{ maincardtitle }}
           </p>
-          <p class="device-count">5 devices</p>
+          <p class="device-count">{{ props.deviceCount }}devices</p>
         </div>
-        <div>
-          <p>熱泵主機_01</p>
+        <div v-if="props.title === '熱泵系統' && Heatshutdown?.length">
+          <div v-for="item in Heatshutdown">
+            <p>{{ item }}</p>
+          </div>
           <p>設備狀況<span>關閉</span></p>
         </div>
       </div>
@@ -32,11 +34,14 @@ const props = defineProps({
   status: String,
   title: String,
   notify: Number,
+  deviceCount: Number,
 });
-const status = props.status; //設備狀態
 const notificationNumber = props.notify; //紅點提示
 const maincardtitle = props.title; //標題
-
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+const rdata = computed(() => socketStore.data);
+const Heatshutdown = ref([]);
 const maincardStyle = computed(() => {
   let bgtitle = "";
   switch (props.title) {
@@ -72,6 +77,39 @@ const maincardStyle = computed(() => {
     backgroundColor: "#fff",
     backgroundImage: `url(${bgUrl})`,
   };
+});
+const filtdata = computed(() => {
+  switch (props.title) {
+    case "電力系統":
+      return rdata.value?.BA?.power?.mainpage;
+    case "送排風系統":
+      return rdata.value?.BA?.ventilation?.mainpage;
+    case "排水系統":
+      return rdata.value?.BA?.water?.mainpage;
+    case "熱泵系統":
+      Heatshutdown.value = rdata.value?.BA?.heatbump?.shutdown;
+      return rdata.value?.BA?.heatbump?.mainpage;
+    case "緊急求救":
+      return false;
+    case "消防系統":
+      return rdata.value?.BA?.firefighting?.mainpage;
+    case "公共照明系統":
+      return false;
+    case "一氧化碳偵測":
+      return false;
+  }
+});
+const StatusPic = computed(() => {
+  const status = toRaw(filtdata.value)?.faultStatus;
+  const needMaint = toRaw(filtdata.value)?.needMaintenance;
+  switch (status) {
+    case "正常":
+      return needMaint ? "noti" : "normal";
+    case "異常":
+      return "error";
+    default:
+      return "error";
+  }
 });
 </script>
 <style lang="scss" scoped>

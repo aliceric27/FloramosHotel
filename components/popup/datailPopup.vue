@@ -2,7 +2,7 @@
   <black-opacity />
   <div class="fixed z-50 left-[38%] top-[20%]">
     <div class="main-container">
-      <span class="text">警報復歸</span>
+      <span class="text">{{ titleTyp }}</span>
       <div class="border-t-2 border-gray-300 section">
         <div class="img"></div>
         <div class="box">
@@ -112,6 +112,9 @@ const detailPoptyp = computed(() => PopupStore.detailPoptyp);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const eventData = computed(() => PopupStore.sidata.event);
+const titleTyp = computed(() =>
+  detailPoptyp.value === "alarm" ? "賦歸事件" : "歷史事件"
+);
 const textarea = ref("");
 const checkedexceptedState = computed({
   get: () => {
@@ -165,13 +168,17 @@ const sendUpdata = async () => {
       confirmButtonText: "確認",
     });
   } else if (result.status === "success") {
-    PopupStore.switchsidePage();
-    $swal.fire({
-      title: "成功",
-      text: `賦歸成功`,
-      icon: "success",
-      confirmButtonText: "確認",
-    });
+    $swal
+      .fire({
+        title: "成功",
+        text: `賦歸成功`,
+        icon: "success",
+        confirmButtonText: "確認",
+      })
+      .then(async () => {
+        await DeviceStore.getEvent();
+        await PopupStore.switchsidePage();
+      });
   }
 };
 const checkisEdit = computed(() => {

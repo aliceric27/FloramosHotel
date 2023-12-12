@@ -10,6 +10,7 @@
       <maintainConfirm v-if="maintConfirm" />
       <alertreset v-if="alertset" />
       <datailPopup v-if="detailPopup" />
+      <immimsg v-if="datalength && immPopup" />
       <sidepage />
       <pheader />
       <pmenu />
@@ -21,12 +22,21 @@
 <script lang="ts" setup>
 import zhTw from "element-plus/dist/locale/zh-tw.mjs";
 import usePopupStore from "~/store/PopupStore";
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+const socketstore = () => {
+  socketStore.ConnectSocket();
+};
+socketstore();
 const language = ref(zhTw);
 const PopupStore = usePopupStore();
 const isEmergency = computed(() => PopupStore.emergency);
 const maintConfirm = computed(() => PopupStore.maintConfirm);
 const alertset = computed(() => PopupStore.alertset);
 const detailPopup = computed(() => PopupStore.detailPopup);
+const immPopup = computed(() => PopupStore.immPopup);
+const dataRaw = computed(() => socketStore.data);
+const datalength = computed(() => toRaw(dataRaw.value)?.Events?.length);
 </script>
 <style lang="scss" scoped>
 #main-warp {

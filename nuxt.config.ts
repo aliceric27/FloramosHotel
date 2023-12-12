@@ -6,7 +6,6 @@ function pathResolve(dir: string) {
   return resolve(__dirname, dir);
 }
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     head: {
       title: "中央監控系統",
@@ -61,7 +60,7 @@ export default defineNuxtConfig({
   // ],
   plugins: ["~/plugins/sweetalert2.ts"],
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@element-plus/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@element-plus/nuxt"],
   devServer: {
     host: "0.0.0.0", // 通過設置 0.0.0.0，您的開發服務器將可從外部訪問
     port: 3000, // 預設的端口是 3000，但您可以更改它

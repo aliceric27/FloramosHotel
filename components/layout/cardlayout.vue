@@ -2,18 +2,62 @@
 <template>
   <div class="main-warp">
     <div class="grid-container">
-      <maincard :status="'error'" :title="'電力系統'" :notify="2" />
-      <maincard :status="'normal'" :title="'送排風系統'" :notify="3" />
-      <maincard :status="'normal'" :title="'排水系統'" :notify="3" />
-      <maincard :status="'normal'" :title="'熱泵系統'" :notify="3" />
-      <maincard :status="'normal'" :title="'緊急求救'" :notify="3" />
-      <maincard :status="'normal'" :title="'消防系統'" :notify="3" />
-      <maincard :status="'normal'" :title="'公共照明系統'" :notify="3" />
-      <maincard :status="'normal'" :title="'一氧化碳偵測'" :notify="3" />
+      <maincard
+        :status="'error'"
+        :title="'電力系統'"
+        :notify="2"
+        :device-count="5"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'送排風系統'"
+        :notify="3"
+        :device-count="5"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'排水系統'"
+        :notify="3"
+        :device-count="22"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'熱泵系統'"
+        :notify="3"
+        :device-count="9"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'緊急求救'"
+        :notify="3"
+        :device-count="12"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'消防系統'"
+        :notify="3"
+        :device-count="11"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'公共照明系統'"
+        :notify="3"
+        :device-count="79"
+      />
+      <maincard
+        :status="'normal'"
+        :title="'一氧化碳偵測'"
+        :notify="3"
+        :device-count="50"
+      />
     </div>
   </div>
 </template>
-<script lang="ts"></script>
+<script lang="ts">
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+const rdata = computed(() => socketStore.data);
+</script>
 <style lang="scss" scoped>
 .main-warp {
   display: flex;
