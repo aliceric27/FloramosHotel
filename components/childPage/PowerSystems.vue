@@ -44,7 +44,7 @@
           </div>
           <div class="flex items-center justify-between">
             <p>電瓶電壓</p>
-            <DeviceNormal :isNormal="isBatteryNormal" />
+            <DeviceNormal :isNormal="batteryStatue" />
           </div>
         </div>
         <!-- ----------------------------- -->
@@ -71,7 +71,7 @@
           </div>
           <div class="flex items-center justify-between">
             <p>油位</p>
-            <DeviceNormal :isNormal="isfuelNormal" />
+            <DeviceNormal :isNormal="oilStatue" />
           </div>
         </div>
         <!-- -------------------------------- -->
@@ -91,6 +91,25 @@ interface Device {
   deviceName: string;
   deviceID: number;
 }
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+const rdata = computed(() => {
+  return toRaw(socketStore?.data?.BA?.power?.devices);
+});
+const batteryStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === 4);
+  if (dstatus) {
+    return dstatus?.faultStatus === "正常" ? true : false;
+  }
+  return dstatus;
+});
+const oilStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === 5);
+  if (dstatus) {
+    return dstatus?.faultStatus === "正常" ? true : false;
+  }
+  return false;
+});
 import usePopupStore from "~/store/PopupStore";
 import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();
