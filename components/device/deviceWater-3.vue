@@ -28,7 +28,7 @@
           {{ "水位狀態" }}
         </div>
         <div class="p-4">
-          <DeviceNormal :is-normal="props.isNormal" />
+          <DeviceNormal :is-normal="isNormal" />
         </div>
       </div>
     </div>
@@ -45,5 +45,40 @@ const props = defineProps({
     default: "1",
   },
 });
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+const rdata = computed(() => {
+  let systemType = "water";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  let deviceID = 0;
+  switch (props.pond) {
+    case "1":
+      deviceID = 19;
+      break;
+    case "2":
+      deviceID = 20;
+      break;
+    case "3":
+      deviceID = 25;
+      break;
+    case "4":
+      deviceID = 26;
+      break;
+  }
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === deviceID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>
 <style lang="scss" scoped></style>

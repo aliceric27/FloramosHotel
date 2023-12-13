@@ -1,3 +1,4 @@
+<!-- 汙廢水頁面 -->
 <template>
   <div>
     <div
@@ -12,7 +13,7 @@
             {{ isalertWarter ? "水位狀態" : "異常警報" }}
           </div>
           <div class="p-4">
-            <DeviceNormal :is-normal="props.isNormal" />
+            <DeviceNormal :is-normal="isNormal" />
           </div>
         </div>
       </div>
@@ -33,5 +34,28 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  ID: {
+    type: Number,
+  },
 });
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
+interface Device {
+  deviceName: string;
+  deviceID: number;
+}
+const rdata = computed(() => {
+  let systemType = "water";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>

@@ -9,12 +9,12 @@
       <div>
         <div class="flex gap-[10rem]">
           <div class="flex gap-20">
-            <deviceWater-5 :title="deviceDetails[27]?.deviceName" />
-            <deviceWater-5 :title="deviceDetails[28]?.deviceName" />
+            <deviceWater-5 :title="deviceDetails[27]?.deviceName" :ID="27" />
+            <deviceWater-5 :title="deviceDetails[28]?.deviceName" :ID="28" />
           </div>
           <div class="flex">
-            <deviceWater-5 :title="deviceDetails[29]?.deviceName" />
-            <deviceWater-5 :title="deviceDetails[30]?.deviceName" />
+            <deviceWater-5 :title="deviceDetails[29]?.deviceName" :ID="29" />
+            <deviceWater-5 :title="deviceDetails[30]?.deviceName" :ID="30" />
           </div>
         </div>
       </div>

@@ -44,7 +44,9 @@ const socketStore = useSocketStore();
 const PopupStore = usePopupStore();
 const switchsidpage = PopupStore.switchsidpage;
 const rdata = computed(() => {
-  let systemType = "ventilation";
+  let systemType = "";
+  if (props.system === "送排風系統") systemType = "ventilation";
+  if (props.system === "給排水系統") systemType = "water";
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
 const DeviceStatue = computed(() => {

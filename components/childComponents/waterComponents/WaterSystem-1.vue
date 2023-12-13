@@ -7,15 +7,12 @@
         <!-- 左側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>
-            <deviceWater
-              :title="deviceDetails[15]?.deviceName"
-              :isNormal="true"
-            />
+            <deviceWater :title="deviceDetails[15]?.deviceName" :ID="15" />
           </div>
           <div>
             <deviceWater
               :title="deviceDetails[14]?.deviceName"
-              :isNormal="false"
+              :ID="14"
               :isalertWarter="true"
             />
           </div>
@@ -59,12 +56,14 @@
             <deviceWater
               :title="deviceDetails[13]?.deviceName"
               :isNormal="true"
+              :ID="13"
             />
           </div>
           <div>
             <deviceWater
               :title="deviceDetails[11]?.deviceName"
               :isNormal="true"
+              :ID="11"
               :isalertWarter="true"
             />
           </div>
@@ -89,12 +88,6 @@
 </template>
 <script lang="ts" setup>
 import useDeviceStore from "~/store/DeviceStore";
-
-interface Device {
-  deviceName: string;
-  deviceID: number;
-}
-
 const deviceStore = useDeviceStore();
 const deviceDetails = ref<{ [key: number]: Device | null }>({});
 const DEVICE_TYPE = "water";
