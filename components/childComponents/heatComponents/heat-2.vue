@@ -35,10 +35,10 @@
             >
             <div
               class="switch-container linear-animat w-[68px] h-[26px] shrink-0 relative bg-[#ff5b5b] rounded-[43px]"
-              :class="{ 'switch-on': isOn }"
+              :class="{ 'switch-on': isDeviceOn }"
               @click="toggleSwitch"
             >
-              <div v-if="props.isNormal">
+              <div v-if="isDeviceOn">
                 <div
                   class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#6de479] absolute top-0 left-0 z-10"
                 ></div>
@@ -48,7 +48,7 @@
                 >
               </div>
               <!--  -->
-              <div v-if="!props.isNormal">
+              <div v-if="!isDeviceOn">
                 <div
                   class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#FF5B5B] absolute top-0 left-0 z-10"
                 ></div>
@@ -60,10 +60,10 @@
 
               <div
                 class="switch-thumb w-[39.56%] h-full bg-[url(@/assets/button/Onbtn.svg)] bg-[length:100%_100%] bg-no-repeat absolute top-0"
-                :style="{ left: isOn ? '0%' : '60.44%' }"
+                :style="{ left: isDeviceOn ? '0%' : '60.44%' }"
               >
                 <div
-                  :class="{ 'switch-on': isOn }"
+                  :class="{ 'switch-on': isDeviceOn }"
                   class="w-full h-full bg-[#ff5b5b] rounded-[80px] border-solid border-[#b8b8b8] absolute top-0 left-0 z-[6]"
                 ></div>
                 <div
@@ -96,6 +96,7 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
+import useSocketStore from "~/store/socketStore";
 const PopupStore = usePopupStore();
 const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
@@ -107,9 +108,27 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  ID: {
+    type: Number,
+  },
 });
 const isOn = ref(false);
 const toggleSwitch = () => (isOn.value = !isOn.value);
+const socketStore = useSocketStore();
+const rdata = computed(() => {
+  let systemType = "heatbump";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>
 <style lang="scss" scoped>
 .linear-animat {

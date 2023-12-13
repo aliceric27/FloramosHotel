@@ -35,26 +35,26 @@
             >
             <div
               class="switch-container linear-animat w-[68px] h-[26px] shrink-0 relative bg-[#ff5b5b] rounded-[43px] border-solid border-[3px] border-[#b8b8b8]"
-              :class="{ 'switch-on': isOn }"
+              :class="{ 'switch-on': isDeviceOn }"
               @click="toggleSwitch"
             >
               <span
-                v-if="!isOn"
+                v-if="!isDeviceOn"
                 class="linear-animat w-[60.68%] h-[70%] font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#fff] tracking-0.96px absolute top-[5%] left-[10%] text-left z-[7] break-words"
                 >OFF</span
               >
               <span
-                v-if="isOn"
+                v-if="isDeviceOn"
                 class="linear-animat w-[60.68%] h-[70%] font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#fff] tracking-0.96px absolute top-[5%] left-[50%] text-left z-[7] break-words"
                 >ON</span
               >
 
               <div
                 class="switch-thumb w-[39.56%] h-full bg-[url(@/assets/button/Onbtn.svg)] bg-[length:100%_100%] bg-no-repeat absolute top-0"
-                :style="{ left: isOn ? '0%' : '60.44%' }"
+                :style="{ left: isDeviceOn ? '0%' : '60.44%' }"
               >
                 <div
-                  :class="{ 'switch-on': isOn }"
+                  :class="{ 'switch-on': isDeviceOn }"
                   class="w-full h-full bg-[#ff5b5b] rounded-[80px] border-solid border-[#b8b8b8] absolute top-0 left-0 z-[6]"
                 ></div>
                 <div
@@ -68,7 +68,10 @@
               class="w-[85px] h-5 shrink-0 basis-auto font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#707070] tracking-3.2px text-left break-words"
               >故障異常</span
             >
-            <div class="w-[67.672px] h-6 shrink-0 rounded-[43px] relative">
+            <div
+              class="w-[67.672px] h-6 shrink-0 rounded-[43px] relative"
+              v-if="isNormal"
+            >
               <div class="w-full h-full absolute top-0 left-0 z-[9]">
                 <div
                   class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#6de479] absolute top-0 left-0 z-10"
@@ -76,6 +79,20 @@
                 <span
                   class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#5fd76c] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
                   >正常</span
+                >
+              </div>
+            </div>
+            <div
+              class="w-[67.672px] h-6 shrink-0 rounded-[43px] relative"
+              v-else
+            >
+              <div class="w-full h-full absolute top-0 left-0 z-[9]">
+                <div
+                  class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#ff5b5b] absolute top-0 left-0 z-10"
+                ></div>
+                <span
+                  class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#ff5b5b] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
+                  >異常</span
                 >
               </div>
             </div>
@@ -87,8 +104,25 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
+import useSocketStore from "~/store/socketStore";
 const PopupStore = usePopupStore();
 const switchsidpage = PopupStore.switchsidpage;
+const socketStore = useSocketStore();
+const rdata = computed(() => {
+  let systemType = "heatbump";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
+
 const props = defineProps({
   title: {
     type: String,
