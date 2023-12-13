@@ -108,7 +108,6 @@ const actions: any = {
       status: toRaw(status.value),
       error: toRaw(error.value),
     };
-    console.log(result);
     return result;
   },
   async createDevice(Data: any) {
@@ -120,7 +119,6 @@ const actions: any = {
         input: { value: input },
       } = Data;
       datepick = this.getDate(datepick);
-      console.log(datepick);
       const userStore = useLoginStore();
       const token = userStore.token;
       const { data, pending, refresh, execute, error, status } = await useFetch(
@@ -185,7 +183,6 @@ const actions: any = {
     } else return false;
   },
   async DelDevice(Data: any) {
-    console.log("Data", Data);
     const userStore = useLoginStore();
     const url = Data?.customName;
     const token = userStore.token;
@@ -235,7 +232,6 @@ const actions: any = {
       status: toRaw(status.value),
       error: toRaw(error.value),
     };
-    console.log(result);
     return result;
   },
 };
@@ -243,7 +239,6 @@ const getters: _GettersTree<State> = {
   getDeviceByID: (state) => (id: Number, device: String) => {
     const rawdevice = toRaw(state[device]?.data);
     const result = rawdevice?.find((item: any) => item.deviceID === id);
-    console.log(result);
     return result;
   },
 };

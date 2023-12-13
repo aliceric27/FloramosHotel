@@ -24,14 +24,14 @@
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >設備狀態</span
           >
-          <DevicePower :deviceOn="deviceOn" @toggle-power="togglePower" />
+          <DevicePower :deviceOn="isDeviceOn" @toggle-power="togglePower" />
         </div>
         <div class="flex items-center justify-center gap-9 shrink-0">
           <span
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >故障異常</span
           >
-          <deviceNormal :isNormal="normal" @toggle="toggleNormal" />
+          <deviceNormal :isNormal="isNormal" @toggle="toggleNormal" />
         </div>
       </div>
     </div>
@@ -39,8 +39,24 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
 const PopupStore = usePopupStore();
 const switchsidpage = PopupStore.switchsidpage;
+const rdata = computed(() => {
+  let systemType = "ventilation";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 const props = defineProps({
   title: {
     type: String,

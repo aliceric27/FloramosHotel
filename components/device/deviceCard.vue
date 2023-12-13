@@ -50,8 +50,8 @@
 </template>
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
-const PopupStore = usePopupStore();
 import useSocketStore from "~/store/socketStore";
+const PopupStore = usePopupStore();
 const socketStore = useSocketStore();
 const DeviceStatue = computed(() => {
   const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
@@ -77,20 +77,8 @@ const props = defineProps({
 });
 
 const rdata = computed(() => {
-  let systemType;
-  switch (props.system) {
-    case "電力系統":
-      systemType = "power";
-      break;
-    // 可以添加更多的 case 來處理其他系統類型
-    default:
-      systemType = "unknown"; // 或者返回一個預設值
-      break;
-  }
+  let systemType = "power";
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
-
-console.log("rdata", rdata.value);
-console.log("rdata2", DeviceStatue.value);
 </script>
 <style lang="scss" scoped></style>
