@@ -14,13 +14,15 @@
         <div>
           <p class="uragent-text">{{ props.title }}</p>
         </div>
-        <deviceAlert :title="'設備狀態'" :isNormal="props.isNormal" />
-        <deviceAlert :title="'故障異常'" :isNormal="props.isNormal2" />
+        <deviceAlert :title="'設備狀態'" :isNormal="isDeviceOn" />
+        <deviceAlert :title="'故障異常'" :isNormal="isNormal" />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
 const props = defineProps({
   title: {
     type: String,
@@ -30,15 +32,24 @@ const props = defineProps({
     type: String,
     default: "B1",
   },
-  isNormal: {
-    type: Boolean,
-    default: false,
-  },
-  isNormal2: {
-    type: Boolean,
-    default: false,
+  ID: {
+    type: Number,
   },
 });
+const rdata = computed(() => {
+  let systemType = "firefighting";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>
 <style lang="scss" scoped>
 .gold {

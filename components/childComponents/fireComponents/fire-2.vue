@@ -23,13 +23,13 @@
               <div class="flex items-center justify-around my-2">
                 <div class="alert">異常警報</div>
                 <div
-                  v-if="props.isNormal"
+                  v-if="isNormal"
                   class="flex border-2 border-[#6DE479] border-solid rounded-[1rem] text-[#6DE479]"
                 >
                   <p class="mx-2 normal">正常</p>
                 </div>
                 <div
-                  v-if="!props.isNormal"
+                  v-if="!isNormal"
                   class="flex border-2 border-[#FF5B5B] border-solid rounded-[1rem] text-[#FF5B5B]"
                 >
                   <p class="mx-2 error">異常</p>
@@ -43,6 +43,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
 const props = defineProps({
   title: {
     type: String,
@@ -52,11 +54,24 @@ const props = defineProps({
     type: String,
     default: "1F",
   },
-  isNormal: {
-    type: Boolean,
-    default: false,
+  ID: {
+    type: Number,
   },
 });
+const rdata = computed(() => {
+  let systemType = "firefighting";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
+  return dstatus;
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>
 <style lang="scss" scoped>
 .gold {

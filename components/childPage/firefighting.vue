@@ -10,18 +10,21 @@
               <DeviceCard
                 :title="deviceDetails[40]?.deviceName"
                 :ID="deviceDetails[40]?.deviceID"
+                :system="'消防設備'"
               />
             </div>
             <div>
               <DeviceCard
                 :title="deviceDetails[41]?.deviceName"
                 :ID="deviceDetails[41]?.deviceID"
+                :system="'消防設備'"
               />
             </div>
             <div>
               <DeviceCard
                 :title="deviceDetails[42]?.deviceName"
                 :ID="deviceDetails[42]?.deviceID"
+                :system="'消防設備'"
               />
             </div>
           </div>
@@ -51,15 +54,13 @@
                 <fire-1
                   :floor="'B1'"
                   :title="deviceDetails[43]?.deviceName"
-                  :isNormal="true"
-                  :isNormal2="false"
+                  :ID="43"
                 />
                 <!-- 火災警報 -->
                 <fire-2
                   :floor="'1'"
                   :title="deviceDetails[49]?.deviceName"
-                  :isNormal="true"
-                  :isNormal2="false"
+                  :ID="49"
                 />
               </div>
               <!-- 1F -->
@@ -84,14 +85,12 @@
                 <fire-1
                   :floor="'1'"
                   :title="deviceDetails[44]?.deviceName"
-                  :isNormal="false"
-                  :isNormal2="false"
+                  :ID="44"
                 />
                 <fire-1
                   :floor="'1'"
                   :title="deviceDetails[45]?.deviceName"
-                  :isNormal="false"
-                  :isNormal2="false"
+                  :ID="45"
                 />
               </div>
               <!-- 2F -->
@@ -117,20 +116,17 @@
                 <fire-1
                   :floor="'2'"
                   :title="deviceDetails[46]?.deviceName"
-                  :isNormal="true"
-                  :isNormal2="true"
+                  :ID="46"
                 />
                 <fire-1
                   :floor="'2'"
                   :title="deviceDetails[47]?.deviceName"
-                  :isNormal="true"
-                  :isNormal2="true"
+                  :ID="47"
                 />
                 <fire-1
                   :floor="'2'"
                   :title="deviceDetails[48]?.deviceName"
-                  :isNormal="true"
-                  :isNormal2="true"
+                  :ID="48"
                 />
               </div>
             </div>

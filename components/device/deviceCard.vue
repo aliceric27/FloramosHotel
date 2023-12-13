@@ -77,7 +77,9 @@ const props = defineProps({
 });
 
 const rdata = computed(() => {
-  let systemType = "power";
+  let systemType = "";
+  if (props.system === "電力系統") systemType = "power";
+  if (props.system === "消防設備") systemType = "firefighting";
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
 </script>
