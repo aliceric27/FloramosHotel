@@ -19,6 +19,7 @@ export interface State {
     maintain: any;
     event: any;
   };
+  currentData: any;
   maintainData: any;
   noticedata: any;
   maintaincycle: string | null;
@@ -42,6 +43,7 @@ const initState: State = {
     maintain: "",
     event: "",
   },
+  currentData: "",
   noticedata: null,
   maintaincycle: null,
   maintainData: "",
@@ -178,7 +180,7 @@ const actions: any = {
       const siddata = await deviceStore.getMaintain(url);
       if (siddata.status === "success") {
         const data = siddata?.data?.data;
-        this.maintainData = data;
+        this.currentData = data;
         this.sidata.maintain = data;
         this.sidata.device = data?.deviceName;
       }

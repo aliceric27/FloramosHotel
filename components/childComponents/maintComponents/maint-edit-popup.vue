@@ -61,8 +61,9 @@ const closchmaintEdit = PopupStore.closchmaintEdit;
 const isPopup = computed(() => PopupStore.maintEdit);
 const EditDevice = DeviceStore.EditDevice;
 const sidata = computed(() => PopupStore.maintainData);
+const currentData = computed(() => PopupStore.currentData);
 const input = ref("");
-const datepick = ref("");
+const datepick: any = ref("");
 const cycle = ref("");
 const customcycle = ref(1);
 const custoption = computed(() => {
@@ -150,10 +151,11 @@ function toISODateString(dateTimeStr: string) {
   return `${year}-${month}-${day}`;
 }
 
-watch(sidata, (newdata, olddata) => {
+watch(currentData, (newdata, olddata) => {
   console.log("newdata.value", newdata);
   input.value = newdata?.customName || newdata?.deviceName;
-  datepick.value = toISODateString(newdata?.lastTime);
+  datepick.value = toISODateString(newdata?.lastTime || new Date());
+  console.log("datepick.value", datepick.value);
   cycle.value = newdata?.cycle_unit;
   customcycle.value = newdata?.cycle_value;
   isCustom.value = newdata?.deviceID ? false : true;

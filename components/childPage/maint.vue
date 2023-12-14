@@ -42,13 +42,14 @@ onMounted(async () => {
 });
 const maintain = computed(() => toRaw(DeviceStore?.maintain));
 const maintainData = computed(() => maintain?.value?.data);
+const currentData = computed(() => maintain?.value?.currentData);
 const currentPage = ref(1);
 const handlePageChange = (newPage: number) => {
   currentPage.value = newPage;
 };
 const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * 10;
-  return maintainData.value?.slice(start, start + 10);
+  return maintainData.value?.slice(start, start + 10) || 0;
 });
 const totalPage = computed(() => {
   return maintainData.value ? Math.ceil(maintainData.value.length / 10) : 0;
