@@ -155,7 +155,6 @@ watch(currentData, (newdata, olddata) => {
   console.log("newdata.value", newdata);
   input.value = newdata?.customName || newdata?.deviceName;
   datepick.value = toISODateString(newdata?.lastTime || new Date());
-  console.log("datepick.value", datepick.value);
   cycle.value = newdata?.cycle_unit;
   customcycle.value = newdata?.cycle_value;
   isCustom.value = newdata?.deviceID ? false : true;

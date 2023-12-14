@@ -157,8 +157,25 @@ const actions: any = {
       const userStore = useLoginStore();
       const PopupStore = usePopupStore();
       const device = PopupStore.maintainData;
-      const url = device?.customName || device?.deviceName;
+      const currentData = toRaw(PopupStore.currentData);
+      const url = currentData?.customName || currentData?.deviceID;
       const token = userStore.token;
+      let requestBody;
+      if (device?.customName) {
+        requestBody = {
+          customName: input,
+          cycle_value: customcycle,
+          cycle_unit: cycle,
+          lastTime: datepick,
+        };
+      } else {
+        requestBody = {
+          deviceID: currentData?.deviceID,
+          cycle_value: customcycle,
+          cycle_unit: cycle,
+          lastTime: datepick,
+        };
+      }
       const { data, pending, refresh, execute, error, status } = await useFetch(
         `${import.meta.env.VITE_Socket_URL}/api/deviceMaintain/${url}`,
         {
@@ -167,12 +184,7 @@ const actions: any = {
             Authorization: `Bearer ${token}`, // 在这里添加 token
             "Content-Type": "application/json", // 确保设置正确的内容类型
           },
-          body: {
-            customName: input,
-            cycle_value: customcycle,
-            cycle_unit: cycle,
-            lastTime: datepick,
-          },
+          body: { ...requestBody },
         }
       );
       let result = {
