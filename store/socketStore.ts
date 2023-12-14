@@ -13,7 +13,6 @@ const initState: State = {
   isConnected: false,
   data: ref(null),
   socket: null,
-  heatshtdown: null,
 };
 
 const getters: _GettersTree<State> = {};
@@ -26,7 +25,7 @@ const useSocketStore = defineStore({
       if (!import.meta.env.SSR) {
         if (!this.socket) {
           if (import.meta.env.PROD) {
-            this.socket = io();
+            this.socket = io(endpoint);
           } else {
             this.socket = io(endpoint, {
               reconnection: false,

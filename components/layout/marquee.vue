@@ -4,7 +4,7 @@
     <div class="flex items-center justify-center w-full">
       <div class="flex items-center justify-center warp w-[80%]">
         <div class="content" :class="animationClass">
-          {{ content[currentIndex].c }}
+          {{ marqcontent[currentIndex].c }}
         </div>
       </div>
     </div>
@@ -13,7 +13,35 @@
 
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from "vue";
-
+import useSocketStore from "~/store/socketStore";
+import dayjs from "dayjs";
+function formatISODateWithDayjs(isoString: string) {
+  return dayjs(isoString).format("YYYY/MM/DD HH:mm");
+}
+const socketStore = useSocketStore();
+const data = computed(() => socketStore.data);
+const NewData = computed(() => {
+  if (data.value) {
+    return data.value?.Events;
+  } else return null;
+});
+const marqcontent = computed(() => {
+  if (NewData.value) {
+    const data = toRaw(NewData.value);
+    let result: any[] | undefined = [];
+    data.forEach(
+      (item: { eventTime: string; deviceName: any; alarmMessage: any }) => {
+        let obj = {
+          c: `${formatISODateWithDayjs(item.eventTime)}${item.deviceName}${
+            item.alarmMessage
+          }`,
+        };
+        result?.push(obj);
+      }
+    );
+    return result;
+  }
+});
 const animationClass = ref("animate__animated animate__slideInUp");
 const animationDuration = 5000; // 動畫持續時間（3秒）
 // 資料格式暫定，串接後需要再次進行修改
@@ -46,7 +74,7 @@ function toggleAnimation() {
   }
 }
 
-let intervalId;
+let intervalId: string | number | NodeJS.Timeout | undefined;
 onMounted(() => {
   intervalId = setInterval(toggleAnimation, animationDuration);
 });

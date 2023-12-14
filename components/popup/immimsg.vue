@@ -23,7 +23,7 @@
           <span class="text">即時訊息</span>
         </div>
         <div class="pic-2"></div>
-        <span class="text-2">發生異常</span>
+        <span class="text-2">{{ getNewData?.deviceName }}發生異常</span>
         <div class="section">
           <div class="box">
             <span class="text-3">異常原因</span

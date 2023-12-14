@@ -6,5 +6,6 @@ interface ImportMetaEnv {
   VITE_API_URL: string;
   VITE_SOME_KEY: number;
   VITE_Socket_URL: string | null;
+  VITE_IO_URL: string;
   // more env variables...
 }
