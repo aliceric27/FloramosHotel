@@ -2,7 +2,8 @@
 <template>
   <div>
     <div
-      class="flex justify-between flex-col w-[10.6rem] h-[7.68rem] shadow-[1.86885px_2.80328px_3.7377px_0px_rgba(0,0,0,0.15)] rounded-[1rem] bg-[url(@/assets/images/urgent/uragent-bg-2.svg)] bg-no-repeat bg-right"
+      class="flex justify-between flex-col w-[10.6rem] h-[7.68rem] shadow-[1.86885px_2.80328px_3.7377px_0px_rgba(0,0,0,0.15)] rounded-[1rem] bg-no-repeat bg-right"
+      :class="backgroundClass"
     >
       <div class="flex">
         <p class="gold">{{ props.floor }}</p>
@@ -14,6 +15,11 @@
   </div>
 </template>
 <script lang="ts" setup>
+const backgroundClass = computed(() => {
+  return props.isNormal
+    ? "bg-[url(@/assets/images/urgent/uragent-bg-1.svg)]"
+    : "bg-[url(@/assets/images/urgent/uragent-bg-3.svg)]";
+});
 const props = defineProps({
   floor: {
     type: String,

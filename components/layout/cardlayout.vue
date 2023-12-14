@@ -72,7 +72,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import useSocketStore from "~/store/socketStore";
 const socketStore = useSocketStore();
 const rdata = computed(() => socketStore.data);

@@ -1,8 +1,8 @@
 <template>
   <div id="login-warp" class="bg-contain xl:bg-cover">
     <div class="warp-in">
-      <Logo :class="{ 'logo-login': isLogin }" />
-      <p class="logo-text logo-login">中央監控系統</p>
+      <Logo />
+      <p class="logo-text">中央監控系統</p>
       <Inputtext :nametitle="'Username'" :typ="'acc'" v-if="!isLogin" />
       <Inputtext :nametitle="'Password'" :typ="'pwd'" v-if="!isLogin" />
       <Loginbtn @click="checkacc" v-if="!isLogin" />
@@ -113,9 +113,9 @@ const checkacc = async () => {
     align-items: center;
     .logo-text {
       margin: 0 0 1rem 0;
-      color: #1777fc;
+      color: rgb(182, 115, 0);
       font-family: CHei2HK;
-      font-size: 1.25rem;
+      font-size: 20px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;

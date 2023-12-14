@@ -37,6 +37,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  ssr: false,
   components: [
     {
       path: "~/components",
@@ -46,18 +47,7 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
   },
-  css: ["animate.css/animate.min.css", "~/style.css", ,],
-  // components: [
-  //   { path: "~/components/Logo" },
-  //   { path: "~/components/popup" },
-  //   { path: "~/components/card" },
-  //   { path: "~/components/card/status" },
-  //   { path: "~/components/header" },
-  //   { path: "~/components/input" },
-  //   { path: "~/components/page" },
-  //   { path: "~/components/button" },
-  //   "~/components",
-  // ],
+  css: ["animate.css/animate.min.css", "~/style.css"],
   plugins: ["~/plugins/sweetalert2.ts"],
   devtools: { enabled: true },
   modules: ["@pinia/nuxt", "@nuxtjs/tailwindcss", "@element-plus/nuxt"],

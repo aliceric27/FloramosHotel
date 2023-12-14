@@ -40,12 +40,13 @@ watch(textinput, (newval, oldval) => {
     display: flex;
     flex-direction: column;
     .input-text {
-      color: rgba(0, 139, 224, 0.7);
+      font-size: 14px;
+      color: rgba(152, 96, 0);
       margin: 0.5rem;
     }
     .inputbox {
-      background-color: #ecfdff;
-      margin: 0.5rem;
+      background-color: #fff9ee;
+      margin-top: 1rem;
       padding: 0.5rem;
       border-radius: 2.125rem;
       border: 2.5px solid #fff;

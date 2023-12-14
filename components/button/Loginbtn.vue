@@ -25,10 +25,10 @@
     width: 90%;
     max-width: 300px;
     height: 4rem;
-    background-color: #ffff;
-    box-shadow: 3px 5px 8px 0px rgba(0, 139, 224, 0.25);
+    background-color: #ffffff;
+    box-shadow: 3px 5px 8px 0px rgba(224, 179, 0, 0.25);
     .btn-text {
-      color: #3fa9f5;
+      color: rgba(152, 96, 0);
       font-family: CHei2HK;
       font-size: 1.125rem;
       font-style: normal;
@@ -37,7 +37,7 @@
     }
   }
   .out-warp:hover {
-    background-color: rgb(215, 235, 255);
+    background-color: rgb(255, 213, 142);
   }
 }
 </style>
