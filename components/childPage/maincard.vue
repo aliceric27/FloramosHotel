@@ -3,7 +3,7 @@
   <div id="maincard-warp" :style="maincardStyle">
     <div class="card-in">
       <div class="card-top">
-        <img :src="`_nuxt/assets/images/maincard/${StatusPic}.png`" alt="" />
+        <img :src="StatusPic" alt="" />
         <img src="@/assets/images/maincard/arrow.svg" alt="" />
       </div>
       <div class="card-bottom">
@@ -29,7 +29,17 @@
 </template>
 <script lang="ts" setup>
 import { stringifyQuery } from "vue-router";
-
+import dynamoImage from "@/assets/images/maincard/dynamo.png";
+import supplyAirImage from "@/assets/images/maincard/Supply-air.png";
+import waterImage from "@/assets/images/maincard/water.png";
+import heatPumpImage from "@/assets/images/maincard/heat-pump.png";
+import urgentImage from "@/assets/images/maincard/urgent.png";
+import firefightingImage from "@/assets/images/maincard/firefighting.png";
+import lightImage from "@/assets/images/maincard/light.png";
+import carbonMonoxideImage from "@/assets/images/maincard/carbon-monoxide.png";
+import errorImage from "@/assets/images/maincard/error.png";
+import normalImage from "@/assets/images/maincard/normal.png";
+import notiImage from "@/assets/images/maincard/noti.png";
 const props = defineProps({
   status: String,
   title: String,
@@ -43,39 +53,38 @@ const socketStore = useSocketStore();
 const rdata = computed(() => socketStore.data);
 const Heatshutdown = ref([]);
 const maincardStyle = computed(() => {
-  let bgtitle = "";
+  let bgurl;
   switch (props.title) {
     case "電力系統":
-      bgtitle = "dynamo.png";
+      bgurl = dynamoImage;
       break;
     case "送排風系統":
-      bgtitle = "Supply-air.png";
+      bgurl = supplyAirImage;
       break;
     case "排水系統":
-      bgtitle = "water.png";
+      bgurl = waterImage;
       break;
     case "熱泵系統":
-      bgtitle = "heat-pump.png";
+      bgurl = heatPumpImage;
       break;
     case "緊急求救":
-      bgtitle = "urgent.png";
+      bgurl = urgentImage;
       break;
     case "消防系統":
-      bgtitle = "firefighting.png";
+      bgurl = firefightingImage;
       break;
     case "公共照明系統":
-      bgtitle = "light.png";
+      bgurl = lightImage;
       break;
     case "一氧化碳偵測":
-      bgtitle = "carbon-monoxide.png";
+      bgurl = carbonMonoxideImage;
       break;
     default:
-      bgtitle = "dynamo.png";
+      bgurl = dynamoImage;
   }
-  let bgUrl = `_nuxt/assets/images/maincard/${bgtitle}`;
   return {
     backgroundColor: "#fff",
-    backgroundImage: `url(${bgUrl})`,
+    backgroundImage: `url(${bgurl})`,
   };
 });
 const filtdata = computed(() => {
@@ -104,11 +113,11 @@ const StatusPic = computed(() => {
   const needMaint = toRaw(filtdata.value)?.needMaintenance;
   switch (status) {
     case "正常":
-      return needMaint ? "noti" : "normal";
+      return needMaint ? notiImage : normalImage;
     case "異常":
-      return "error";
+      return errorImage;
     default:
-      return "error";
+      return errorImage;
   }
 });
 </script>

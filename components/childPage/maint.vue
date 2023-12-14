@@ -48,10 +48,16 @@ const handlePageChange = (newPage: number) => {
   currentPage.value = newPage;
 };
 const paginatedData = computed(() => {
+  if (!Array.isArray(maintainData.value)) {
+    return []; // 返回空数组
+  }
   const start = (currentPage.value - 1) * 10;
   return maintainData.value?.slice(start, start + 10) || 0;
 });
 const totalPage = computed(() => {
+  if (!Array.isArray(maintainData.value)) {
+    return []; // 返回空数组
+  }
   return maintainData.value ? Math.ceil(maintainData.value.length / 10) : 0;
 });
 const getCycle = (c: String) => {

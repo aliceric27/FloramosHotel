@@ -175,14 +175,17 @@ const actions: any = {
   async switchmaintEdit(data?) {
     if (data) {
       this.setCycle(data.cycle_unit, data.cycle_value);
-      const url = data?.deviceID || data?.customName;
+      const url = data?.customName === null ? data?.deviceID : data?.customName;
+      console.log(url);
       const deviceStore = useDeviceStore();
-      const siddata = await deviceStore.getMaintain(url);
-      if (siddata.status === "success") {
-        const data = siddata?.data?.data;
-        this.currentData = data;
-        this.sidata.maintain = data;
-        this.sidata.device = data?.deviceName;
+      const maintain = toRaw(deviceStore?.maintain);
+      const maintainData = maintain?.data;
+      if (maintainData?.length) {
+        const finddata = maintainData?.find(
+          (item: any) => item.deviceID === url
+        );
+        this.currentData = finddata;
+        this.sidata.device = finddata?.deviceName;
       }
     }
     this.maintEdit = !this.maintEdit;
