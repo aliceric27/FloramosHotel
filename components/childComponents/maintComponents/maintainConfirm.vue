@@ -55,8 +55,8 @@ const { $swal } = useNuxtApp();
 const PopupStore = usePopupStore();
 const DeviceStore = useDeviceStore();
 const maintain = computed(() => DeviceStore?.maintain?.data);
-const maintConfirm = computed(() => PopupStore.maintConfirm);
 const sidata = computed(() => PopupStore.sidata);
+const currentData = computed(() => PopupStore.currentData);
 const updateDevice = DeviceStore.updateDevice;
 const pickdate = ref("");
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
@@ -83,6 +83,7 @@ const sendmaintConfirm = async () => {
     },
     ...maintain?.value,
   };
+  data.customName = currentData.value?.customName;
   const cycleval = maintain?.value?.cycle_value;
   const cycleunit = maintain?.value?.cycle_unit;
   data.cycle_value = cycleval;
@@ -91,13 +92,13 @@ const sendmaintConfirm = async () => {
   if (data.lastTime) {
     const result = await updateDevice(data);
     if (result.status === "success") {
+      PopupStore.closesidpage();
       $swal.fire({
         title: "成功",
-        text: `${result.data.data}`,
+        text: `保養成功`,
         icon: "success",
         confirmButtonText: "確認",
       });
-      PopupStore.closesidpage();
     } else {
       console.log(result);
       $swal.fire({

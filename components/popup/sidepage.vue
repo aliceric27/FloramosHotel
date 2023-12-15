@@ -52,7 +52,7 @@
                       </div>
                     </div>
                     <div
-                      @click="switchmaintConfirm"
+                      @click="switchmaintConfirm(maintdata)"
                       class="cursor-pointer flex text-neutral-500 text-2xl font-bold leading-8 tracking-wider whitespace-nowrap justify-center items-center shadow-sm bg-white px-5 py-1.5 rounded-3xl"
                     >
                       <p>確認保養</p>
@@ -131,6 +131,7 @@ const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const setMaintaincycle = PopupStore.setMaintaincycle;
 const switchdetailPopup = PopupStore.switchdetailPopup;
+
 const getCycle = (c: String) => {
   try {
     switch (c) {
@@ -162,5 +163,11 @@ const CycleString = computed(() => {
 const getDate = (d: String) => d?.match(/^\d{4}-\d{2}-\d{2}/)?.[0] || null;
 const lastdate = computed(() => getDate(maintain?.value?.lastTime));
 const nextdate = computed(() => getDate(maintain?.value?.nextTime));
+const maintdata = {
+  cycletime: CycleString,
+  lasttime: lastdate,
+  nexttime: nextdate,
+  data: maintain?.value,
+};
 </script>
 <style scoped></style>
