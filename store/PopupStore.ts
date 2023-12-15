@@ -72,14 +72,23 @@ const actions: any = {
   },
   async switchmaintConfirm(data?) {
     if (data) {
-      this.setCycle(data.cycle_unit, data.cycle_value);
-      const url = data?.deviceID || data?.customName;
+      console.log("urlID", data);
+      const url = data?.customName === null ? data?.deviceID : data?.customName;
       const deviceStore = useDeviceStore();
-      const siddata = await deviceStore.getMaintain(url);
-      if (siddata.status === "success") {
-        const data = siddata?.data?.data;
-        this.sidata.maintain = data;
-        this.sidata.device = data?.deviceName;
+      const maintain = toRaw(deviceStore?.maintain);
+      const maintainData = maintain?.data;
+      if (maintainData?.length) {
+        let finddata;
+        if (data?.deviceID === null) {
+          finddata = maintainData?.find((item: any) => item.customName === url);
+        } else {
+          finddata = maintainData?.find((item: any) => item.deviceID === url);
+        }
+        this.currentData = finddata;
+        this.sidata.device =
+          finddata?.deviceName === null
+            ? finddata?.customName
+            : finddata?.deviceName;
       }
     }
     this.maintConfirm = !this.maintConfirm;
@@ -135,7 +144,7 @@ const actions: any = {
     this.maintaincycle = cycle;
   },
   closesidpage() {
-    this.maintConfirmm = false;
+    this.maintConfirm = false;
     this.sidpage = false;
   },
   closchmaintEdit() {
@@ -181,9 +190,12 @@ const actions: any = {
       const maintain = toRaw(deviceStore?.maintain);
       const maintainData = maintain?.data;
       if (maintainData?.length) {
-        const finddata = maintainData?.find(
-          (item: any) => item.deviceID === url
-        );
+        let finddata;
+        if (data?.deviceID === null) {
+          finddata = maintainData?.find((item: any) => item.customName === url);
+        } else {
+          finddata = maintainData?.find((item: any) => item.deviceID === url);
+        }
         this.currentData = finddata;
         this.sidata.device = finddata?.deviceName;
       }
