@@ -1,9 +1,10 @@
-<!-- 消防系統Card -->
+<!-- 一氧化碳偵測Card -->
 <template>
   <div>
     <div
-      class="relative w-[11.6rem] h-[9.1rem] rounded-[0.43rem] shadow-[2px_4px_12px_2px_rgba(60,60,60,0.7)] border-b-[1px] border-solid"
+      class="cursor-pointer relative w-[11.6rem] h-[9.1rem] rounded-[0.43rem] shadow-[2px_4px_12px_2px_rgba(60,60,60,0.7)] border-b-[1px] border-solid"
       :class="borderbottom"
+      @click="switchsidpage(props.system, props.deviceName, props.deviceID)"
     >
       <div
         class="absolute w-[8rem] h-auto max-w-[130px] max-h-[99.47px] left-14 top-4"
@@ -32,6 +33,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   deviceName: {
     type: String,
@@ -41,6 +45,9 @@ const props = defineProps({
     type: Number,
   },
   faultStatus: {
+    type: String,
+  },
+  system: {
     type: String,
   },
 });

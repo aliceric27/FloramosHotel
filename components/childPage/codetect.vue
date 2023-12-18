@@ -12,6 +12,7 @@
                   :deviceName="item?.deviceName"
                   :deviceID="item?.deviceID"
                   :faultStatus="item?.faultStatus"
+                  :system="item?.mainSystem"
                 />
               </div>
             </div>
