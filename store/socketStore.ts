@@ -48,7 +48,6 @@ const useSocketStore = defineStore({
           });
 
           this.socket.on("socketdata", (newData: any) => {
-            console.log("this.odata", this.odata);
             if (this.odata === null) this.odata = newData;
             else {
               const olength = this.odata?.Events.length;
