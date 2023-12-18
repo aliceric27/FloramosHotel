@@ -51,7 +51,7 @@
             </div>
             <div
               class="switchbtn linear-animat w-[68px] h-[26px] shrink-0 text-center bg-[#9d9d9a] rounded-[43px] border-solid border-[#b8b8b8] cursor-pointer"
-              @click="toggleSwitch"
+              @click="sendDocmd"
             >
               <span
                 class="linear-animat w-full font-[Microsoft_JhengHei_UI] text-base font-bold text-[#fff] inline-flex justify-center items-center text-left z-[7] break-words"
@@ -130,6 +130,29 @@ const props = defineProps({
 });
 const isOn = ref(false);
 const toggleSwitch = () => (isOn.value = !isOn.value);
+const sendDocmd = () => {
+  let doIdx = 14;
+  let relIdx;
+  switch (props.ID) {
+    case 31:
+      relIdx = 0;
+      break;
+    case 32:
+      relIdx = 1;
+      break;
+    case 33:
+      relIdx = 2;
+      break;
+    case 34:
+      relIdx = 4;
+      break;
+  }
+  const senddata = {
+    doIdx,
+    relIdx,
+  };
+  socketStore.sendDocmd(senddata);
+};
 </script>
 <style lang="scss" scoped>
 .linear-animat {
