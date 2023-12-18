@@ -10,6 +10,7 @@
               :title="item?.ioName"
               :is-on="item?.status === 'ON' ? true : false"
               :title2="item?.title2"
+              :rdata="item"
             />
           </div>
         </div>

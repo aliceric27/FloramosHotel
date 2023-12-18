@@ -70,6 +70,9 @@ const actions: any = {
   switchimmPopup() {
     this.immPopup = !this.immPopup;
   },
+  turnOnimmPopup() {
+    this.immPopup = true;
+  },
   async switchmaintConfirm(data?) {
     if (data) {
       const url = data?.customName === null ? data?.deviceID : data?.customName;

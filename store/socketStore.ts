@@ -2,17 +2,21 @@ import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { io, Socket } from "socket.io-client";
 import mokerData from "./mockrData.json";
 import useInfoStore from "./InfoStore";
+import usePopupStore from "./PopupStore";
+import { th } from "element-plus/es/locale";
 
 export interface State {
   isConnected: boolean;
   data: any;
-  socket: null | Socket;
+  socket: any | Socket;
+  odata: any;
 }
 // 初始化資料
 const initState: State = {
   isConnected: false,
   data: ref(null),
   socket: null,
+  odata: null,
 };
 
 const getters: _GettersTree<State> = {};
@@ -43,7 +47,18 @@ const useSocketStore = defineStore({
             }
           });
 
-          this.socket.on("socketdata", (newData) => {
+          this.socket.on("socketdata", (newData: any) => {
+            console.log("this.odata", this.odata);
+            if (this.odata === null) this.odata = newData;
+            else {
+              const olength = this.odata?.Events.length;
+              const nlength = newData?.Events.length;
+              if (olength !== nlength) {
+                const popupStore = usePopupStore();
+                popupStore.turnOnimmPopup();
+                this.odata = newData;
+              }
+            }
             this.data = newData;
             console.log("Socket Data", newData);
           });
@@ -59,6 +74,13 @@ const useSocketStore = defineStore({
         this.socket.disconnect();
         this.socket = null;
         this.isConnected = false;
+      }
+    },
+    sendDocmd(data: any) {
+      if (data) {
+        console.log("doCMD", data);
+        this.socket.emit("doCmd", { ...data });
+        return true;
       }
     },
   },

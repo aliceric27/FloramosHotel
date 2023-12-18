@@ -2,8 +2,9 @@
 <template>
   <div>
     <div
-      class="max-w-[126px] max-h-[119px] w-[11.7rem] h-[8.1rem] rounded-[1.17038rem] bg-no-repeat"
+      class="max-w-[126px] max-h-[119px] w-[11.7rem] h-[8.1rem] rounded-[1.17038rem] bg-no-repeat cursor-pointer"
       :class="bgcolor"
+      @click="sendEmit"
     >
       <div
         class="flex justify-between flex-col rounded-[1rem] p-2 gap-1 h-full"
@@ -70,8 +71,11 @@
 </template>
 <script lang="ts" setup>
 import useDeviceStore from "~/store/DeviceStore";
+import useSocketStore from "~/store/socketStore";
+const SocketStore = useSocketStore();
 const DeviceStore = useDeviceStore();
 const lightPage = computed(() => DeviceStore.lightPage);
+const sendDocmd = SocketStore.sendDocmd;
 const props = defineProps({
   isOn: {
     type: Boolean,
@@ -85,11 +89,20 @@ const props = defineProps({
     type: String,
     default: "",
   },
+  rdata: {} as any,
 });
 const bgcolor = computed(() => {
   if (props.isOn) return "bg-[#90FF9C]";
   else return "bg-[#E2E2E2]";
 });
+const sendEmit = () => {
+  console.log(props.rdata);
+  const senddata = {
+    doIdx: props.rdata?.doIdx,
+    relIdx: props.rdata?.relIdx.toString(),
+  };
+  sendDocmd(senddata);
+};
 </script>
 <style lang="scss" scoped>
 .title {
