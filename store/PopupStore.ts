@@ -72,7 +72,6 @@ const actions: any = {
   },
   async switchmaintConfirm(data?) {
     if (data) {
-      console.log("urlID", data);
       const url = data?.customName === null ? data?.deviceID : data?.customName;
       const deviceStore = useDeviceStore();
       const maintain = toRaw(deviceStore?.maintain);

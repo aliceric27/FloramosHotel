@@ -66,7 +66,7 @@ function toggleAnimation() {
     // 等待 animate__slideOutDown 動畫完成
     setTimeout(() => {
       // 更新資料
-      currentIndex.value = (currentIndex.value + 1) % content.length;
+      currentIndex.value = (currentIndex.value + 1) % NewData.value?.length;
 
       // 重新開始 animate__slideInUp 動畫
       animationClass.value = "animate__animated animate__slideInUp";

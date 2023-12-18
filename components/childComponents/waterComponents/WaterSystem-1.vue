@@ -49,7 +49,7 @@
       <!-- 1/3 -->
       <div class="flex justify-between h-full">
         <!-- 左側水塔圖 -->
-        <img src="@/assets/images/water/tower-1.png" alt="水塔示意圖" />
+        <img src="@/assets/images/water/tower-3.png" alt="水塔示意圖" />
         <!-- 右側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>

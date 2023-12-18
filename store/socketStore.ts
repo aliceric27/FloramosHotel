@@ -24,13 +24,11 @@ const useSocketStore = defineStore({
     async ConnectSocket(endpoint: string = import.meta.env.VITE_IO_URL) {
       if (!import.meta.env.SSR) {
         if (!this.socket) {
-          if (import.meta.env.PROD) {
-            this.socket = io(endpoint);
-          } else {
-            this.socket = io(endpoint, {
-              reconnection: false,
-            });
-          }
+          this.socket = io(endpoint, {
+            autoConnect: true, // 啟用自動重連
+            reconnectionAttempts: 5, // 重連嘗試次數
+            reconnectionDelay: 3000, // 重連間隔
+          });
           this.socket.on("connect", () => {
             this.isConnected = true;
             console.log("Connected Socket Server!");
@@ -45,7 +43,7 @@ const useSocketStore = defineStore({
             }
           });
 
-          this.socket.on("data", (newData) => {
+          this.socket.on("socketdata", (newData) => {
             this.data = newData;
             console.log("Socket Data", newData);
           });

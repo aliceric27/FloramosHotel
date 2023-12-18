@@ -5,10 +5,10 @@
         <Childtitle :title="childtitle" />
         <light-1 />
         <div class="grid grid-cols-8 gap-4">
-          <div v-for="item in lightdata">
+          <div v-for="item in floorData?.items">
             <light-2
-              :title="item?.title"
-              :is-on="item?.isOn"
+              :title="item?.ioName"
+              :is-on="item?.status === 'ON' ? true : false"
               :title2="item?.title2"
             />
           </div>
@@ -18,6 +18,30 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useSocketStore from "~/store/socketStore";
+import useDeviceStore from "~/store/DeviceStore";
+const DeviceStore = useDeviceStore();
+const socketStore = useSocketStore();
+const lightPage = computed(() => DeviceStore.lightPage);
+const rawData = computed(() => {
+  const rawData = toRaw(socketStore?.data?.DO);
+  if (!rawData) return [];
+
+  const grouped = rawData.reduce((acc: any, item: any) => {
+    if (!acc[item.floor]) {
+      acc[item.floor] = [];
+    }
+    acc[item.floor].push(item);
+    return acc;
+  }, {});
+  return Object.keys(grouped).map((floor) => ({
+    floor,
+    items: grouped[floor],
+  }));
+});
+const floorData = computed(() =>
+  rawData.value?.find((item) => item?.floor === lightPage.value)
+);
 const childtitle = ref("公共照明系統");
 const lightdata = ref([
   {

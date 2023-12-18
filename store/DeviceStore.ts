@@ -7,6 +7,7 @@ export interface State {
   ventilation: any | null;
   water: any | null;
   paginatedData: any;
+  lightPage: String;
 }
 // 初始化資料
 const initState: State = {
@@ -14,6 +15,7 @@ const initState: State = {
   ventilation: null,
   water: null,
   paginatedData: null,
+  lightPage: "B2F",
 };
 // 相關fn
 const actions: any = {
@@ -245,6 +247,10 @@ const actions: any = {
       error: toRaw(error.value),
     };
     return result;
+  },
+  ChangeLightPage(page: string) {
+    console.log("pagechange", page);
+    this.lightPage = page;
   },
 };
 const getters: _GettersTree<State> = {

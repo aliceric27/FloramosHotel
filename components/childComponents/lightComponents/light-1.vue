@@ -2,27 +2,44 @@
 <template>
   <div class="absolute right-0 -top-3">
     <div class="grid grid-flow-col grid-rows-2 w-[36rem] h-[5rem] gap-2">
-      <div class="row-span-2 glod-floor">ALL</div>
+      <!-- <div class="row-span-2 glod-floor">ALL</div> -->
       <!-- 上排 -->
       <div class="flex gap-2">
-        <div class="glod-floor">B2F</div>
-        <div class="glod-floor">B1F</div>
-        <div class="glod-floor">3F</div>
-        <div class="glod-floor">4F</div>
-        <div class="glod-floor">5F</div>
+        <div
+          v-for="f in floors[0]"
+          :key="f"
+          class="glod-floor"
+          :class="{ 'gold-selected': lightPage === f }"
+          @click="ChangeLightPage(f)"
+        >
+          {{ f }}
+        </div>
       </div>
       <!-- 下排 -->
       <div class="flex gap-2">
-        <div class="glod-floor">6F</div>
-        <div class="glod-floor">7F</div>
-        <div class="glod-floor">8F</div>
-        <div class="glod-floor">9F</div>
-        <div class="glod-floor">10F</div>
+        <div
+          v-for="f in floors[1]"
+          :key="f"
+          class="glod-floor"
+          :class="{ 'gold-selected': lightPage === f }"
+          @click="ChangeLightPage(f)"
+        >
+          {{ f }}
+        </div>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import useDeviceStore from "~/store/DeviceStore";
+const DeviceStore = useDeviceStore();
+const ChangeLightPage = DeviceStore.ChangeLightPage;
+const lightPage = computed(() => DeviceStore.lightPage);
+const floors = ref([
+  ["B2F", "B1F", "3F", "4F", "5F"],
+  ["6F", "7F", "8F", "9F", "10F"],
+]);
+</script>
 <style lang="scss" scoped>
 .glod-floor {
   display: flex;
@@ -42,6 +59,11 @@
   letter-spacing: 0.09rem;
 }
 .glod-floor:hover {
+  color: #fff;
+  background: #c2a344;
+}
+
+.gold-selected {
   color: #fff;
   background: #c2a344;
 }

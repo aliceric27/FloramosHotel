@@ -9,7 +9,7 @@
         class="flex justify-between flex-col rounded-[1rem] p-2 gap-1 h-full"
       >
         <div class="flex">
-          <p class="gold">B1</p>
+          <p class="gold">{{ lightPage }}</p>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +26,8 @@
           </div>
         </div>
         <div>
-          <p class="title whitespace-nowrap">{{ props.title }}</p>
-          <p class="title whitespace-nowrap">{{ props.title2 }}</p>
+          <p class="whitespace-normal title title-wrap">{{ props.title }}</p>
+          <p class="whitespace-normal title title-wrap">{{ props.title2 }}</p>
         </div>
         <div class="flex items-center justify-around">
           <div v-if="isOn">
@@ -69,6 +69,9 @@
   </div>
 </template>
 <script lang="ts" setup>
+import useDeviceStore from "~/store/DeviceStore";
+const DeviceStore = useDeviceStore();
+const lightPage = computed(() => DeviceStore.lightPage);
 const props = defineProps({
   isOn: {
     type: Boolean,
@@ -129,5 +132,9 @@ const bgcolor = computed(() => {
   line-height: normal;
   letter-spacing: 3.9px;
   -webkit-text-stroke: 1px white;
+}
+.title-wrap {
+  word-wrap: break-word;
+  white-space: normal;
 }
 </style>
