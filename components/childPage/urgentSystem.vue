@@ -8,7 +8,7 @@
           <urgent-1 :isNormal="true" :floor="'B1'" />
           <urgent-1 :isNormal="false" :floor="'B2'" />
         </div>
-        <div class="flex justify-center my-4">
+        <!-- <div class="flex justify-center my-4">
           <div class="grid grid-rows-2 gap-16">
             <div class="grid grid-cols-5 gap-16">
               <urgent-2 :isNormal="true" :floor="'1'" />
@@ -25,7 +25,7 @@
               <urgent-2 :isNormal="true" :floor="'11'" />
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

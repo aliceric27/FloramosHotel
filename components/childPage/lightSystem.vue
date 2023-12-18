@@ -5,7 +5,7 @@
         <Childtitle :title="childtitle" />
         <light-1 />
         <div class="grid grid-cols-8 gap-4">
-          <div v-for="item in floorData?.items">
+          <div v-for="item in rawData">
             <light-2
               :title="item?.ioName"
               :is-on="item?.status === 'ON' ? true : false"
@@ -25,24 +25,9 @@ const DeviceStore = useDeviceStore();
 const socketStore = useSocketStore();
 const lightPage = computed(() => DeviceStore.lightPage);
 const rawData = computed(() => {
-  const rawData = toRaw(socketStore?.data?.DO);
-  if (!rawData) return [];
-
-  const grouped = rawData.reduce((acc: any, item: any) => {
-    if (!acc[item.floor]) {
-      acc[item.floor] = [];
-    }
-    acc[item.floor].push(item);
-    return acc;
-  }, {});
-  return Object.keys(grouped).map((floor) => ({
-    floor,
-    items: grouped[floor],
-  }));
+  const page = lightPage.value;
+  return toRaw(socketStore?.data?.DO?.lightControl[page as string]);
 });
-const floorData = computed(() =>
-  rawData.value?.find((item) => item?.floor === lightPage.value)
-);
 const childtitle = ref("公共照明系統");
 const lightdata = ref([
   {

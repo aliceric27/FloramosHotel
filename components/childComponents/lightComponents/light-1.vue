@@ -37,7 +37,7 @@ const ChangeLightPage = DeviceStore.ChangeLightPage;
 const lightPage = computed(() => DeviceStore.lightPage);
 const floors = ref([
   ["B2F", "B1F", "1F", "2F", "3F", "4F", "5F"],
-  ["6F", "7F", "8F", "9F", "10F", "11F", "R1F"],
+  ["6F", "7F", "8F", "9F", "10F", "11F", "RF"],
 ]);
 </script>
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
 <template>
   <div>
     <div
-      class="flex flex-col justify-between min-h-[8.5rem] max-w-[8.5rem] rounded-[1rem] border-4 border-[#E2E2E2] border-solid bg-no-repeat bg-center p-2"
+      class="flex flex-col justify-between w-[10rem] min-h-[10rem] max-w-[10rem] rounded-[1rem] border-4 border-[#E2E2E2] border-solid bg-no-repeat bg-center p-2"
       :class="backgroundClass"
     >
       <div class="flex">
