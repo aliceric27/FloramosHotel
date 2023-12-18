@@ -27,40 +27,36 @@
             class="w-1.5 h-2.5 shrink-0 bg-[url(@/assets/button/goldarrow.svg)] bg-[length:100%_100%] bg-no-repeat absolute top-[41.67%] left-[2.07%] z-[4]"
           ></div>
         </div>
-        <div class="flex flex-col gap-1.5 items-start shrink-0 cursor-pointer">
+        <div class="flex flex-col gap-1.5 items-start shrink-0">
           <div class="flex gap-[13px] items-center shrink-0">
             <span
               class="w-[85px] h-5 shrink-0 basis-auto font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#707070] tracking-3.2px text-left break-words"
               >設備狀態</span
             >
             <div
-              class="switch-container linear-animat w-[68px] h-[26px] shrink-0 relative bg-[#ff5b5b] rounded-[43px] border-solid border-[3px] border-[#b8b8b8]"
+              class="switch-container linear-animat w-[68px] h-[26px] shrink-0 relative bg-[#ff5b5b] rounded-[43px] border-solid border-[#b8b8b8]"
               :class="{ 'switch-on': isDeviceOn }"
               @click="toggleSwitch"
             >
               <span
                 v-if="!isDeviceOn"
-                class="linear-animat w-[60.68%] h-[70%] font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#fff] tracking-0.96px absolute top-[5%] left-[10%] text-left z-[7] break-words"
+                class="linear-animat w-full font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#fff] tracking-0.96px inline-flex justify-center items-center text-left z-[7] break-words"
                 >OFF</span
               >
               <span
                 v-if="isDeviceOn"
-                class="linear-animat w-[60.68%] h-[70%] font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#fff] tracking-0.96px absolute top-[5%] left-[50%] text-left z-[7] break-words"
+                class="linear-animat w-full font-[Microsoft_JhengHei_UI] text-base font-bold text-[#fff] text-center z-[7] break-words inline-flex justify-center items-center"
                 >ON</span
               >
-
-              <div
-                class="switch-thumb w-[39.56%] h-full bg-[url(@/assets/button/Onbtn.svg)] bg-[length:100%_100%] bg-no-repeat absolute top-0"
-                :style="{ left: isDeviceOn ? '0%' : '60.44%' }"
+            </div>
+            <div
+              class="switchbtn linear-animat w-[68px] h-[26px] shrink-0 text-center bg-[#9d9d9a] rounded-[43px] border-solid border-[#b8b8b8] cursor-pointer"
+              @click="toggleSwitch"
+            >
+              <span
+                class="linear-animat w-full font-[Microsoft_JhengHei_UI] text-base font-bold text-[#fff] inline-flex justify-center items-center text-left z-[7] break-words"
+                >啟停鍵</span
               >
-                <div
-                  :class="{ 'switch-on': isDeviceOn }"
-                  class="w-full h-full bg-[#ff5b5b] rounded-[80px] border-solid border-[#b8b8b8] absolute top-0 left-0 z-[6]"
-                ></div>
-                <div
-                  class="w-full h-full bg-[url(@/assets/button/Onbtn.svg)] bg-[length:100%_100%] bg-no-repeat absolute top-0 left-0 z-[8]"
-                ></div>
-              </div>
             </div>
           </div>
           <div class="flex gap-[13px] items-center shrink-0">
@@ -146,5 +142,8 @@ const toggleSwitch = () => (isOn.value = !isOn.value);
 
 .switch-thumb {
   transition: left 0.4s linear; /* 線性過渡效果 */
+}
+.switchbtn:hover {
+  background-color: #c9c9c9;
 }
 </style>

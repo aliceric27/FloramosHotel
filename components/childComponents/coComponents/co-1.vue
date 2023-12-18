@@ -12,20 +12,20 @@
       </div>
       <div class="relative flex flex-col">
         <div class="flex flex-col justify-around mx-4 my-2">
-          <goldFloor :floor="'B2'" />
+          <goldFloor :floor="devicefloor" />
           <div>
-            <p class="loc">{{ props.loc }}</p>
+            <p class="loc">{{ props.deviceName }}</p>
           </div>
         </div>
         <div>
           <div class="flex justify-around my-2">
             <div class="loc">偵測狀態</div>
-            <co-alert :status="props.device" />
+            <co-alert :status="devicestatus" />
           </div>
-          <div class="flex justify-around">
+          <!-- <div class="flex justify-around">
             <div class="loc">電量狀態</div>
             <co-alert :status="props.battery" />
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -33,35 +33,48 @@
 </template>
 <script lang="ts" setup>
 const props = defineProps({
-  loc: {
-    type: String,
-    default: "一氧化碳",
-  },
-  device: {
+  deviceName: {
     type: String,
     default: "error",
   },
-  battery: {
+  deviceID: {
+    type: Number,
+  },
+  faultStatus: {
     type: String,
-    default: "error",
   },
 });
+const devicefloor = computed(() => {
+  switch (props.deviceID) {
+    case 50:
+      return "B1F";
+    case 51:
+      return "B2F";
+    default:
+      return "1F";
+  }
+});
 const borderbottom = computed(() => {
-  const device = props.device;
+  const device = props.faultStatus;
   switch (device) {
-    case "normal":
+    case "正常":
       return "border-b-[#5FD76C]";
       break;
     case "warning":
       return "border-b-[#FF9214]";
       break;
-    case "error":
+    case "異常":
       return "border-b-[#FF5B5B]";
       break;
     default:
       return "border-b-[#FF5B5B]";
       break;
   }
+});
+const devicestatus = computed(() => {
+  const device = props.faultStatus;
+  if (device === "正常") return "normal";
+  else return "error";
 });
 </script>
 <style lang="scss" scoped>
