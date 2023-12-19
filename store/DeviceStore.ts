@@ -20,7 +20,9 @@ const initState: State = {
 // 相關fn
 const actions: any = {
   async getDevice(device: string) {
+    const LoginStore = useLoginStore();
     const userStore = useLoginStore();
+    LoginStore.isLoadingON();
     const token = userStore.token;
     const { data, pending, refresh, execute, error, status } = await useFetch(
       `${import.meta.env.VITE_Socket_URL}/api/system/${device}`,
@@ -37,6 +39,7 @@ const actions: any = {
       status: toRaw(status.value),
     };
     await this.setdata(result.data, device);
+    await LoginStore.isLoadingoff();
     return result;
   },
   setdata(data: any, device: string) {

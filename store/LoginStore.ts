@@ -5,11 +5,13 @@ interface LoginInfo {}
 export interface State {
   token: string | null;
   isLogin: boolean;
+  isLoading: boolean;
 }
 // 初始化資料
 const initState: State = {
   token: null,
   isLogin: false,
+  isLoading: false,
 };
 // 相關fn
 const actions: any = {
@@ -62,6 +64,12 @@ const actions: any = {
   },
   setLogin() {
     this.isLogin = true;
+  },
+  isLoadingON() {
+    this.isLoading = true;
+  },
+  isLoadingoff() {
+    this.isLoading = false;
   },
 };
 const getters: _GettersTree<State> = {

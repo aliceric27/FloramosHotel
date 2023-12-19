@@ -77,7 +77,7 @@
                 <div
                   class="h-[200px] w-[80%] bg-white flex flex-col justify-center items-center my-4"
                 >
-                  <div class="flex my-4">
+                  <div class="flex w-full my-4">
                     <div class="mx-2">
                       <img src="@/assets/button/sidepage-3.svg" alt="" />
                     </div>
@@ -89,7 +89,7 @@
                       <p>{{ eventData?.alarmMessage }}</p>
                     </div>
                   </div>
-                  <div class="flex" v-if="eventData?.resolveTime">
+                  <div class="flex w-full" v-if="eventData?.resolveTime">
                     <div class="mx-2">
                       <img src="@/assets/button/sidepage-3.svg" alt="" />
                     </div>
@@ -126,7 +126,11 @@ const alertset = computed(() => PopupStore.alertset);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const maintain = computed(() => PopupStore.sidata.maintain);
-const eventData = computed(() => PopupStore.sidata.event);
+const eventData = computed(() =>
+  PopupStore.sidata.event.find(
+    (i: any) => i.deviceID === PopupStore.sidata?.maintain?.deviceID
+  )
+);
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const setMaintaincycle = PopupStore.setMaintaincycle;
@@ -169,5 +173,6 @@ const maintdata = {
   nexttime: nextdate,
   data: maintain?.value,
 };
+console.log("eventData", eventData);
 </script>
 <style scoped></style>

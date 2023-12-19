@@ -101,6 +101,7 @@
 <script lang="ts" setup>
 import usePopupStore from "~/store/PopupStore";
 import useSocketStore from "~/store/socketStore";
+const { $swal } = useNuxtApp();
 const PopupStore = usePopupStore();
 const switchsidpage = PopupStore.switchsidpage;
 const socketStore = useSocketStore();
@@ -135,16 +136,16 @@ const sendDocmd = () => {
   let relIdx;
   switch (props.ID) {
     case 31:
-      relIdx = 0;
+      relIdx = "0";
       break;
     case 32:
-      relIdx = 1;
+      relIdx = "1";
       break;
     case 33:
-      relIdx = 2;
+      relIdx = "2";
       break;
     case 34:
-      relIdx = 4;
+      relIdx = "4";
       break;
   }
   const senddata = {
@@ -152,6 +153,12 @@ const sendDocmd = () => {
     relIdx,
   };
   socketStore.sendDocmd(senddata);
+  $swal.fire({
+    title: "成功",
+    text: `已發送指令`,
+    icon: "success",
+    confirmButtonText: "確認",
+  });
 };
 </script>
 <style lang="scss" scoped>

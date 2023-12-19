@@ -64,6 +64,7 @@
 </template>
 <script lang="ts" setup>
 const childtitle = ref("熱泵系統");
+
 const isfuelNormal = ref(true);
 const isBatteryNormal = ref(true);
 import useDeviceStore from "~/store/DeviceStore";

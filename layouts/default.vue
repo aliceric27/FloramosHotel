@@ -2,6 +2,7 @@
   <el-config-provider :locale="language">
     <div id="main-warp">
       <!-- <alert /> -->
+
       <emergency
         v-if="isEmergency"
         :conten1="'一氧化碳偵測出現異常'"
@@ -14,16 +15,37 @@
       <sidepage />
       <pheader />
       <pmenu />
+      <NuxtLoadingIndicator
+        :color="'grey'"
+        :height="4"
+        :duration="2000"
+        :throttle="0"
+      />
+      <loading
+        :active="isLoading"
+        :can-cancel="true"
+        :is-full-page="true"
+        :opacity="0.5"
+        :blur="'10px'"
+        :transition="'slide'"
+        :background-color="'#000000'"
+      />
       <NuxtPage />
+
       <marquee />
     </div>
   </el-config-provider>
 </template>
 <script lang="ts" setup>
+import useLoginStore from "~/store/LoginStore";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/css/index.css";
 import zhTw from "element-plus/dist/locale/zh-tw.mjs";
 import usePopupStore from "~/store/PopupStore";
 import useSocketStore from "~/store/socketStore";
 const socketStore = useSocketStore();
+const LoginStore = useLoginStore();
+const isLoading = computed(() => LoginStore.isLoading);
 const socketstore = () => {
   socketStore.ConnectSocket();
 };

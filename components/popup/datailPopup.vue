@@ -176,8 +176,9 @@ const sendUpdata = async () => {
         confirmButtonText: "確認",
       })
       .then(async () => {
+        await PopupStore.closedetailPopup();
+        await PopupStore.switchsidpage();
         await DeviceStore.getEvent();
-        await PopupStore.switchsidePage();
       });
   }
 };
@@ -192,9 +193,6 @@ watch(eventData, (newdata, olddata) => {
 });
 </script>
 <style lang="scss" scoped>
-.main-container {
-}
-
 .main-container,
 .main-container * {
   box-sizing: border-box;
