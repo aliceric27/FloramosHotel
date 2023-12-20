@@ -26,9 +26,7 @@
         :can-cancel="true"
         :is-full-page="true"
         :opacity="0.5"
-        :blur="'10px'"
         :transition="'slide'"
-        :background-color="'#000000'"
       />
       <NuxtPage />
 

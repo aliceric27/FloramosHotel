@@ -50,7 +50,8 @@
               >
             </div>
             <div
-              class="switchbtn linear-animat w-[68px] h-[26px] shrink-0 text-center bg-[#9d9d9a] rounded-[43px] border-solid border-[#b8b8b8] cursor-pointer"
+              class="switchbtn linear-animat w-[68px] h-[26px] shrink-0 text-center rounded-[43px] border-solid border-[#b8b8b8] cursor-pointer"
+              :class="onoffbgcolor"
               @click="sendDocmd"
             >
               <span
@@ -109,6 +110,14 @@ const rdata = computed(() => {
   let systemType = "heatbump";
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
+const socketData = computed(() => {
+  return toRaw(
+    socketStore?.data?.DO?.heatbump.find((i: any) => i.relIdx === props.relIdx)
+  );
+});
+const onoffbgcolor = computed(() => {
+  return socketData.value?.status === "OFF" ? "bg-[#ff5b5b]" : "bg-[#6de479]";
+});
 const DeviceStatue = computed(() => {
   const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
   return dstatus;
@@ -128,26 +137,15 @@ const props = defineProps({
   ID: {
     type: Number,
   },
+  relIdx: {
+    type: Number,
+  },
 });
 const isOn = ref(false);
 const toggleSwitch = () => (isOn.value = !isOn.value);
 const sendDocmd = () => {
   let doIdx = 14;
-  let relIdx;
-  switch (props.ID) {
-    case 31:
-      relIdx = "0";
-      break;
-    case 32:
-      relIdx = "1";
-      break;
-    case 33:
-      relIdx = "2";
-      break;
-    case 34:
-      relIdx = "4";
-      break;
-  }
+  let relIdx = props.relIdx?.toString();
   const senddata = {
     doIdx,
     relIdx,

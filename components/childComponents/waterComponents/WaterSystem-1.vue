@@ -10,26 +10,14 @@
             <deviceWater :title="deviceDetails[15]?.deviceName" :ID="15" />
           </div>
           <div>
+            <deviceWater :title="deviceDetails[16]?.deviceName" :ID="16" />
+          </div>
+          <div>
             <deviceWater
               :title="deviceDetails[14]?.deviceName"
               :ID="14"
               :isalertWarter="true"
             />
-          </div>
-          <div class="relative">
-            <windCard
-              :title="deviceDetails[17]?.deviceName"
-              :ID="deviceDetails[17]?.deviceID"
-              :system="'給排水系統'"
-            />
-            <div>
-              <img
-                class="absolute top-0 -right-14"
-                src="@/assets/images/water/WaterPump.png"
-                sizes=""
-                alt=""
-              />
-            </div>
           </div>
         </div>
         <!-- 右側水塔圖 -->
@@ -38,9 +26,32 @@
     </div>
     <!-- 2/3 -->
     <div class="w-full h-full bg-white">
-      <div class="flex justify-center">
+      <div class="flex flex-col items-center">
         <div>
-          <deviceWater-2 />
+          <deviceWater
+            :title="deviceDetails[13]?.deviceName"
+            :isNormal="true"
+            :ID="13"
+            :isalertWarter="true"
+          />
+        </div>
+        <div>
+          <deviceWater :title="deviceDetails[11]?.deviceName" :ID="11" />
+        </div>
+        <div class="relative">
+          <windCard
+            :title="deviceDetails[17]?.deviceName"
+            :ID="deviceDetails[17]?.deviceID"
+            :system="'給排水系統'"
+          />
+          <div>
+            <img
+              class="absolute top-0 -right-[9rem]"
+              src="@/assets/images/water/WaterPump.png"
+              sizes=""
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -54,16 +65,16 @@
         <div class="flex flex-col justify-around">
           <div>
             <deviceWater
-              :title="deviceDetails[13]?.deviceName"
+              :title="deviceDetails[12]?.deviceName"
               :isNormal="true"
-              :ID="13"
+              :ID="12"
             />
           </div>
           <div>
             <deviceWater
-              :title="deviceDetails[11]?.deviceName"
+              :title="deviceDetails[13]?.deviceName"
               :isNormal="true"
-              :ID="11"
+              :ID="13"
               :isalertWarter="true"
             />
           </div>

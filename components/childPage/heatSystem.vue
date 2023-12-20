@@ -8,18 +8,22 @@
           <heat-1
             :title="deviceDetails[31]?.deviceName"
             :ID="deviceDetails[31]?.deviceID"
+            :relIdx="0"
           />
           <heat-1
             :title="deviceDetails[32]?.deviceName"
             :ID="deviceDetails[32]?.deviceID"
+            :relIdx="1"
           />
           <heat-1
             :title="deviceDetails[33]?.deviceName"
             :ID="deviceDetails[33]?.deviceID"
+            :relIdx="2"
           />
           <heat-1
             :title="deviceDetails[34]?.deviceName"
             :ID="deviceDetails[34]?.deviceID"
+            :relIdx="3"
           />
           <div><img src="@/assets/images/maincard/heat-pump.png" alt="" /></div>
         </div>
