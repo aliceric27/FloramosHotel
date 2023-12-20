@@ -89,6 +89,7 @@ onUnmounted(() => {
   overflow: hidden;
   border: 2px solid rgb(179, 179, 179);
   margin: 0.5rem 1rem;
+  background-color: #ffff;
 }
 .content {
   overflow: hidden;
