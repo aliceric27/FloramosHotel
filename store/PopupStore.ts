@@ -1,6 +1,7 @@
 import { defineStore, _ActionsTree, _GettersTree } from "pinia";
 import { RouteRecordName, Router } from "vue-router";
 import useDeviceStore from "./DeviceStore";
+import { getcycle } from "~/utils/countcycle";
 export interface State {
   maintAdd: Boolean;
   maintEdit: Boolean;
@@ -77,6 +78,8 @@ const actions: any = {
     if (data) {
       const url = data?.customName === null ? data?.deviceID : data?.customName;
       const deviceStore = useDeviceStore();
+      deviceStore.setMaintData(data);
+      const cyc = this.setCycle(data?.cycle_unit, data?.cycle_value);
       const maintain = toRaw(deviceStore?.maintain);
       const maintainData = maintain?.data;
       if (maintainData?.length) {

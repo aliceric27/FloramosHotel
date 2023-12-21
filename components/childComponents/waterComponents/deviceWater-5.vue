@@ -28,40 +28,42 @@
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >設備狀態</span
           >
-          <DevicePower :deviceOn="deviceOn" @toggle-power="togglePower" />
+          <DevicePower :deviceOn="isDeviceOn" @toggle-power="togglePower" />
         </div>
         <div class="flex items-center justify-center gap-9 shrink-0">
           <span
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >故障異常</span
           >
-          <deviceNormal :isNormal="normal" @toggle="toggleNormal" />
+          <deviceNormal :isNormal="isNormal" @toggle="toggleNormal" />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
+import useSocketStore from "~/store/socketStore";
+const socketStore = useSocketStore();
 const props = defineProps({
   title: {
     type: String,
     default: "廢水泵1-1",
   },
-  deviceOn: {
-    type: Boolean,
-    default: false,
-  },
-  normal: {
-    type: Boolean,
-    default: false,
+  ID: {
+    type: Number,
   },
 });
-const deviceOn = ref(true);
-const normal = ref(true);
-const togglePower = () => {
-  deviceOn.value = !deviceOn.value;
-};
-const toggleNormal = () => {
-  normal.value = !normal.value;
-};
+const rdata = computed(() => {
+  let systemType = "water";
+  return toRaw(socketStore?.data?.BA[systemType]?.devices);
+});
+const DeviceStatue = computed(() => {
+  return rdata.value?.find((item: any) => item?.deviceID === props.ID);
+});
+const isDeviceOn = computed(() =>
+  DeviceStatue.value?.deviceSta === "開" ? true : false
+);
+const isNormal = computed(() =>
+  DeviceStatue.value?.faultStatus === "正常" ? true : false
+);
 </script>

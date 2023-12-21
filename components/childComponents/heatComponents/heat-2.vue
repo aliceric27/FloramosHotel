@@ -83,8 +83,14 @@
                   class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#6de479] absolute top-0 left-0 z-10"
                 ></div>
                 <span
+                  v-if="isNormal"
                   class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#5fd76c] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
                   >正常</span
+                >
+                <span
+                  v-if="!isNormal"
+                  class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#df3f3f] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
+                  >異常</span
                 >
               </div>
             </div>

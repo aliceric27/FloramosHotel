@@ -8,6 +8,7 @@ export interface State {
   water: any | null;
   paginatedData: any;
   lightPage: String;
+  maintain: any;
 }
 // 初始化資料
 const initState: State = {
@@ -16,6 +17,7 @@ const initState: State = {
   water: null,
   paginatedData: null,
   lightPage: "B2F",
+  maintain: {},
 };
 // 相關fn
 const actions: any = {
@@ -113,6 +115,7 @@ const actions: any = {
       status: toRaw(status.value),
       error: toRaw(error.value),
     };
+    this.getMaintain();
     return result;
   },
   async createDevice(Data: any) {
@@ -146,6 +149,7 @@ const actions: any = {
         data: toRaw(data.value),
         status: toRaw(status.value),
       };
+      this.getMaintain();
       await this.setdata(result.data, "event");
       return result;
     } else return false;
@@ -196,6 +200,7 @@ const actions: any = {
         data: toRaw(data.value),
         status: toRaw(status.value),
       };
+      this.getMaintain();
       return result;
     } else return false;
   },
@@ -217,6 +222,7 @@ const actions: any = {
       data: toRaw(data.value),
       status: toRaw(status.value),
     };
+    this.getMaintain();
     return result;
   },
   getDate(d: any) {
@@ -254,6 +260,9 @@ const actions: any = {
   ChangeLightPage(page: string) {
     console.log("pagechange", page);
     this.lightPage = page;
+  },
+  setMaintData(data: any) {
+    this.maintain.data = data;
   },
 };
 const getters: _GettersTree<State> = {
