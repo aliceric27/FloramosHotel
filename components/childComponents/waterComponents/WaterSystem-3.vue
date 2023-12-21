@@ -4,6 +4,7 @@
     <div class="flex flex-col justify-between items-center h-[50vh] w-[90vw]">
       <div class="flex items-center justify-around w-full my-6">
         <div><deviceWater-3 :pond="'3'" /></div>
+        <div><deviceWater-4 :title="'化糞池泵浦'" /></div>
         <div><deviceWater-3 :pond="'4'" /></div>
       </div>
       <div>

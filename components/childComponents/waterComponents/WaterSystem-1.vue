@@ -44,23 +44,29 @@
             :ID="deviceDetails[17]?.deviceID"
             :system="'給排水系統'"
           />
-          <div>
-            <img
-              class="absolute top-0 -right-[9rem]"
-              src="@/assets/images/water/WaterPump.png"
-              sizes=""
-              alt=""
-            />
-          </div>
+          <div></div>
         </div>
       </div>
     </div>
     <!-- 3/3 -->
     <div class="w-full h-full bg-white">
       <!-- 1/3 -->
-      <div class="flex justify-between h-full">
+      <div class="relative flex justify-between h-full">
         <!-- 左側水塔圖 -->
         <img src="@/assets/images/water/tower-3.png" alt="水塔示意圖" />
+
+        <img
+          class="absolute bottom-28 -left-5"
+          src="@/assets/images/water/WaterPump.png"
+          sizes=""
+          alt=""
+        />
+
+        <img
+          class="absolute scale-x-[-1] bottom-28 left-52"
+          src="@/assets/images/water/WaterPump.png"
+          alt=""
+        />
         <!-- 右側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>
@@ -84,13 +90,6 @@
               :ID="deviceDetails[18]?.deviceID"
               :system="'給排水系統'"
             />
-            <div>
-              <img
-                class="absolute top-0 scale-x-[-1] -left-14"
-                src="@/assets/images/water/WaterPump.png"
-                alt=""
-              />
-            </div>
           </div>
         </div>
       </div>

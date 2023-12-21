@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="main-container w-[513px] h-[60px] relative border-b-2 border-[#F5F5F5] m-4"
+      class="main-container w-[513px] h-[60px] relative border-b-2 border-[#F5F5F5] m-4 cursor-pointer"
     >
       <div
         class="flex w-[513px] h-[60px] justify-between items-center absolute top-0 left-0 z-[2] py-2"
@@ -36,11 +36,18 @@
             <div class="w-[67.672px] h-6 shrink-0 rounded-[43px] relative">
               <div class="w-full h-full absolute top-0 left-0 z-[9]">
                 <div
-                  class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#6de479] absolute top-0 left-0 z-10"
+                  class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] absolute top-0 left-0 z-10"
+                  :class="isNomalColor"
                 ></div>
                 <span
+                  v-if="isNormal"
                   class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#5fd76c] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
                   >正常</span
+                >
+                <span
+                  v-if="!isNormal"
+                  class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#df3f3f] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
+                  >異常</span
                 >
               </div>
             </div>
@@ -60,10 +67,6 @@ const props = defineProps({
     type: String,
     default: "調節鼓風機A",
   },
-  isNormal: {
-    type: Boolean,
-    default: false,
-  },
   ID: {
     type: Number,
   },
@@ -72,12 +75,11 @@ const isOn = ref(false);
 const toggleSwitch = () => (isOn.value = !isOn.value);
 const socketStore = useSocketStore();
 const rdata = computed(() => {
-  let systemType = "heatbump";
+  let systemType = "water";
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
 const DeviceStatue = computed(() => {
-  const dstatus = rdata.value?.find((item: any) => item?.deviceID === props.ID);
-  return dstatus;
+  return rdata.value?.find((item: any) => item?.deviceID === props.ID);
 });
 const isDeviceOn = computed(() =>
   DeviceStatue.value?.deviceSta === "開" ? true : false
@@ -85,6 +87,9 @@ const isDeviceOn = computed(() =>
 const isNormal = computed(() =>
   DeviceStatue.value?.faultStatus === "正常" ? true : false
 );
+const isNomalColor = computed(() => {
+  return isNormal.value ? "border-[#6de479]" : "border-[#df3f3f]";
+});
 </script>
 <style lang="scss" scoped>
 .linear-animat {

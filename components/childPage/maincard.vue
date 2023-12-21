@@ -1,6 +1,6 @@
 <!-- 主頁card -->
 <template>
-  <div id="maincard-warp" :style="maincardStyle">
+  <div id="maincard-warp" :style="maincardStyle" class="cursor-pointer">
     <div class="card-in">
       <div class="card-top">
         <img :src="StatusPic" alt="" />

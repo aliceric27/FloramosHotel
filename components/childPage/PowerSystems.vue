@@ -3,7 +3,7 @@
   <div class="flex justify-center">
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
-      <div class="grid grid-cols-3 gap-16 justify-items-center">
+      <div class="grid grid-cols-3 gap-4 justify-items-center">
         <DeviceCard
           :title="deviceDetails[1]?.deviceName"
           :system="'電力系統'"

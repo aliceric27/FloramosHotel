@@ -1,7 +1,7 @@
 <!-- 子頁標題 -->
 <template>
   <div class="flex justify-center">
-    <div class="flex w-[64rem]">
+    <div class="flex w-[80vw]">
       <div class="flex justify-between w-full water-title">
         <p>{{ title }}</p>
       </div>
