@@ -3,9 +3,19 @@
     <div class="warp-in">
       <Logo />
       <p class="logo-text">中央監控系統</p>
-      <Inputtext :nametitle="'Username'" :typ="'acc'" v-if="!isLogin" />
-      <Inputtext :nametitle="'Password'" :typ="'pwd'" v-if="!isLogin" />
-      <Loginbtn @click="checkacc" v-if="!isLogin" />
+      <Inputtext
+        :nametitle="'Username'"
+        :typ="'acc'"
+        v-if="!isLogin"
+        @keyup.enter="checkacc"
+      />
+      <Inputtext
+        :nametitle="'Password'"
+        :typ="'pwd'"
+        v-if="!isLogin"
+        @keyup.enter="checkacc"
+      />
+      <Loginbtn @click="checkacc" v-if="!isLogin" @keyup.enter="checkacc" />
     </div>
   </div>
 </template>
