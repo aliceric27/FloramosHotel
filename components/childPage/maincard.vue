@@ -99,16 +99,19 @@ const filtdata = computed(() => {
       Heatshutdown.value = rdata.value?.BA?.heatbump?.shutdown;
       return rdata.value?.BA?.heatbump?.mainpage;
     case "緊急求救":
-      return false;
+      return rdata.value?.BA?.SOS.mainpage;
     case "消防系統":
       return rdata.value?.BA?.firefighting?.mainpage;
     case "公共照明系統":
-      return false;
+      return rdata.value?.DO?.lightControl.mainpage;
     case "一氧化碳偵測":
-      return false;
+      return rdata.value?.BA?.CO.mainpage;
   }
 });
 const StatusPic = computed(() => {
+  if (props.title === "公共照明系統") {
+    return "";
+  }
   const status = toRaw(filtdata.value)?.faultStatus;
   const needMaint = toRaw(filtdata.value)?.needMaintenance;
   switch (status) {

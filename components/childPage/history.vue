@@ -14,6 +14,7 @@
             :resloveTime="val?.resolveTime"
             :resloveMsg="val?.resolveMessage"
             :eventID="val?.eventID"
+            :deviceID="val?.deviceID"
           />
         </div>
       </div>
@@ -33,7 +34,6 @@
 <script lang="ts" setup>
 onMounted(async () => {
   const result = await historyData();
-  console.log("result", result);
 });
 import useDeviceStore from "~/store/DeviceStore";
 const currentPage = ref(1);
@@ -50,8 +50,8 @@ const paginatedData = computed(() => {
 const totalPage = computed(() => {
   return history.value ? Math.ceil(history.value.length / 9) : 0;
 });
-const historyData = async () => {
-  const historyData = await DeviceStore.getEvent();
+const historyData = async (eventID: number) => {
+  const historyData = await DeviceStore.getHistoryEvent();
   if (historyData.status === "success") {
     console.log("historyData", historyData);
     history.value = historyData?.data?.data;

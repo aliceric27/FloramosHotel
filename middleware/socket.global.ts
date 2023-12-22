@@ -12,6 +12,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
   if (isLogin) {
     const vaild = checkToken(token);
     if (vaild) return true;
-    else return navigateTo("/login");
+    else {
+      return navigateTo("/login");
+    }
   } else return navigateTo("/login");
 });

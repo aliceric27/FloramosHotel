@@ -25,7 +25,7 @@ const { $swal } = useNuxtApp();
 const isLogin = ref(true);
 const inittokenCheck = () => {
   if (process.client) {
-    const local = localStorage.getItem("token");
+    const local = sessionStorage.getItem("token");
     if (local) {
       const valid = loginstore.checkTokenVaild(local);
       if (valid) {
@@ -71,10 +71,13 @@ const checkacc = async () => {
     isLogin.value = true;
     const rawtoken = result?.data?.token;
     console.log("rawtoken", rawtoken);
-    localStorage.setItem("token", rawtoken);
+    sessionStorage.setItem("token", rawtoken);
     setToken(rawtoken);
     infostore.cleartext();
     navigateTo({ path: "/" });
+  } else {
+    sessionStorage.removeItem("token");
+    navigateTo({ path: "/login" });
   }
 };
 </script>

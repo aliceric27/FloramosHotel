@@ -17,7 +17,7 @@
           {{ props.nexttime }}
         </div>
         <div
-          class="flex items-center justify-center col-span-3 cursor-pointer title"
+          class="flex items-center justify-start col-span-3 pl-20 cursor-pointer title"
         >
           <div @click="switchmaintConfirm(props.data)">
             <img src="@/assets/images/maint/confirm.png" />

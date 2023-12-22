@@ -264,6 +264,26 @@ const actions: any = {
   setMaintData(data: any) {
     this.maintain.data = data;
   },
+  async getHistoryEvent(eventID: number) {
+    const userStore = useLoginStore();
+    const token = userStore.token;
+    const id = eventID ? eventID : "";
+    const { data, pending, refresh, execute, error, status } = await useFetch(
+      `${import.meta.env.VITE_Socket_URL}/api/historyEvents/${id}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`, // 在这里添加 token
+          "Content-Type": "application/json", // 确保设置正确的内容类型
+        },
+      }
+    );
+    let result = {
+      data: toRaw(data.value),
+      status: toRaw(status.value),
+    };
+    return result;
+  },
 };
 const getters: _GettersTree<State> = {
   getDeviceByID: (state) => (id: Number, device: String) => {

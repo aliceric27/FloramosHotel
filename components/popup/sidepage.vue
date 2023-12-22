@@ -126,11 +126,15 @@ const alertset = computed(() => PopupStore.alertset);
 const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const maintain = computed(() => PopupStore.sidata.maintain);
-const eventData = computed(() =>
-  PopupStore.sidata.event.find(
-    (i: any) => i.deviceID === PopupStore.sidata?.maintain?.deviceID
-  )
-);
+const eventData = computed(() => {
+  console.log("PopupStore?.sidata?.event", PopupStore?.sidata?.event);
+  if (PopupStore?.sidata?.event?.eventID) {
+    const r = PopupStore?.sidata?.event;
+    PopupStore.setEventdata(r);
+    return r;
+  }
+  return "";
+});
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const setMaintaincycle = PopupStore.setMaintaincycle;
@@ -173,6 +177,5 @@ const maintdata = {
   nexttime: nextdate,
   data: maintain?.value,
 };
-console.log("eventData", eventData);
 </script>
 <style scoped></style>

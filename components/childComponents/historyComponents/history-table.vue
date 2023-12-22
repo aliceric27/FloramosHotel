@@ -116,6 +116,9 @@ const props = defineProps({
   eventID: {
     type: Number,
   },
+  deviceID: {
+    type: Number,
+  },
 });
 </script>
 <style lang="scss" scoped>

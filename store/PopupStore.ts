@@ -98,11 +98,15 @@ const actions: any = {
     }
     this.maintConfirm = !this.maintConfirm;
   },
-  async switchsidpage(system: String = "", device: String = "", ID: Number) {
+  async switchsidpage(
+    system: String = "",
+    device: String = "",
+    deviceID: Number
+  ) {
     const deviceStore = useDeviceStore();
-    if (ID) {
-      const siddata = await deviceStore.getMaintain(ID);
-      const event = await deviceStore.getEvent(ID);
+    if (deviceID) {
+      const siddata = await deviceStore.getMaintain(deviceID);
+      const event = await deviceStore.getEvent(deviceID);
       console.log("event", event);
       if (siddata.status === "success") {
         const data = siddata?.data?.data;
@@ -128,7 +132,7 @@ const actions: any = {
     const deviceStore = useDeviceStore();
     if (ID) {
       const siddata = await deviceStore.getMaintain(ID);
-      const event = await deviceStore.getEvent(ID);
+      const event = await deviceStore.getHistoryEvent(ID);
       if (siddata.status === "success") {
         const data = siddata?.data?.data;
         this.sidata.maintain = data;
@@ -144,6 +148,7 @@ const actions: any = {
   },
   closedetailPopup() {
     this.detailPopup = false;
+    this.sidata.event = "";
   },
   setMaintaincycle(cycle: string) {
     this.maintaincycle = cycle;
@@ -207,6 +212,9 @@ const actions: any = {
     }
     this.maintEdit = !this.maintEdit;
     console.log("datatest");
+  },
+  setEventdata(data: any) {
+    this.sidata.event = data;
   },
 };
 const getters: _GettersTree<State> = {};

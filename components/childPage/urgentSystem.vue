@@ -4,9 +4,9 @@
     <div class="w-[80vw]">
       <Childtitle :title="childtitle" />
       <div>
-        <div class="flex items-center justify-center gap-5">
-          <urgent-1 :isNormal="true" :floor="'B1'" />
-          <urgent-1 :isNormal="false" :floor="'B2'" />
+        <div class="flex items-center justify-center h-[60vh] gap-5">
+          <urgent-1 :isNormal="true" :floor="'B1'" :deviceID="62" />
+          <urgent-1 :isNormal="false" :floor="'B2'" :deviceID="63" />
         </div>
         <!-- <div class="flex justify-center my-4">
           <div class="grid grid-rows-2 gap-16">

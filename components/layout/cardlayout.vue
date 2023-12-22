@@ -34,7 +34,7 @@
         :status="'normal'"
         :title="'緊急求救'"
         :notify="3"
-        :device-count="12"
+        :device-count="2"
         @click="() => navigateTo('/system/urgent')"
       />
       <maincard
@@ -55,7 +55,7 @@
         :status="'normal'"
         :title="'一氧化碳偵測'"
         :notify="3"
-        :device-count="50"
+        :device-count="2"
         @click="() => navigateTo('/system/codetect')"
       />
     </div>
