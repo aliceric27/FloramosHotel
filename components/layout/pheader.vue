@@ -68,7 +68,7 @@
               </div>
               <div
                 v-if="noticeBox"
-                class="bg-white min-w-[360px] h-[360px] absolute right-0 shadow-[-1px_7px_18px_-2px_rgba(0,0,0,0.56)] rounded-[7px]"
+                class="bg-white min-w-[360px] h-[360px] absolute right-0 shadow-[-1px_7px_18px_-2px_rgba(0,0,0,0.56)] rounded-[7px] z-50"
               >
                 <div class="flex flex-col w-full h-full p-4 overflow-y-auto">
                   <notiebox />

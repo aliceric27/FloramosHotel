@@ -145,7 +145,7 @@ const StatusPic = computed(() => {
     .card-bottom {
       display: flex;
       justify-content: space-between;
-      position: relative;
+
       .system-title {
         color: #4aa452;
         font-family: Microsoft JhengHei UI;
@@ -154,6 +154,7 @@ const StatusPic = computed(() => {
         font-weight: 700;
         line-height: normal;
         letter-spacing: 0.09rem;
+        position: relative;
       }
       .system-title.has-notification::after {
         content: attr(data-notification-number); /* The notification number */
