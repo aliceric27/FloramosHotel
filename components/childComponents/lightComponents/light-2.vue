@@ -83,11 +83,9 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: "車道燈 01",
   },
   title2: {
     type: String,
-    default: "",
   },
   rdata: {} as any,
 });

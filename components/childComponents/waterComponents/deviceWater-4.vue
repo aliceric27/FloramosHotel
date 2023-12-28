@@ -55,15 +55,12 @@ const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
     type: String,
-    default: "排風機",
   },
   deviceOn: {
     type: Boolean,
-    default: false,
   },
   normal: {
     type: Boolean,
-    default: false,
   },
 });
 const deviceOn = ref(true);

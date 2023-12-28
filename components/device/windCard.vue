@@ -62,7 +62,6 @@ const isNormal = computed(() =>
 const props = defineProps({
   title: {
     type: String,
-    default: "排風機",
   },
   deviceOn: {
     type: Boolean,
@@ -74,7 +73,6 @@ const props = defineProps({
   },
   system: {
     type: String,
-    default: "送排風系統",
   },
   ID: {
     type: Number,

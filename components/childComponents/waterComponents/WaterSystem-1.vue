@@ -29,14 +29,14 @@
       <div class="flex flex-col items-center">
         <div>
           <deviceWater
-            :title="deviceDetails[13]?.deviceName"
+            :title="deviceDetails[12]?.deviceName"
             :isNormal="true"
-            :ID="13"
+            :ID="12"
             :isalertWarter="true"
           />
         </div>
         <div>
-          <deviceWater :title="deviceDetails[11]?.deviceName" :ID="11" />
+          <deviceWater :title="deviceDetails[13]?.deviceName" :ID="13" />
         </div>
         <div class="relative">
           <windCard
@@ -70,17 +70,12 @@
         <!-- 右側裝置資訊 -->
         <div class="flex flex-col justify-around">
           <div>
-            <deviceWater
-              :title="deviceDetails[12]?.deviceName"
-              :isNormal="true"
-              :ID="12"
-            />
+            <deviceWater :title="deviceDetails[52]?.deviceName" :ID="52" />
           </div>
           <div>
             <deviceWater
-              :title="deviceDetails[13]?.deviceName"
-              :isNormal="true"
-              :ID="13"
+              :title="deviceDetails[11]?.deviceName"
+              :ID="11"
               :isalertWarter="true"
             />
           </div>
@@ -100,6 +95,7 @@
 import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();
 const deviceDetails = ref<{ [key: number]: Device | null }>({});
+
 const DEVICE_TYPE = "water";
 
 onMounted(async () => {
@@ -119,5 +115,7 @@ const updateDeviceDetails = () => {
   for (let id = 11; id <= 18; id++) {
     deviceDetails.value[id] = deviceStore.getDeviceByID(id, DEVICE_TYPE);
   }
+  deviceDetails.value[52] = deviceStore.getDeviceByID(52, DEVICE_TYPE);
 };
+console.log(deviceDetails);
 </script>

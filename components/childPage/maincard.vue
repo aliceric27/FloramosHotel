@@ -7,7 +7,7 @@
         <img src="@/assets/images/maincard/arrow.svg" alt="" />
       </div>
       <div class="card-bottom">
-        <div>
+        <div class="flex flex-col justify-end">
           <p
             class="system-title"
             :class="{ 'has-notification': filtdata?.count }"
@@ -17,7 +17,10 @@
           </p>
           <p class="device-count">{{ props.deviceCount }}devices</p>
         </div>
-        <div v-if="props.title === '熱泵系統' && Heatshutdown?.length">
+        <div
+          v-if="props.title === '熱泵系統' && Heatshutdown?.length"
+          class="overflow-hidden"
+        >
           <div v-for="item in Heatshutdown">
             <p>{{ item }}</p>
           </div>

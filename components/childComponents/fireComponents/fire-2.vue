@@ -48,11 +48,9 @@ const socketStore = useSocketStore();
 const props = defineProps({
   title: {
     type: String,
-    default: "火災警報",
   },
   floor: {
     type: String,
-    default: "1F",
   },
   ID: {
     type: Number,

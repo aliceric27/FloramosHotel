@@ -63,23 +63,18 @@ const DelDevice = async (da: any) => {
 const props = defineProps({
   title: {
     type: String,
-    default: "A",
   },
   cycletime: {
     type: String,
-    default: "3週",
   },
   lasttime: {
     type: String,
-    default: "2023-03-01",
   },
   nexttime: {
     type: String,
-    default: "2023-03-22",
   },
   deleteFlag: {
     type: Number,
-    default: 0,
   },
   data: {},
 });

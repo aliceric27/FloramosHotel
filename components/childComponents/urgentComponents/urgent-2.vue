@@ -23,11 +23,9 @@ const backgroundClass = computed(() => {
 const props = defineProps({
   floor: {
     type: String,
-    default: "B1",
   },
   isNormal: {
     type: Boolean,
-    default: false,
   },
 });
 </script>

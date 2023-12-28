@@ -24,15 +24,12 @@
 const props = defineProps({
   title: {
     type: String,
-    default: "屋頂-水塔蓋",
   },
   isNormal: {
     type: Boolean,
-    default: false,
   },
   isalertWarter: {
     type: Boolean,
-    default: false,
   },
   ID: {
     type: Number,

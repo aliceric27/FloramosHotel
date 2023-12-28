@@ -5,21 +5,21 @@
       <div class="alert" :class="{ 'alert-1': props.isBigText }">
         {{ props.title }}
       </div>
-      <!-- isnormal -->
+      <!-- ispower -->
       <div>
         <div
-          v-if="props.isNormal"
+          v-if="props.isPower"
           class="flex border-2 border-[#6DE479] border-solid rounded-[1rem] text-[#6DE479]"
         >
           <p class="mx-2 normal" :class="{ 'normal-1': props.isBigText }">
-            正常
+            開啟
           </p>
         </div>
         <div
-          v-if="!props.isNormal"
+          v-if="!props.isPower"
           class="flex border-2 border-[#FF5B5B] border-solid rounded-[1rem] text-[#FF5B5B]"
         >
-          <p class="mx-2 error" :class="{ 'error-1': props.isBigText }">異常</p>
+          <p class="mx-2 error" :class="{ 'error-1': props.isBigText }">關閉</p>
         </div>
       </div>
     </div>
@@ -29,15 +29,12 @@
 const props = defineProps({
   title: {
     type: String,
-    default: "警報異常",
   },
-  isNormal: {
+  isPower: {
     type: Boolean,
-    default: false,
   },
   isBigText: {
     type: Boolean,
-    default: false,
   },
 });
 </script>

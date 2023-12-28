@@ -14,7 +14,7 @@
         <div>
           <p class="uragent-text">{{ props.title }}</p>
         </div>
-        <deviceAlert :title="'設備狀態'" :isNormal="isDeviceOn" />
+        <deviceAlert-p :title="'設備狀態'" :isPower="isDeviceOn" />
         <deviceAlert :title="'故障異常'" :isNormal="isNormal" />
       </div>
     </div>
@@ -26,11 +26,9 @@ const socketStore = useSocketStore();
 const props = defineProps({
   title: {
     type: String,
-    default: "排煙機",
   },
   floor: {
     type: String,
-    default: "B1",
   },
   ID: {
     type: Number,
@@ -38,6 +36,10 @@ const props = defineProps({
 });
 const rdata = computed(() => {
   let systemType = "firefighting";
+  console.log(
+    "socketStore?.data?.BA[systemType]?.devices",
+    socketStore?.data?.BA[systemType]?.devices
+  );
   return toRaw(socketStore?.data?.BA[systemType]?.devices);
 });
 const DeviceStatue = computed(() => {

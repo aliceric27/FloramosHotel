@@ -132,7 +132,6 @@ const isNormal = computed(() =>
 const props = defineProps({
   title: {
     type: String,
-    default: "熱泵主機_01",
   },
   ID: {
     type: Number,

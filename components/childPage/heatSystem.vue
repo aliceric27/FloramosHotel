@@ -30,34 +30,14 @@
         <div>
           <div class="flex flex-col gap-4">
             <div class="border-2 border-dashed border-[#C2A344] rounded-xl">
-              <heat-2
-                :title="deviceDetails[35]?.deviceName"
-                :isNormal="true"
-                :ID="35"
-              />
-              <heat-2
-                :title="deviceDetails[36]?.deviceName"
-                :isNormal="false"
-                :ID="36"
-              />
-              <heat-2
-                :title="deviceDetails[37]?.deviceName"
-                :isNormal="false"
-                :ID="37"
-              />
-              <heat-2
-                :title="deviceDetails[38]?.deviceName"
-                :isNormal="true"
-                :ID="38"
-              />
+              <heat-2 :title="deviceDetails[35]?.deviceName" :ID="35" />
+              <heat-2 :title="deviceDetails[36]?.deviceName" :ID="36" />
+              <heat-2 :title="deviceDetails[37]?.deviceName" :ID="37" />
+              <heat-2 :title="deviceDetails[38]?.deviceName" :ID="38" />
             </div>
             <div>
               <div class="border-2 border-dashed border-[#C2A344] rounded-xl">
-                <heat-2
-                  :title="deviceDetails[39]?.deviceName"
-                  :isNormal="true"
-                  :ID="39"
-                />
+                <heat-3 :title="deviceDetails[39]?.deviceName" :ID="39" />
               </div>
             </div>
           </div>

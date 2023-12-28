@@ -35,19 +35,15 @@ const noticedata = computed(() => popupstore.noticedata);
 const props = defineProps({
   title: {
     type: String,
-    default: "發電機",
   },
   content: {
     type: String,
-    default: "日用油箱-處於低油位",
   },
   date: {
     type: String,
-    default: "2023/02/22  14:13",
   },
   isNew: {
     type: Boolean,
-    default: false,
   },
 });
 function formatISODateWithDayjs(isoString: string) {

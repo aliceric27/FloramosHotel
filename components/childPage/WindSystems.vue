@@ -22,10 +22,12 @@
           <WindCard
             :title="deviceDetails[6]?.deviceName"
             :ID="deviceDetails[6]?.deviceID"
+            :system="'送排風系統'"
           />
           <WindCard
             :title="deviceDetails[7]?.deviceName"
             :ID="deviceDetails[7]?.deviceID"
+            :system="'送排風系統'"
           />
           <!--  -->
           <!--  -->
@@ -50,10 +52,12 @@
             <WindCard
               :title="deviceDetails[8]?.deviceName"
               :ID="deviceDetails[8]?.deviceID"
+              :system="'送排風系統'"
             />
             <WindCard
               :title="deviceDetails[9]?.deviceName"
               :ID="deviceDetails[9]?.deviceID"
+              :system="'送排風系統'"
             />
           </div>
           <!-- end -->
@@ -61,6 +65,7 @@
             <WindCard
               :title="deviceDetails[10]?.deviceName"
               :ID="deviceDetails[10]?.deviceID"
+              :system="'送排風系統'"
             />
             <img src="@/assets/images/wind/air-con-pic.png" alt="" />
           </div>

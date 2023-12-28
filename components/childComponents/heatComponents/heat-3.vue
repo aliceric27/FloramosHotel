@@ -72,33 +72,6 @@
               </div>
             </div>
           </div>
-          <div class="flex gap-[13px] items-center shrink-0">
-            <span
-              class="w-[85px] h-5 shrink-0 basis-auto font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#707070] tracking-3.2px text-left break-words"
-              >故障異常</span
-            >
-            <div class="w-[67.672px] h-6 shrink-0 rounded-[43px] relative">
-              <div class="w-full h-full absolute top-0 left-0 z-[9]">
-                <div
-                  class="w-full h-full bg-[#fff] rounded-[43px] border-solid border-[3px] border-[#6de479] absolute top-0 left-0 z-10"
-                  :class="{
-                    'border-[#6de479]': isNormal,
-                    'border-[#df3f3f]': !isNormal,
-                  }"
-                ></div>
-                <span
-                  v-if="isNormal"
-                  class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#5fd76c] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
-                  >正常</span
-                >
-                <span
-                  v-if="!isNormal"
-                  class="w-[56.15%] h-[78.15%] font-[Microsoft_JhengHei_UI] text-sm font-bold leading-[17.78px] text-[#df3f3f] tracking-4.34px absolute top-[13.01%] left-[25.12%] text-left z-[11] break-words"
-                  >異常</span
-                >
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -112,7 +85,6 @@ const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
     type: String,
-    default: "熱泵主機_01",
   },
   ID: {
     type: Number,

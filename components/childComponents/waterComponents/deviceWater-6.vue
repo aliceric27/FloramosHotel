@@ -65,7 +65,6 @@ const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
     type: String,
-    default: "調節鼓風機A",
   },
   ID: {
     type: Number,

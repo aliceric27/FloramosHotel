@@ -60,11 +60,9 @@ const switchemergency = PopupStore.switchemergency;
 const props = defineProps({
   conten1: {
     type: String,
-    default: "一氧化碳偵測出現異常",
   },
   conten2: {
     type: String,
-    default: "B2F 一氧化碳",
   },
 });
 </script>
