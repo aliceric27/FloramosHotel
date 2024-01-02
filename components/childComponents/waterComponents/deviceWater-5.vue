@@ -1,5 +1,8 @@
 <template>
-  <div class="main-container flex flex-col gap-[-32px] items-center">
+  <div
+    class="main-container flex flex-col gap-[-32px] items-center cursor-pointer"
+    @click="switchsidpage"
+  >
     <div class="relative flex items-end justify-center gap-2 shrink-0">
       <div>
         <img src="@/assets/images/wind/point.png" alt="" />
@@ -28,21 +31,32 @@
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >設備狀態</span
           >
-          <DevicePower :deviceOn="isDeviceOn" @toggle-power="togglePower" />
+          <DevicePower :deviceOn="isDeviceOn" />
         </div>
         <div class="flex items-center justify-center gap-9 shrink-0">
           <span
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >故障異常</span
           >
-          <deviceNormal :isNormal="isNormal" @toggle="toggleNormal" />
+          <deviceNormal :isNormal="isNormal" />
         </div>
+      </div>
+      <div class="absolute right-0 top-4">
+        <img src="@/assets/button/arrow.svg" alt="arrow" />
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import useSocketStore from "~/store/socketStore";
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchsidpage = async () => {
+  const title = props.title;
+  const system = "廢水系統";
+  const id = props.ID;
+  await PopupStore.switchsidpage(system, title, id);
+};
 const socketStore = useSocketStore();
 const props = defineProps({
   title: {

@@ -1,7 +1,10 @@
 <template>
   <div>
     <div>
-      <div class="flex flex-col items-center">
+      <div
+        class="flex flex-col items-center cursor-pointer"
+        @click="switchsidpage"
+      >
         <img
           src="@/assets/images/water/pond-1.png"
           alt=""
@@ -46,7 +49,36 @@ const props = defineProps({
   },
 });
 import useSocketStore from "~/store/socketStore";
+import usePopupStore from "~/store/PopupStore";
+interface PondDevice {
+  system: string;
+  [key: string]: string;
+}
+interface PondID {
+  [key: string]: number;
+}
+const pondID: PondID = {
+  1: 19,
+  2: 20,
+  3: 25,
+  4: 26,
+};
+const ponddevice: PondDevice = {
+  system: "汙水系統",
+  1: "廢水池-1",
+  2: "廢水池-2",
+  3: "汙水池",
+  4: "與水池",
+};
+const popupstore = usePopupStore();
 const socketStore = useSocketStore();
+const switchsidpage = async () => {
+  await popupstore.switchsidpage(
+    ponddevice.system,
+    ponddevice[props.pond],
+    pondID[props.pond]
+  );
+};
 interface Device {
   deviceName: string;
   deviceID: number;

@@ -59,6 +59,9 @@ const isDeviceOn = computed(() =>
 const isNormal = computed(() =>
   DeviceStatue.value?.faultStatus === "正常" ? true : false
 );
+
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
+
 const props = defineProps({
   title: {
     type: String,

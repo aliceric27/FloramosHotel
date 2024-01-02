@@ -3,7 +3,7 @@
   <div>
     <div class="grid grid-cols-2 h-[90vh]">
       <!-- left -->
-      <div class="flex flex-col items-center justify-center gap-10">
+      <div class="flex flex-col items-center justify-around gap-10">
         <div class="flex items-center gap-20">
           <div><deviceWater-3 :pond="'1'" /></div>
           <div><deviceWater-3 :pond="'2'" /></div>

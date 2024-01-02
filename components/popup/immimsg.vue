@@ -40,7 +40,7 @@
           <div class="cursor-pointer box-2" @click="switchimmPopup">
             <span class="text-7">關閉</span>
           </div>
-          <div class="wrapper-2"><span class="text-8">警報管理</span></div>
+          <!-- <div class="wrapper-2"><span class="text-8">警報管理</span></div> -->
         </div>
       </div>
     </div>

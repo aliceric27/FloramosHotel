@@ -2,8 +2,9 @@
 <template>
   <div>
     <div
-      class="flex flex-col justify-between w-[20rem] min-h-[20rem] rounded-[1rem] border-4 border-[#E2E2E2] border-solid bg-no-repeat bg-center p-2"
+      class="flex flex-col justify-between w-[20rem] min-h-[20rem] rounded-[1rem] border-4 border-[#E2E2E2] border-solid bg-no-repeat bg-center p-2 cursor-pointer"
       :class="backgroundClass"
+      @click="switchsidpage"
     >
       <div class="flex">
         <p class="gold">{{ props.floor }}</p>
@@ -32,6 +33,14 @@ const props = defineProps({
   },
 });
 import useSocketStore from "~/store/socketStore";
+import usePopupStore from "~/store/PopupStore";
+const PopupStore = usePopupStore();
+const switchsidpage = async () => {
+  const title = `${props.floor}緊急求救`;
+  const system = "緊急求救";
+  const id = props.deviceID;
+  await PopupStore.switchsidpage(system, title, id);
+};
 const socketStore = useSocketStore();
 const rdata = computed(() => {
   let systemType = "SOS";

@@ -117,5 +117,4 @@ const updateDeviceDetails = () => {
   }
   deviceDetails.value[52] = deviceStore.getDeviceByID(52, DEVICE_TYPE);
 };
-console.log(deviceDetails);
 </script>

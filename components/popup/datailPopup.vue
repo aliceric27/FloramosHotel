@@ -113,7 +113,7 @@ const system = computed(() => PopupStore.sidata.system);
 const device = computed(() => PopupStore.sidata.device);
 const eventData = computed(() => PopupStore.sidata.event);
 const titleTyp = computed(() =>
-  detailPoptyp.value === "alarm" ? "賦歸事件" : "歷史事件"
+  detailPoptyp.value === "alarm" ? "復歸事件" : "歷史事件"
 );
 const textarea = ref("");
 const checkedexceptedState = computed({
@@ -171,7 +171,7 @@ const sendUpdata = async () => {
     $swal
       .fire({
         title: "成功",
-        text: `賦歸成功`,
+        text: `復歸`,
         icon: "success",
         confirmButtonText: "確認",
       })

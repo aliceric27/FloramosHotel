@@ -60,7 +60,8 @@
               >
             </div>
           </div>
-          <div class="flex gap-[13px] items-center shrink-0">
+          <!-- 故障異常(暫時移除) -->
+          <!-- <div class="flex gap-[13px] items-center shrink-0">
             <span
               class="w-[85px] h-5 shrink-0 basis-auto font-[Microsoft_JhengHei_UI] text-base font-bold leading-5 text-[#707070] tracking-3.2px text-left break-words"
               >故障異常</span
@@ -93,7 +94,7 @@
                 >
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

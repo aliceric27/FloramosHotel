@@ -30,16 +30,10 @@
             </div>
             <p class="small-title">{{ deviceDetails[4]?.deviceName }}</p>
           </div>
-          <div
-            v-show="isBatteryNormal"
-            @click="isBatteryNormal = !isBatteryNormal"
-          >
+          <div v-show="batteryStatue">
             <img src="@/assets/button/battery_full.png" alt="normal" />
           </div>
-          <div
-            v-show="!isBatteryNormal"
-            @click="isBatteryNormal = !isBatteryNormal"
-          >
+          <div v-show="!batteryStatue">
             <img src="@/assets/button/battery_low.png" alt="error" />
           </div>
           <div class="flex items-center justify-between">
@@ -57,14 +51,12 @@
           </div>
           <div>
             <img
-              v-show="isfuelNormal"
-              @click="isfuelNormal = !isfuelNormal"
+              v-show="oilStatue"
               src="@/assets/button/fueltank-nomal.png"
               alt="油箱圖案"
             />
             <img
-              v-show="!isfuelNormal"
-              @click="isfuelNormal = !isfuelNormal"
+              v-show="!oilStatue"
               src="@/assets/button/fueltank-error.png"
               alt="油箱圖案"
             />
