@@ -39,7 +39,7 @@
                   class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
                   >故障異常</span
                 >
-                <deviceNormal :isNormal="normal" @toggle="toggleNormal" />
+                <deviceNormal :isNormal="normal" :statTitle="statTitle" />
               </div>
             </div>
           </div>
@@ -71,6 +71,8 @@ const togglePower = () => {
 const toggleNormal = () => {
   normal.value = !normal.value;
 };
+
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
 </script>
 <style lang="scss" scoped>
 .shadow-blur {

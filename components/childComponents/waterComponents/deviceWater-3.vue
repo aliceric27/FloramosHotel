@@ -31,7 +31,7 @@
           {{ "水位狀態" }}
         </div>
         <div class="p-4">
-          <DeviceNormal :is-normal="isNormal" />
+          <DeviceNormal :is-normal="isNormal" :statTitle="statTitle" />
         </div>
       </div>
     </div>
@@ -112,5 +112,6 @@ const isDeviceOn = computed(() =>
 const isNormal = computed(() =>
   DeviceStatue.value?.faultStatus === "正常" ? true : false
 );
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
 </script>
 <style lang="scss" scoped></style>

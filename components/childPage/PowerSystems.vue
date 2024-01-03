@@ -38,7 +38,7 @@
           </div>
           <div class="flex items-center justify-between">
             <p>電瓶電壓</p>
-            <DeviceNormal :isNormal="batteryStatue" />
+            <DeviceNormal :isNormal="batteryStatue" :statTitle="batterystat" />
           </div>
         </div>
         <!-- ----------------------------- -->
@@ -63,7 +63,7 @@
           </div>
           <div class="flex items-center justify-between">
             <p>油位</p>
-            <DeviceNormal :isNormal="oilStatue" />
+            <DeviceNormal :isNormal="oilStatue" :statTitle="oilstat" />
           </div>
         </div>
         <!-- -------------------------------- -->
@@ -95,6 +95,15 @@ const batteryStatue = computed(() => {
   }
   return dstatus;
 });
+
+const batterystat = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === 4);
+  if (dstatus) {
+    return dstatus?.faultStatus;
+  }
+  return dstatus;
+});
+
 const oilStatue = computed(() => {
   const dstatus = rdata.value?.find((item: any) => item?.deviceID === 5);
   if (dstatus) {
@@ -102,6 +111,15 @@ const oilStatue = computed(() => {
   }
   return false;
 });
+
+const oilstat = computed(() => {
+  const dstatus = rdata.value?.find((item: any) => item?.deviceID === 5);
+  if (dstatus) {
+    return dstatus?.faultStatus;
+  }
+  return false;
+});
+
 import usePopupStore from "~/store/PopupStore";
 import useDeviceStore from "~/store/DeviceStore";
 const deviceStore = useDeviceStore();

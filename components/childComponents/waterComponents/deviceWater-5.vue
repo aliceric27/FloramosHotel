@@ -38,7 +38,7 @@
             class="h-[25px] shrink-0 basis-auto text-xl font-bold leading-[25px] text-[#707070] tracking-1.2px text-left break-words"
             >故障異常</span
           >
-          <deviceNormal :isNormal="isNormal" />
+          <deviceNormal :isNormal="isNormal" :statTitle="statTitle" />
         </div>
       </div>
       <div class="absolute right-0 top-4">
@@ -80,4 +80,5 @@ const isDeviceOn = computed(() =>
 const isNormal = computed(() =>
   DeviceStatue.value?.faultStatus === "正常" ? true : false
 );
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
 </script>

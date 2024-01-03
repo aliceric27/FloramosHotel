@@ -14,7 +14,7 @@
             {{ isalertWarter ? "水位狀態" : "異常警報" }}
           </div>
           <div class="p-4">
-            <DeviceNormal :is-normal="isNormal" />
+            <DeviceNormal :is-normal="isNormal" :statTitle="statTitle" />
           </div>
         </div>
       </div>
@@ -68,4 +68,5 @@ const isNormal = computed(() => {
   }
   DeviceStatue.value?.faultStatus === "正常" ? true : false;
 });
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
 </script>

@@ -41,7 +41,7 @@
             >
               故障異常
             </h2>
-            <DeviceNormal :isNormal="isNormal" />
+            <DeviceNormal :isNormal="isNormal" :statTitle="statTitle" />
           </div>
         </div>
       </div>
@@ -63,6 +63,7 @@ const isDeviceOn = computed(() =>
 const isNormal = computed(() =>
   DeviceStatue.value?.faultStatus === "正常" ? true : false
 );
+const statTitle = computed(() => DeviceStatue.value?.faultStatus);
 const switchsidpage = PopupStore.switchsidpage;
 const props = defineProps({
   title: {
