@@ -83,6 +83,7 @@ const sendmaintConfirm = async () => {
     },
     ...maintain?.value,
   };
+
   data.customName = currentData.value?.customName;
   const cycleval = maintain?.value?.cycle_value;
   const cycleunit = maintain?.value?.cycle_unit;

@@ -74,13 +74,14 @@ const actions: any = {
   turnOnimmPopup() {
     this.immPopup = true;
   },
-  async switchmaintConfirm(data?) {
+  async switchmaintConfirm(data) {
     if (data) {
+      console.log("mydata", data);
       const url = data?.customName === null ? data?.deviceID : data?.customName;
       const deviceStore = useDeviceStore();
       deviceStore.setMaintData(data);
-      const cyc = this.setCycle(data?.cycle_unit, data?.cycle_value);
-      const maintain = toRaw(deviceStore?.maintain);
+      // const cyc = this.setCycle(data?.cycle_unit, data?.cycle_value);
+      const maintain = deviceStore?.maintain;
       const maintainData = maintain?.data;
       if (maintainData?.length) {
         let finddata;
@@ -95,6 +96,22 @@ const actions: any = {
             ? finddata?.customName
             : finddata?.deviceName;
       }
+    }
+    this.maintConfirm = !this.maintConfirm;
+  },
+  async fastmaintConfirm(data) {
+    if (data) {
+      const url = data?.customName === null ? data?.deviceID : data?.customName;
+      this.setCycle(data?.cycle_unit, data?.cycle_value);
+      const deviceStore = useDeviceStore();
+      deviceStore.setMaintData(data);
+      // const cyc = this.setCycle(data?.cycle_unit, data?.cycle_value);
+      const maintain = deviceStore?.maintain;
+      const maintainData = maintain?.data;
+      console.log("maintainData", maintainData);
+      this.currentData = data;
+      this.sidata.device =
+        data?.deviceName === null ? data?.customName : data?.deviceName;
     }
     this.maintConfirm = !this.maintConfirm;
   },
@@ -121,6 +138,7 @@ const actions: any = {
     this.sidata.system = system;
     this.sidata.device = device;
     if (this.sidpage === false) {
+      this.sidata.event = "";
       this.detailPopup = false;
       this.maintConfirm = false;
     }

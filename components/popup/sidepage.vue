@@ -135,6 +135,12 @@ const eventData = computed(() => {
   }
   return "";
 });
+const cycle_value = computed(() => maintain?.value?.cycle_value);
+const cycle_unit = computed(() => maintain?.value?.cycle_unit);
+const customName = computed(() => maintain?.value?.customName);
+const deviceName = computed(() => maintain?.value?.deviceName);
+const deviceID = computed(() => maintain?.value?.deviceID);
+const needsMaintenance = computed(() => maintain?.value?.needsMaintenance);
 const switchsidpage = PopupStore.switchsidpage;
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
 const setMaintaincycle = PopupStore.setMaintaincycle;
@@ -173,9 +179,17 @@ const lastdate = computed(() => getDate(maintain?.value?.lastTime));
 const nextdate = computed(() => getDate(maintain?.value?.nextTime));
 const maintdata = {
   cycletime: CycleString,
+  cycle_value: cycle_value,
+  cycle_unit: cycle_unit,
+  customName: customName,
+  deviceName: deviceName,
+  deviceID: deviceID,
+  needsMaintenance: needsMaintenance,
   lasttime: lastdate,
   nexttime: nextdate,
   data: maintain?.value,
 };
+
+console.log("maintain", maintain);
 </script>
 <style scoped></style>

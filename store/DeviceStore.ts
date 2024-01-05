@@ -89,6 +89,7 @@ const actions: any = {
     return result;
   },
   async updateDevice(updatData: any) {
+    console.log("updatData", updatData);
     const userStore = useLoginStore();
     const token = userStore.token;
     let fetchurl = "";

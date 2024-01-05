@@ -19,7 +19,7 @@
         <div
           class="flex items-center justify-start col-span-3 pl-20 cursor-pointer title"
         >
-          <div @click="switchmaintConfirm(props.data)">
+          <div @click="fastmaintConfirm(props.data)">
             <img src="@/assets/images/maint/confirm.png" />
           </div>
           <div @click="switchmaintEdit(props.data)">
@@ -40,6 +40,7 @@ const { $swal } = useNuxtApp();
 const PopupStore = usePopupStore();
 const DeviceStore = useDeviceStore();
 const switchmaintConfirm = PopupStore.switchmaintConfirm;
+const fastmaintConfirm = PopupStore.fastmaintConfirm;
 const switchmaintEdit = PopupStore.switchmaintEdit;
 const DelDevice = async (da: any) => {
   const result = await DeviceStore.DelDevice(da);
