@@ -102,15 +102,6 @@ function formatISODateWithDayjs(isoString: string) {
   position: relative;
   width: 122px;
 }
-.pic {
-  position: relative;
-  width: 25.3px;
-  height: 17.3px;
-  background: url(../assets/images/a3d29c1a-ebca-446a-ae46-cfb16137bd5b.png)
-    no-repeat center;
-  background-size: cover;
-  z-index: 1;
-}
 .text {
   flex-basis: auto;
   position: relative;

@@ -237,7 +237,7 @@ const actions: any = {
     const userStore = useLoginStore();
     const popupStore = usePopupStore();
     const token = userStore.token;
-    let fetchurl = popupStore.sidata.maintain.deviceID;
+    let fetchurl = popupStore?.sidata?.event?.deviceID;
     const { data, pending, refresh, execute, error, status } = await useFetch(
       `${import.meta.env.VITE_Socket_URL}/api/events/${fetchurl}`,
       {

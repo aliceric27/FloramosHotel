@@ -115,7 +115,7 @@ const eventData = computed(() => PopupStore.sidata.event);
 const titleTyp = computed(() =>
   detailPoptyp.value === "alarm" ? "復歸事件" : "歷史事件"
 );
-const textarea = ref("");
+const textarea = ref(eventData.value?.comment);
 const checkedexceptedState = computed({
   get: () => {
     if (
@@ -163,7 +163,7 @@ const sendUpdata = async () => {
   if (result.status === "error") {
     $swal.fire({
       title: "失敗",
-      text: `${result?.error?.data?.message}`,
+      text: `${result?.error?.data?.error}`,
       icon: "error",
       confirmButtonText: "確認",
     });

@@ -167,6 +167,7 @@ const actions: any = {
   closedetailPopup() {
     this.detailPopup = false;
     this.sidata.event = "";
+    this.sidpage = false;
   },
   setMaintaincycle(cycle: string) {
     this.maintaincycle = cycle;

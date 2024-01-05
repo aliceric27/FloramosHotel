@@ -3,8 +3,12 @@
   <div class="fixed bottom-0 w-screen">
     <div class="flex items-center justify-center w-full">
       <div class="flex items-center justify-center warp w-[80%]">
-        <div class="content" :class="animationClass">
-          {{ marqcontent?.[currentIndex].c }}
+        <div
+          class="content"
+          :class="animationClass"
+          v-if="marqcontent?.[currentIndex]"
+        >
+          {{ marqcontent?.[currentIndex]?.c }}
         </div>
       </div>
     </div>
