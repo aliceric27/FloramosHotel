@@ -8,7 +8,7 @@ function pathResolve(dir: string) {
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "中央監控系統",
+      title: "監控系統",
       link: [
         { rel: "icon", type: "image/png", href: "favico.ico" },
         {

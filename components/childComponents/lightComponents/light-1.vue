@@ -1,6 +1,6 @@
 <!-- 燈控樓層組件 -->
 <template>
-  <div class="absolute right-20 -top-3">
+  <div class="absolute right-0 -top-3">
     <div class="grid grid-flow-col grid-rows-2 w-[36rem] h-[5rem] gap-2">
       <!-- <div class="row-span-2 glod-floor">ALL</div> -->
       <!-- 上排 -->
@@ -36,8 +36,8 @@ const DeviceStore = useDeviceStore();
 const ChangeLightPage = DeviceStore.ChangeLightPage;
 const lightPage = computed(() => DeviceStore.lightPage);
 const floors = ref([
-  ["B2F", "B1F", "1F", "3F", "5F"],
-  ["6F", "7F", "8F", "9F", "10F", "11F", "RF"],
+  ["B2F", "B1F", "1F", "3F", "5F", "6F"],
+  ["7F", "8F", "9F", "10F", "11F", "RF"],
 ]);
 </script>
 <style lang="scss" scoped>
