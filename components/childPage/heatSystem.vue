@@ -27,7 +27,8 @@
           />
           <div><img src="@/assets/images/maincard/heat-pump.png" alt="" /></div>
         </div>
-        <div>
+        <!-- 右側清單 -->
+        <!-- <div>
           <div class="flex flex-col gap-4">
             <div class="border-2 border-dashed border-[#C2A344] rounded-xl">
               <heat-2 :title="deviceDetails[35]?.deviceName" :ID="35" />
@@ -41,7 +42,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

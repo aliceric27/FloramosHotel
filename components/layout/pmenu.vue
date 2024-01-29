@@ -16,7 +16,7 @@
           <p>熱泵系統</p>
         </div>
         <div class="item" @click="() => navigateTo('/system/urgent')">
-          <p>緊急求救</p>
+          <p>緊急系統</p>
         </div>
         <div class="item" @click="() => navigateTo('/system/firefighting')">
           <p>消防系統</p>
